@@ -1,12 +1,14 @@
 fileFormatVersion: 2
 guid: 3eb17fbbdeb7fc442a7a65af26cc697b
-timeCreated: 1445459400
+timeCreated: 1446330863
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: ui_2_shield
     21300002: ui_2_center
     21300004: ui_2_armor
+    21300006: ui_2_laser
+    21300008: ui_2_missile
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -66,10 +68,10 @@ TextureImporter:
     - name: ui_2_center
       rect:
         serializedVersion: 2
-        x: 84
-        y: 9
-        width: 82
-        height: 82
+        x: 125
+        y: 50
+        width: 41
+        height: 41
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -80,6 +82,26 @@ TextureImporter:
         y: 0
         width: 7
         height: 98
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ui_2_laser
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 52
+        width: 39
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ui_2_missile
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 9
+        width: 39
+        height: 39
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
