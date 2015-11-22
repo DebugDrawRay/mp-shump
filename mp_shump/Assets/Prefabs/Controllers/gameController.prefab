@@ -42,8 +42,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   playerObject: {fileID: 192840, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
-  totalFieldLength: 400
-  screenCenterOffset: 8.89999962
+  totalFieldLength: 500
+  screenCenterOffset: 50
   gate: {fileID: 128138, guid: 48976ca1b385fe04986f464b0d9813ef, type: 2}
 --- !u!114 &11467986
 MonoBehaviour:
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25cf0538d5b31a41a6a0b141a2946df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToBuild: {fileID: 11400000, guid: 487be41b3df2f2e419a01d7e0ae0683d, type: 2}
+  levelToBuild: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

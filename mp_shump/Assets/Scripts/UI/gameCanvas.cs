@@ -38,7 +38,7 @@ public class gameCanvas : MonoBehaviour
 
     void Update()
     {
-        distanceMeter.text = player.distanceFromCenter.ToString();
+        distanceMeter.text = (player.distanceFromCenter - gameController.instance.screenCenterOffset/2).ToString();
         Debug.Log(player.distanceFromCenter);
         if(player.distanceFromCenter <= 0 && centerMark)
         {

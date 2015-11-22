@@ -8,7 +8,10 @@ public class levelFactory : MonoBehaviour
     
     void Awake()
     {
-        buildLevel(levelToBuild);
+        if (levelToBuild)
+        {
+            buildLevel(levelToBuild);
+        }   
     }
 
     public bool buildLevel(levelAsset levelToBuild)

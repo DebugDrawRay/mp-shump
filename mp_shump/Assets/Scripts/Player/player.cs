@@ -42,7 +42,7 @@ public class player : MonoBehaviour
     void Awake()
     {
         initializeComponents();
-        distanceFromCenter = Mathf.RoundToInt(Mathf.Abs(transform.position.x) - 4);
+        distanceFromCenter = Mathf.RoundToInt(Mathf.Abs(transform.position.x));
     }
     void Start()
     {
