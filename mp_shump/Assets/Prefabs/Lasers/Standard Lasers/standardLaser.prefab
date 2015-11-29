@@ -73,12 +73,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  weaponLevelIncrease: 0
   isInvul: 0
   lifetime: 10
-  solidObjects:
-  - Enviroment
-  deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
-  parent: {fileID: 0}
+  deathAnim: {fileID: 191574, guid: deb0079a15d595848a95de6caabe70bd, type: 2}
+  solidObjects: []
 --- !u!114 &11441868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,8 +124,12 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: solidObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: solidObjects.Array.data[0]
-      value: 
+      value: Enviroment
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed
@@ -140,6 +143,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: deathAnim
+      value: 
+      objectReference: {fileID: 191574, guid: deb0079a15d595848a95de6caabe70bd, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 137904}

@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class levelFactory : MonoBehaviour
 {
     public levelAsset levelToBuild;
-    
+    public bool createLevel = true;
     void Awake()
     {
-        if (levelToBuild)
+        if (levelToBuild && createLevel)
         {
             buildLevel(levelToBuild);
         }   

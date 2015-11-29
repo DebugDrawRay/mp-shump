@@ -64,7 +64,7 @@ public class gameController : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
         instance = this;
@@ -97,7 +97,7 @@ public class gameController : MonoBehaviour
         {
             case gameState.Start:
                 startPlayers();
-                if (!canvas.startCountdown())
+                if (!canvas.startCountdown(canvas.countdownClock))
                 {
                     beginGame();
                     currentState = gameState.InGame;
@@ -112,7 +112,7 @@ public class gameController : MonoBehaviour
                 }
                 break;
             case gameState.AtCenter:
-                if (!canvas.startCountdown())
+                if (!canvas.startCountdown(canvas.vsClock))
                 {
                     beginVersus();
                     currentState = gameState.InVersus;

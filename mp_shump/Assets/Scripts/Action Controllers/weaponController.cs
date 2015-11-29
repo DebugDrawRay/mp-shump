@@ -17,10 +17,10 @@ public class weaponController : actionController
         private set;
     }
 
+    public int bombs;
     public int weaponLevel;
 
-    public int bombs;
-
+    private status currentStatus;
     void Start()
     {
         if (primaryWeapon)
@@ -37,13 +37,20 @@ public class weaponController : actionController
             currentSecondary = secondary.GetComponent<weapon>();
             currentSecondary.setupWeapon();
         }
+
+        currentStatus = GetComponent<status>();
     }
     void Update()
     {
+        if(currentStatus)
+        {
+            weaponLevel = currentStatus.currentWeaponLevel;
+        }
         if (isActive)
         {
             if (currentPrimary != null)
             {
+                currentPrimary.currentWeaponLevel = weaponLevel;
                 currentPrimary.updateWeapon();
                 if (input.firePrimary())
                 {
@@ -52,6 +59,7 @@ public class weaponController : actionController
             }
             if (currentSecondary != null)
             {
+                currentSecondary.currentWeaponLevel = weaponLevel;
                 currentSecondary.updateWeapon();
                 if (input.fireSecondary())
                 {

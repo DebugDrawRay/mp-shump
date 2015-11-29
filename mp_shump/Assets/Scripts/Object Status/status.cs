@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 public class status : MonoBehaviour
 {
+    [Header("Health and Lives")]
     public float baseHealth = 10;
     public float currentHealth
     {
         get;
         private set;
     }
-
     public int lives = 1;
 
     public bool destroyed;
     public GameObject deathAnim;
 
+    [Header("Weapons")]
+    public int currentWeaponLevel;
+
+    [Header("Collisions")]
     public string[] excludedTags;
 
     void Awake()
@@ -32,32 +35,38 @@ public class status : MonoBehaviour
         interactionSource interact = hit.GetComponent<interactionSource>();
         if(interact)
         {
-            if(checkIfHostile(interact.gameObject.tag))
+            if(!checkIfExcluded(interact.gameObject.tag))
             {
-                hostileInteraction(interact);
+                interaction(interact);
             }
         }
     }
 
-    bool checkIfHostile(string tag)
+    bool checkIfExcluded(string tag)
     {
         foreach(string excluded in excludedTags)
         {
             if(tag == excluded)
             {
-                return false;
+                return true;
             }
         }
         if (tag == this.tag)
         {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
-    void hostileInteraction(interactionSource hostile)
+    void interaction(interactionSource interactable)
     {
-        currentHealth -= hostile.damage;
-        hostile.deathEvent();
+        currentHealth -= interactable.damage;
+        currentWeaponLevel += interactable.weaponLevelIncrease;
+        
+        if(interactable.damage > 0 && currentWeaponLevel > 0)
+        {
+            currentWeaponLevel--;
+        }
+        interactable.deathEvent();
     }
     void checkDamageState()
     {

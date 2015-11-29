@@ -4,13 +4,8 @@ using System.Collections;
 public class laserWeapon : MonoBehaviour, weapon
 {
     [Header("Projectiles")]
-    public GameObject[] levelOne;
-    public GameObject[] levelTwo;
-    public GameObject[] levelThree;
-    public GameObject[] levelFour;
-
-    private GameObject[][] projectileSets;
-    private GameObject[] currentLevel;
+    public GameObject[] projectileLevels;
+    private GameObject currentLevel;
 
     public GameObject muzzleFlash;
 
@@ -44,17 +39,16 @@ public class laserWeapon : MonoBehaviour, weapon
         set;
     }
 
+    public int currentWeaponLevel
+    {
+        get;
+        set;
+    }
+
     public void setupWeapon()
     {
-        projectileSets = new GameObject[4][];
-        projectileSets[0] = levelOne;
-        projectileSets[1] = levelTwo;
-        projectileSets[2] = levelThree;
-        projectileSets[3] = levelFour;
-
-        currentLevel = projectileSets[0];
         currentFireDelay = fireDelay;
-
+        updateWeaponLevel();
     }
 
     public void updateWeapon()
@@ -70,6 +64,15 @@ public class laserWeapon : MonoBehaviour, weapon
         }
 
         parentVelocity = getVelocity();
+        updateWeaponLevel();
+    }
+
+    void updateWeaponLevel()
+    {
+        if(currentWeaponLevel <= projectileLevels.Length - 1)
+        {
+            currentLevel = projectileLevels[currentWeaponLevel];
+        }
     }
 
     Vector2 getVelocity()
@@ -83,6 +86,7 @@ public class laserWeapon : MonoBehaviour, weapon
         }
         return newVel;
     }
+
     void checkIfCool()
     {
         if (currentLaserHeat < 0)
@@ -122,13 +126,10 @@ public class laserWeapon : MonoBehaviour, weapon
                 dir.x = dir.x / laserOffset.x;
                 Vector2 spawnPos = origin + dir;
 
-                for (int i = 0; i <= currentLevel.Length - 1; i++)
-                {
-                    GameObject proj = Instantiate(levelOne[i], spawnPos, Quaternion.identity) as GameObject;
-                    proj.transform.SetParent(transform.parent);
-                    proj.tag = transform.parent.tag;
-                    proj.GetComponent<Rigidbody2D>().velocity = parentVelocity;  
-                }
+                GameObject proj = Instantiate(currentLevel, spawnPos, Quaternion.identity) as GameObject;
+                proj.transform.SetParent(transform.parent);
+                proj.tag = transform.parent.tag;
+                proj.GetComponent<Rigidbody2D>().velocity = parentVelocity;  
 
                 if (muzzleFlash)
                 {

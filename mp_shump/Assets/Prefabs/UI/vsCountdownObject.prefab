@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11409002}
   - 114: {fileID: 11412322}
   m_Layer: 5
-  m_Name: countdownObject
+  m_Name: vsCountdownObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,8 +62,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownLabels:
-  - Entering Realspace
-  - Incoming Enemy Forces
+  - Enemy Scout Detected
+  - Gate Lowering In
+  - 3
+  - 2
+  - 1
+  - Fight!
   isActive: 1
   runCountdown: 0
 --- !u!222 &22280768
@@ -98,7 +102,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: countdownLabels.Array.size
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_FontData.m_Font
@@ -107,15 +111,27 @@ Prefab:
         type: 3}
     - target: {fileID: 0}
       propertyPath: countdownLabels.Array.data[0]
-      value: Entering Realspace
+      value: Enemy Scout Detected
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: countdownLabels.Array.data[1]
-      value: Incoming Enemy Forces
+      value: Gate Lowering In
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: countdownLabels.Array.data[2]
-      value: Go!
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: countdownLabels.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: countdownLabels.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: countdownLabels.Array.data[5]
+      value: Fight!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

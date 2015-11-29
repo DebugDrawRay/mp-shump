@@ -15,6 +15,8 @@ GameObject:
   - 50: {fileID: 5001680}
   - 114: {fileID: 11456788}
   - 61: {fileID: 6179478}
+  - 114: {fileID: 11434340}
+  - 114: {fileID: 11487496}
   m_Layer: 0
   m_Name: standardFlyer
   m_TagString: Enemy
@@ -29,7 +31,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 123.816788, y: 13.4137211, z: 0}
+  m_LocalPosition: {x: 64, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,10 +79,23 @@ MonoBehaviour:
   availableActions:
   - {fileID: 11448820}
   - {fileID: 11492936}
-  currentStatus: {fileID: 0}
   verticalForces: []
   forceSwitchInterval: 1.5
   loopForceSwitch: 1
+--- !u!114 &11434340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5a308de94eb964ea7ad3798ca7df42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 144042, guid: 400db9cecaa360a4b9da27353b13a315, type: 2}
+  dropChance: .5
 --- !u!114 &11448820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d38db025351a74c80b3d098daca9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2
 --- !u!114 &11456788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,8 +123,27 @@ MonoBehaviour:
   lives: 0
   destroyed: 0
   deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
+  currentWeaponLevel: 0
   excludedTags:
   - Enemy
+  - Pickup
+--- !u!114 &11487496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96dff905f730bee44992279a9ff87645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  weaponLevelIncrease: 0
+  isInvul: 1
+  lifetime: 0
+  deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
+  solidObjects: []
 --- !u!114 &11492936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,8 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryWeapon: {fileID: 183362, guid: 7cc4851138297244d8f5b0f1c2af9a00, type: 2}
   secondaryWeapon: {fileID: 0}
-  weaponLevel: 0
   bombs: 0
+  weaponLevel: 0
 --- !u!212 &21291342
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -159,8 +193,12 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
-      propertyPath: excludedTags.Array.size
+      propertyPath: items.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: excludedTags.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: verticalForces.Array.size
@@ -204,7 +242,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: moveSpeed
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: verticalForces.Array.data[0]
@@ -213,6 +251,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: verticalForces.Array.data[2]
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: isInvul
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 144042, guid: 400db9cecaa360a4b9da27353b13a315, type: 2}
+    - target: {fileID: 0}
+      propertyPath: excludedTags.Array.data[1]
+      value: Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dropChance
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

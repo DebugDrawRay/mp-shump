@@ -3,12 +3,19 @@ using System.Collections;
 
 public class interactionSource : MonoBehaviour
 {
+    [Header("Penalites")]
     public int damage;
+
+    [Header("Upgrades")]
+    public int weaponLevelIncrease;
+
+    [Header("Object Status")]
     public bool isInvul;
     public float lifetime;
-    public string[] solidObjects;
     public GameObject deathAnim;
-    public GameObject parent;
+
+    [Header("Collisions")]
+    public string[] solidObjects;
 
     void Update()
     {

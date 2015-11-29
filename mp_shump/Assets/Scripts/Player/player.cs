@@ -37,12 +37,12 @@ public class player : MonoBehaviour
     private status currentStatus;
 
     //Statics
-    public static int distanceFromCenter;
+    public static float distanceFromCenter;
 
     void Awake()
     {
         initializeComponents();
-        distanceFromCenter = Mathf.RoundToInt(Mathf.Abs(transform.position.x));
+        distanceFromCenter = Mathf.Abs(transform.position.x);
     }
     void Start()
     {

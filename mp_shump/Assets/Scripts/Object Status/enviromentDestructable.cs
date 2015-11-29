@@ -5,29 +5,28 @@ public class enviromentDestructable : MonoBehaviour
 {
     [Header("Properties")]
     public GameObject[] debris;
-    public int baseHealth;
+    public float explosionForce;
+    private status currentStatus;
 
-    [Header("Valid Collisions")]
-    public string[] hostiles;
+    void Awake()
+    {
+        currentStatus = GetComponent<status>();
+    }
 
     void Update()
     {
-        checkStatus();
-    }
-
-    void checkStatus()
-    {
-        if(baseHealth <= 0)
+        if(currentStatus)
         {
-            destroySelf();
+            if(currentStatus.destroyed)
+            {
+                destroySelf();
+            }
+        }
+        else
+        {
+            Debug.LogError("No status component attached, intentional?");
         }
     }
-
-    void changeStatus(interactionSource source)
-    {
-        baseHealth -= source.damage;
-    }
-
     void destroySelf()
     {
         if(debris.Length >= 0)
@@ -37,20 +36,10 @@ public class enviromentDestructable : MonoBehaviour
                 Vector2 randomPos = Random.insideUnitCircle;
                 Vector2 origin = transform.position;
                 Vector2 spawn = randomPos + origin;
-                Instantiate(obj, spawn, Quaternion.identity);
+                GameObject newObj = Instantiate(obj, spawn, Quaternion.identity) as GameObject;
+                newObj.GetComponent<Rigidbody2D>().AddForce(randomPos * explosionForce);
             }
         }
         Destroy(this.gameObject);
-    }
-
-    void OnTriggerEnter2D(Collider2D hit)
-    {
-        foreach(string tag in hostiles)
-        {
-            if(hit.tag == tag)
-            {
-                changeStatus(hit.gameObject.GetComponent<interactionSource>());
-            }
-        }
     }
 }

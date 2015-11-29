@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class gameCanvas : MonoBehaviour
 {
-    public GameObject clock;
+    public GameObject countdownClock;
+    public GameObject vsClock;
     private countdown currentClock;
     public Text victor;
     public Text distanceMeter;
+    public float distanceOffset = 4;
     public Image centerMark;
     public static gameCanvas instance
     {
@@ -38,16 +40,26 @@ public class gameCanvas : MonoBehaviour
 
     void Update()
     {
-        distanceMeter.text = (player.distanceFromCenter - gameController.instance.screenCenterOffset/2).ToString();
-        Debug.Log(player.distanceFromCenter);
-        if(player.distanceFromCenter <= 0 && centerMark)
+        trackDistance();
+    }
+
+    void trackDistance()
+    {
+        if (centerMark && distanceMeter)
         {
-            Destroy(centerMark.gameObject);
-            centerMark = null;
+            float dist = player.distanceFromCenter - distanceOffset;
+            distanceMeter.text = dist.ToString();
+            if (dist <= 0)
+            {
+                Destroy(centerMark.gameObject);
+                Destroy(distanceMeter.gameObject);
+                centerMark = null;
+                distanceMeter = null;
+            }
         }
     }
 
-    public bool startCountdown()
+    public bool startCountdown(GameObject clock)
     {
         if (currentClock == null)
         {

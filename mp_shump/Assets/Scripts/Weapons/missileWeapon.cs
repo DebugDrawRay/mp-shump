@@ -44,6 +44,12 @@ public class missileWeapon : MonoBehaviour, weapon
         set;
     }
 
+    public int currentWeaponLevel
+    {
+        get;
+        set;
+    }
+
     public void setupWeapon()
     {
         maxFireDelay = fireDelay;

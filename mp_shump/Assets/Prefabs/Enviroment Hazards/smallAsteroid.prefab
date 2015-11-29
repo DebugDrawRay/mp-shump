@@ -13,9 +13,10 @@ GameObject:
   - 114: {fileID: 11450272}
   - 50: {fileID: 5004936}
   - 58: {fileID: 5894550}
+  - 114: {fileID: 11465514}
   m_Layer: 0
   m_Name: smallAsteroid
-  m_TagString: Untagged
+  m_TagString: Enviroment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,12 +116,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
+  weaponLevelIncrease: 0
   isInvul: 1
   lifetime: 0
+  deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
   solidObjects:
   - Player
-  deathAnim: {fileID: 0}
-  parent: {fileID: 0}
+--- !u!114 &11465514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ba28ee9786412419a07d0cfb5d0012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 5
+  lives: 0
+  destroyed: 0
+  deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
+  currentWeaponLevel: 0
+  excludedTags: []
 --- !u!114 &11489410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,9 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debris: []
-  baseHealth: 5
-  hostiles:
-  - laser
+  explosionForce: 0
 --- !u!212 &21207516
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -170,6 +186,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: hostiles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_AngularDrag
       value: 0
       objectReference: {fileID: 0}
@@ -177,6 +197,18 @@ Prefab:
       propertyPath: solidObjects.Array.data[0]
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: hostiles.Array.data[1]
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Enviroment
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: deathAnim
+      value: 
+      objectReference: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 142502}

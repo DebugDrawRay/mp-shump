@@ -113,9 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e2fcece3ea7f44bad9b242661a9859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clock: {fileID: 187608, guid: 6bcc693a96b85e64a86357ba25a37b1e, type: 2}
+  countdownClock: {fileID: 187608, guid: 6bcc693a96b85e64a86357ba25a37b1e, type: 2}
+  vsClock: {fileID: 187608, guid: cd2df0501f857df458dc4d789500d265, type: 2}
   victor: {fileID: 11494664}
   distanceMeter: {fileID: 11428142}
+  distanceOffset: 2
   centerMark: {fileID: 11447544}
 --- !u!114 &11447544
 MonoBehaviour:
@@ -155,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

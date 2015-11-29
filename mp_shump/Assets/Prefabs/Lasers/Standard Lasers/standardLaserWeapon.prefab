@@ -39,11 +39,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e118965c2a381843bd1ed49b31934d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelOne:
+  projectileLevels:
   - {fileID: 137904, guid: 9bea34972724a214c865f6da9fe417c0, type: 2}
-  levelTwo: []
-  levelThree: []
-  levelFour: []
+  - {fileID: 175504, guid: 331bff2f86ec1424e9df75762fcc26e8, type: 2}
   muzzleFlash: {fileID: 191574, guid: deb0079a15d595848a95de6caabe70bd, type: 2}
   laserOffset: {x: 1.75, y: -.200000003}
   fireDelay: .25
@@ -61,6 +59,14 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: levelTwo.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileLevels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: levelOne.Array.data[0]
       value: 
       objectReference: {fileID: 137904, guid: 9bea34972724a214c865f6da9fe417c0, type: 2}
@@ -76,6 +82,18 @@ Prefab:
       propertyPath: laserCooldownBonus
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: levelTwo.Array.data[0]
+      value: 
+      objectReference: {fileID: 175504, guid: 331bff2f86ec1424e9df75762fcc26e8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: projectileLevels.Array.data[0]
+      value: 
+      objectReference: {fileID: 137904, guid: 9bea34972724a214c865f6da9fe417c0, type: 2}
+    - target: {fileID: 0}
+      propertyPath: projectileLevels.Array.data[1]
+      value: 
+      objectReference: {fileID: 175504, guid: 331bff2f86ec1424e9df75762fcc26e8, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 183362}

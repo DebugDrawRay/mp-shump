@@ -12,7 +12,6 @@ GameObject:
   - 50: {fileID: 5098522}
   - 114: {fileID: 11448578}
   - 114: {fileID: 11460738}
-  - 114: {fileID: 11450746}
   - 61: {fileID: 6150518}
   m_Layer: 11
   m_Name: missile
@@ -77,22 +76,6 @@ MonoBehaviour:
   timeToFire: .400000006
   enemyObject: {fileID: 0}
   rotSpeed: .100000001
---- !u!114 &11450746
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ba28ee9786412419a07d0cfb5d0012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseHealth: 0
-  lives: 0
-  destroyed: 0
-  deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
-  excludedTags: []
 --- !u!114 &11460738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96dff905f730bee44992279a9ff87645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 1
   isInvul: 0
   lifetime: 3
   solidObjects:
@@ -198,7 +181,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: damage
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: deathAnim

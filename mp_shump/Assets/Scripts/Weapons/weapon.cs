@@ -7,6 +7,11 @@ public interface weapon
     void updateWeapon();
     void fireWeapon();
 
+    int currentWeaponLevel
+    {
+        get;
+        set;
+    }
     float currentResource
     {
         get;

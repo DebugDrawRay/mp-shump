@@ -2,12 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class missile : MonoBehaviour
+public class missile : projectile
 {
-    public float speed;
-
-    private Rigidbody2D rigid;
-
     public float timeToFire;
     private bool fire = false;
 
@@ -41,25 +37,38 @@ public class missile : MonoBehaviour
             }
             rigid.velocity = transform.right * speed;
         }
+
+        extraUpdate();
     }
 
     GameObject currentTarget()
     {
         GameObject closestTarget = null;
-        float shortestDistance = 100;
-        List<GameObject> targets = new List<GameObject>();
-        targets.Add(getEnemyPlayer());
-        for (int i = 0; i < targets.Count; ++i)
+        float shortestDistance = 500;
+        GameObject[] targets = getEnemyTargets();
+        for (int i = 0; i < targets.Length; ++i)
         {
             GameObject target = targets[i];
             float distance = Vector2.Distance(transform.position, target.transform.position);
-            if(distance < shortestDistance)
+            if(distance < shortestDistance && target.GetComponent<Renderer>().isVisible)
             {
                 shortestDistance = distance;
                 closestTarget = target;
             }
         }
         return closestTarget;
+    }
+
+    GameObject[] getEnemyTargets()
+    {
+        GameObject[] sceneEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemies = new GameObject[sceneEnemies.Length + 1];
+        for(int i = 0; i < enemies.Length - 1; i++)
+        {
+            enemies[i] = sceneEnemies[i];
+        }
+        enemies[enemies.Length - 1] = getEnemyPlayer();
+        return enemies;
     }
     GameObject getEnemyPlayer()
     {
