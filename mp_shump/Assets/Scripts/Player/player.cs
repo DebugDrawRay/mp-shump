@@ -42,7 +42,8 @@ public class player : MonoBehaviour
     void Awake()
     {
         initializeComponents();
-        distanceFromCenter = Mathf.Abs(transform.position.x);
+        distanceFromCenter = 500;
+
     }
     void Start()
     {
@@ -73,7 +74,7 @@ public class player : MonoBehaviour
 
         if (playerNumber == 2)
         {
-            currentCamera.GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
+            currentCamera.GetComponent<Camera>().rect = new Rect(0f, 0f, 1f, 0.5f);
         }
         currentCamera.transform.position += new Vector3(0, 0, defaultCamFloat);
         transform.SetParent(currentCamera.transform);
@@ -81,7 +82,6 @@ public class player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Mathf.Lerp(10, 1, .01f));
         runStates();
         distanceFromCenter = Mathf.RoundToInt(Mathf.Abs(transform.position.x) - 4);
     }

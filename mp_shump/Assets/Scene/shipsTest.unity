@@ -410,12 +410,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403748, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
       propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11404632, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
+      propertyPath: playerNumber
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11440796, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
-      propertyPath: primaryWeapon
-      value: 
-      objectReference: {fileID: 154472, guid: 627f07977d3af424893732b95a738ed7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
   m_IsPrefabParent: 0

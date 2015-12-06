@@ -185,9 +185,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: .5
+    y: 0
     width: 1
-    height: .5
+    height: 1
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 60
@@ -296,6 +296,26 @@ Prefab:
     - target: {fileID: 22485076, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22492164, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22492164, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 22432660, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22432660, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22432660, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}

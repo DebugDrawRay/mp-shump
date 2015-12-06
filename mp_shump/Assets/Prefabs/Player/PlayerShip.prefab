@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dd79a35d411ff43901246132fc2c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 2
+  currentState: 0
   playerNumber: 1
   availableActions: []
   isScrolling: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70b1aea1a19ada4784895d51842fdc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryWeapon: {fileID: 154472, guid: 627f07977d3af424893732b95a738ed7, type: 2}
+  primaryWeapon: {fileID: 183362, guid: 1e64ce6ebc638a14e99fbce84ae4e08b, type: 2}
   secondaryWeapon: {fileID: 174040, guid: 0d6b6a79a874192418eaa8cd1843800f, type: 2}
   bombs: 0
   weaponLevel: 0
