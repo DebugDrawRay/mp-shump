@@ -5,26 +5,31 @@ public class standardFlyer : enemy
 {
     public float[] verticalForces = new float[0];
     public float forceSwitchInterval;
+    public float forceSwitchSmooth;
     public bool loopForceSwitch;
 
     public class virtualInput : IinputListener
     {
         //Movement Pattern Control
         private float[] verticalForces = new float[0];
+        private float currentVerticalForce;
         private float forceSwitchInterval;
         private float currentSwitchInterval;
+        private float forceSwitchSmooth;
         private int index;
         private int prevIndex;
         private bool loop;
 
         //Firing Control
 
-        public virtualInput(float forceSwitch, float[] forces, bool looping)
+        public virtualInput(float forceSwitch, float[] forces, bool looping, float forceSmooth)
         {
             verticalForces = forces;
             forceSwitchInterval = forceSwitch;
             currentSwitchInterval = forceSwitch;
             loop = looping;
+            currentVerticalForce = verticalForces[0];
+            forceSwitchSmooth = forceSmooth;
         }
         
         public float horAxis()
@@ -53,12 +58,14 @@ public class standardFlyer : enemy
                         if (loop)
                         {
                             index = 0;
+                            prevIndex = verticalForces.Length - 1;
                         }
                         else
                         {
                             index--;
                         }
                     }
+
                     prevIndex = index - 1;
                     if (prevIndex < 0)
                     {
@@ -72,9 +79,9 @@ public class standardFlyer : enemy
 
         public float verAxis()
         {
-            return verticalForce();
+            currentVerticalForce = Mathf.Lerp(currentVerticalForce, verticalForce(), forceSwitchSmooth);
+            return currentVerticalForce;
         }
-
         public bool firePrimary()
         {
             return true;
@@ -93,7 +100,7 @@ public class standardFlyer : enemy
     {
         foreach(actionController action in availableActions)
         {
-            action.input = new virtualInput(forceSwitchInterval, verticalForces, loopForceSwitch);
+            action.input = new virtualInput(forceSwitchInterval, verticalForces, loopForceSwitch, forceSwitchSmooth);
         }
     }
 

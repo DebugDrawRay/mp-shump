@@ -11,8 +11,9 @@ public class laserWeapon : MonoBehaviour, weapon
 
     [Header("Properties")]
     public Vector2 laserOffset;
-    public float fireDelay;
+    public float[] fireDelayLevels;
 
+    private float fireDelayLevel;
     private float currentFireDelay;
 
     public float laserHeatIncrease;
@@ -47,7 +48,8 @@ public class laserWeapon : MonoBehaviour, weapon
 
     public void setupWeapon()
     {
-        currentFireDelay = fireDelay;
+        fireDelayLevel = fireDelayLevels[0];
+        currentFireDelay = fireDelayLevel;
         updateWeaponLevel();
     }
 
@@ -72,6 +74,7 @@ public class laserWeapon : MonoBehaviour, weapon
         if(currentWeaponLevel <= projectileLevels.Length - 1)
         {
             currentLevel = projectileLevels[currentWeaponLevel];
+            fireDelayLevel = fireDelayLevels[currentWeaponLevel];
         }
     }
 
@@ -136,7 +139,7 @@ public class laserWeapon : MonoBehaviour, weapon
                     GameObject anim = Instantiate(muzzleFlash, spawnPos, Quaternion.identity) as GameObject;
                     anim.transform.SetParent(transform.parent);
                 }
-                currentFireDelay = fireDelay;
+                currentFireDelay = fireDelayLevel;
             }
         }
     }

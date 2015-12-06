@@ -76,6 +76,7 @@ MonoBehaviour:
   timeToFire: .400000006
   enemyObject: {fileID: 0}
   rotSpeed: .100000001
+  falloffDistance: 3
 --- !u!114 &11460738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -88,12 +89,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  weaponLevelIncrease: 0
   isInvul: 0
   lifetime: 3
+  deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
   solidObjects:
   - Enviroment
-  deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
-  parent: {fileID: 0}
 --- !u!212 &21277616
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -194,6 +195,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: solidObjects.Array.data[0]
       value: Enviroment
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: falloffDistance
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

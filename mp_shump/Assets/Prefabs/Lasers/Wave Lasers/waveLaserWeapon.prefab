@@ -39,14 +39,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e118965c2a381843bd1ed49b31934d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelOne:
+  projectileLevels:
   - {fileID: 144262, guid: be0450defc6969e45ad5690f8bbe599b, type: 2}
-  levelTwo: []
-  levelThree: []
-  levelFour: []
   muzzleFlash: {fileID: 191574, guid: deb0079a15d595848a95de6caabe70bd, type: 2}
   laserOffset: {x: 1.75, y: -.200000003}
-  fireDelay: .5
+  fireDelayLevels:
+  - .25
   laserHeatIncrease: 100
   laserHeatCooldown: 1
   laserCooldownBonus: 2
@@ -67,6 +65,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: projectiles.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: fireDelayLevels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileLevels.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: muzzleFlash
@@ -111,6 +117,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: laserRecoveryFactor
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileLevels.Array.data[0]
+      value: 
+      objectReference: {fileID: 144262, guid: be0450defc6969e45ad5690f8bbe599b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: fireDelayLevels.Array.data[0]
+      value: .25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

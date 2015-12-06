@@ -8,6 +8,7 @@ public class enemy : MonoBehaviour
 
     void Awake()
     {
+        availableActions = GetComponents<actionController>();
         currentStatus = GetComponent<status>();
     }
 }

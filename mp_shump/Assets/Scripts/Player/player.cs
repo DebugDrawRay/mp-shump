@@ -46,6 +46,7 @@ public class player : MonoBehaviour
     }
     void Start()
     {
+        availableActions = GetComponents<actionController>();
         foreach (actionController action in availableActions)
         {
             action.input = new controllerListener(playerNumber);
@@ -80,6 +81,7 @@ public class player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Mathf.Lerp(10, 1, .01f));
         runStates();
         distanceFromCenter = Mathf.RoundToInt(Mathf.Abs(transform.position.x) - 4);
     }

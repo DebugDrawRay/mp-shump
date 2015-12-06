@@ -31,7 +31,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,13 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dd79a35d411ff43901246132fc2c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  currentState: 2
   playerNumber: 1
-  availableActions:
-  - {fileID: 11440796}
-  - {fileID: 11405248}
-  - {fileID: 11443924}
-  isScrolling: 1
+  availableActions: []
+  isScrolling: 0
   scrollSpeed: 2.5
   localCamera: {fileID: 148220, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
   defaultCamFloat: -10
@@ -125,10 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70b1aea1a19ada4784895d51842fdc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryWeapon: {fileID: 183362, guid: 1e64ce6ebc638a14e99fbce84ae4e08b, type: 2}
+  primaryWeapon: {fileID: 154472, guid: 627f07977d3af424893732b95a738ed7, type: 2}
   secondaryWeapon: {fileID: 174040, guid: 0d6b6a79a874192418eaa8cd1843800f, type: 2}
-  weaponLevel: 0
   bombs: 0
+  weaponLevel: 0
 --- !u!114 &11443924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,6 +155,7 @@ MonoBehaviour:
   lives: 0
   destroyed: 0
   deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
+  currentWeaponLevel: 0
   excludedTags: []
 --- !u!212 &21253330
 SpriteRenderer:

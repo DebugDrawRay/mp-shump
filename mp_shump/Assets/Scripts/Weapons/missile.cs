@@ -10,7 +10,8 @@ public class missile : projectile
     public GameObject enemyObject;
 
     public float rotSpeed;
-
+    public float falloffDistance;
+    private bool lostTarget = false;
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -26,14 +27,25 @@ public class missile : projectile
 
         if(fire)
         {
-            if (currentTarget())
+            GameObject target = currentTarget();
+            if (target)
             {
-                float deltay = currentTarget().transform.position.y - transform.position.y;
-                float deltax = currentTarget().transform.position.x - transform.position.x;
+                float deltay = target.transform.position.y - transform.position.y;
+                float deltax = target.transform.position.x - transform.position.x;
                 float angle = Mathf.Atan2(deltay, deltax) * 180 / Mathf.PI;
                 Quaternion rot = Quaternion.Euler(new Vector3(0, 0, angle));
                 Quaternion newRot = Quaternion.Slerp(transform.rotation, rot, rotSpeed);
-                transform.rotation = newRot;
+
+                float dist = Vector3.Distance(transform.position, target.transform.position);
+
+                if (dist > falloffDistance && !lostTarget)
+                {
+                    transform.rotation = newRot;
+                }
+                else
+                {
+                    lostTarget = true;
+                }
             }
             rigid.velocity = transform.right * speed;
         }
