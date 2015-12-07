@@ -48,7 +48,6 @@ public class gameCanvas : MonoBehaviour
         if (centerMark && distanceMeter)
         {
             float dist = player.distanceFromCenter - distanceOffset;
-            Debug.Log(dist);
             distanceMeter.text = dist.ToString();
             if (dist <= 0)
             {

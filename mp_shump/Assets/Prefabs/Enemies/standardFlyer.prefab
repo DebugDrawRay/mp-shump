@@ -79,11 +79,7 @@ MonoBehaviour:
   availableActions:
   - {fileID: 11448820}
   - {fileID: 11492936}
-  verticalForces:
-  - 0
-  - 2
-  - 0
-  - -2
+  verticalForces: []
   forceSwitchInterval: .75
   forceSwitchSmooth: .0500000007
   loopForceSwitch: 1
@@ -215,11 +211,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: verticalForces.Array.data[1]
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: verticalForces.Array.data[3]
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_GravityScale

@@ -28,7 +28,6 @@ public class standardFlyer : enemy
             forceSwitchInterval = forceSwitch;
             currentSwitchInterval = forceSwitch;
             loop = looping;
-            currentVerticalForce = verticalForces[0];
             forceSwitchSmooth = forceSmooth;
         }
         
@@ -39,13 +38,13 @@ public class standardFlyer : enemy
 
         float verticalForce()
         {
-            if (verticalForces.Length == 1)
-            {
-                return verticalForces[0];
-            }
-            else if (verticalForces.Length == 0)
+            if (verticalForces == null || verticalForces.Length == 0)
             {
                 return 0;
+            }
+            else if (verticalForces.Length == 1)
+            {
+                return verticalForces[0];
             }
             else
             {
@@ -106,6 +105,7 @@ public class standardFlyer : enemy
 
     void Update()
     {
+        Debug.Log(GetComponent<Renderer>().isVisible);
         if(GetComponent<Renderer>().isVisible)
         {
             foreach (actionController action in availableActions)
@@ -113,7 +113,13 @@ public class standardFlyer : enemy
                 action.isActive = true;
             }
         }
-
+        else
+        {
+            foreach (actionController action in availableActions)
+            {
+                action.isActive = false;
+            }
+        }
         if(currentStatus)
         {
             if(currentStatus.destroyed)
