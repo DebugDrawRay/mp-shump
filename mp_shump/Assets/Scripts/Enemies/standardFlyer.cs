@@ -105,8 +105,7 @@ public class standardFlyer : enemy
 
     void Update()
     {
-        Debug.Log(GetComponent<Renderer>().isVisible);
-        if(GetComponent<Renderer>().isVisible)
+        /*if(GetComponent<Renderer>().isVisible)
         {
             foreach (actionController action in availableActions)
             {
@@ -119,7 +118,7 @@ public class standardFlyer : enemy
             {
                 action.isActive = false;
             }
-        }
+        }*/
         if(currentStatus)
         {
             if(currentStatus.destroyed)

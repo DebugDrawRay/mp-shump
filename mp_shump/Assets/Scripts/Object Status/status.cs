@@ -20,7 +20,7 @@ public class status : MonoBehaviour
 
     [Header("Collisions")]
     public string[] excludedTags;
-
+    public GameObject penaltyAnim;
     void Awake()
     {
         currentHealth = baseHealth;
@@ -65,6 +65,10 @@ public class status : MonoBehaviour
         if(interactable.damage > 0 && currentWeaponLevel > 0)
         {
             currentWeaponLevel--;
+        }
+        if (penaltyAnim)
+        {
+            Instantiate(penaltyAnim, transform.position, Quaternion.identity);
         }
         interactable.deathEvent();
     }

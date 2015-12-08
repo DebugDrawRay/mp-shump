@@ -157,6 +157,7 @@ MonoBehaviour:
   deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
   currentWeaponLevel: 0
   excludedTags: []
+  penaltyAnim: {fileID: 158126, guid: 0fafd532b9ef19943b987aafe8ab8013, type: 2}
 --- !u!212 &21253330
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -267,6 +268,10 @@ Prefab:
       propertyPath: lives
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: penaltyAnim
+      value: 
+      objectReference: {fileID: 158126, guid: 0fafd532b9ef19943b987aafe8ab8013, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192840}

@@ -216,7 +216,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -410,12 +410,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403748, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11404632, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
-      propertyPath: playerNumber
-      value: 1
+      propertyPath: currentState
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11487870, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
+      propertyPath: penaltyAnim
+      value: 
+      objectReference: {fileID: 158126, guid: 0fafd532b9ef19943b987aafe8ab8013, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
   m_IsPrefabParent: 0
