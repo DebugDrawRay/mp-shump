@@ -100,26 +100,17 @@ public class standardFlyer : enemy
         foreach(actionController action in availableActions)
         {
             action.input = new virtualInput(forceSwitchInterval, verticalForces, loopForceSwitch, forceSwitchSmooth);
+            action.isActive = false;
         }
     }
 
     void Update()
     {
-        /*if(GetComponent<Renderer>().isVisible)
+        foreach (actionController action in availableActions)
         {
-            foreach (actionController action in availableActions)
-            {
-                action.isActive = true;
-            }
+            action.isActive = activeState;
         }
-        else
-        {
-            foreach (actionController action in availableActions)
-            {
-                action.isActive = false;
-            }
-        }*/
-        if(currentStatus)
+        if (currentStatus)
         {
             if(currentStatus.destroyed)
             {

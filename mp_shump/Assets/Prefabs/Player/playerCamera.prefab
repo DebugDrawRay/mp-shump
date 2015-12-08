@@ -11,9 +11,10 @@ GameObject:
   - 20: {fileID: 2013372}
   - 92: {fileID: 9292112}
   - 124: {fileID: 12448808}
-  m_Layer: 12
+  - 65: {fileID: 6528836}
+  m_Layer: 0
   m_Name: playerCamera
-  m_TagString: Untagged
+  m_TagString: Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,6 +65,18 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
   m_StereoMirrorMode: 0
+--- !u!65 &6528836
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148220}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 48, y: 12, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!92 &9292112
 Behaviour:
   m_ObjectHideFlags: 1

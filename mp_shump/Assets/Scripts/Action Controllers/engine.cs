@@ -14,6 +14,10 @@ public class engine : actionController
         {
             movementHandler(input.horAxis(), input.verAxis());
         }
+        else
+        {
+            movementHandler(0, 0);
+        }
     }
 
     void movementHandler(float horAxis, float verAxis)

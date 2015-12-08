@@ -85,6 +85,48 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &418347496
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 470658, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 470658, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 470658, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 470658, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 470658, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 470658, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 470658, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 470658, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1045996400
 Prefab:
   m_ObjectHideFlags: 0
@@ -122,12 +164,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 408098, guid: 792f87019a7fd674bbc4d087bd6e2212, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11467986, guid: 792f87019a7fd674bbc4d087bd6e2212, type: 2}
       propertyPath: levelToBuild
       value: 
-      objectReference: {fileID: 11400000, guid: 11679931ef15400499b0cdcd95a582c1,
+      objectReference: {fileID: 11400000, guid: f92b6086794b0a048b0a6103cdd9a999,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 792f87019a7fd674bbc4d087bd6e2212, type: 2}
