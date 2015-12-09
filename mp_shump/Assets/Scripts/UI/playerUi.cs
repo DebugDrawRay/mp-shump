@@ -32,7 +32,6 @@ public class playerUi : MonoBehaviour
 
     void Start()
     {
-        transform.SetParent(gameCanvas.instance.transform);
         int number = player.GetComponent<player>().playerNumber;
         if (number == 1)
         {

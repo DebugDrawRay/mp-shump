@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+
+public delegate void StatusChangedEvent();
 
 public class status : MonoBehaviour
 {
@@ -21,6 +24,10 @@ public class status : MonoBehaviour
     [Header("Collisions")]
     public string[] excludedTags;
     public GameObject penaltyAnim;
+
+    //Events
+    public event StatusChangedEvent StatusChanged;
+
     void Awake()
     {
         currentHealth = baseHealth;
@@ -59,9 +66,10 @@ public class status : MonoBehaviour
     }
     void interaction(interactionSource interactable)
     {
+        ChangeStatus();
         currentHealth -= interactable.damage;
         currentWeaponLevel += interactable.weaponLevelIncrease;
-        
+
         if(interactable.damage > 0 && currentWeaponLevel > 0)
         {
             currentWeaponLevel--;
@@ -72,6 +80,16 @@ public class status : MonoBehaviour
         }
         interactable.deathEvent();
     }
+
+    //Testing Events
+    protected void ChangeStatus()
+    {
+        if (StatusChanged != null)
+        {
+            StatusChanged();
+        }
+    }
+
     void checkDamageState()
     {
         if(currentHealth <= 0)

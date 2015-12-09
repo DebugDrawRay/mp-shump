@@ -54,7 +54,7 @@ MonoBehaviour:
   ui:
   - {fileID: 195208, guid: 282ad9b41af6dbc45af9416aa071e1f6, type: 2}
   - {fileID: 146068, guid: 027947813e0c28f4db5a6f0b9a269cde, type: 2}
-  player: {fileID: 0}
+  screenFlash: {fileID: 198218, guid: 0fafd532b9ef19943b987aafe8ab8013, type: 2}
 --- !u!114 &11492430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,6 +116,10 @@ Prefab:
       propertyPath: ui.Array.data[1]
       value: 
       objectReference: {fileID: 146068, guid: 027947813e0c28f4db5a6f0b9a269cde, type: 2}
+    - target: {fileID: 0}
+      propertyPath: screenFlash
+      value: 
+      objectReference: {fileID: 198218, guid: 0fafd532b9ef19943b987aafe8ab8013, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131148}
