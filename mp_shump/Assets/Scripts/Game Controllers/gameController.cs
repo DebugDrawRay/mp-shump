@@ -18,8 +18,9 @@ public class gameController : MonoBehaviour
 
     public gameState currentState = gameState.InGame;
 
-    //Direct references
+    //Sub Controllers
     private gameCanvas canvas;
+    private levelFactory factory;
 
     [Header("Player Container")]
     public GameObject playerObject;
@@ -58,6 +59,8 @@ public class gameController : MonoBehaviour
     void Start()
     {
         canvas = gameCanvas.instance;
+        factory = levelFactory.instance;
+        factory.buildLevel();
     }
 
     void initializeInstance()
@@ -68,7 +71,7 @@ public class gameController : MonoBehaviour
             return;
         }
         instance = this;
-        GameObject.DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     void setUpPlayers()

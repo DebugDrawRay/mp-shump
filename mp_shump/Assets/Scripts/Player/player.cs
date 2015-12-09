@@ -31,7 +31,7 @@ public class player : MonoBehaviour
     public float defaultCamFloat;
 
     [Header("UI Properties")]
-    public GameObject[] uiSets;
+    public GameObject playerCanvas;
 
     //Component Cashe
     private status currentStatus;
@@ -64,8 +64,8 @@ public class player : MonoBehaviour
 
     void initializeUi()
     {
-        playerUi newUi = Instantiate(uiSets[playerNumber - 1]).GetComponent<playerUi>();
-        newUi.player = gameObject;
+        playerCanvas newUi = Instantiate(playerCanvas).GetComponent<playerCanvas>();
+        newUi.init(this);
     }
 
     void setupLocalCamera()

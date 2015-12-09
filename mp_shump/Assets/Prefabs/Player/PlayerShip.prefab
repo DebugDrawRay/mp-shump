@@ -96,9 +96,7 @@ MonoBehaviour:
   scrollSpeed: 2.5
   localCamera: {fileID: 148220, guid: 43df60e92561b1d4584b7fd12ca40d82, type: 2}
   defaultCamFloat: -10
-  uiSets:
-  - {fileID: 195208, guid: 282ad9b41af6dbc45af9416aa071e1f6, type: 2}
-  - {fileID: 146068, guid: 027947813e0c28f4db5a6f0b9a269cde, type: 2}
+  playerCanvas: {fileID: 131148, guid: f17ab0458868c9b40b989676fb68c548, type: 2}
 --- !u!114 &11405248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,6 +270,10 @@ Prefab:
       propertyPath: penaltyAnim
       value: 
       objectReference: {fileID: 158126, guid: 0fafd532b9ef19943b987aafe8ab8013, type: 2}
+    - target: {fileID: 0}
+      propertyPath: playerCanvas
+      value: 
+      objectReference: {fileID: 131148, guid: f17ab0458868c9b40b989676fb68c548, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192840}

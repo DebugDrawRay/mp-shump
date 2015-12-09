@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &140270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 417464}
+  - 61: {fileID: 6149766}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Camera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &148220
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +27,6 @@ GameObject:
   - 20: {fileID: 2013372}
   - 92: {fileID: 9292112}
   - 124: {fileID: 12448808}
-  - 65: {fileID: 6528836}
   m_Layer: 0
   m_Name: playerCamera
   m_TagString: Camera
@@ -19,6 +34,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &417464
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 470658}
+  m_RootOrder: 0
 --- !u!4 &470658
 Transform:
   m_ObjectHideFlags: 1
@@ -28,7 +55,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 417464}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!20 &2013372
@@ -65,18 +93,19 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
   m_StereoMirrorMode: 0
---- !u!65 &6528836
-BoxCollider:
+--- !u!61 &6149766
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148220}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_GameObject: {fileID: 140270}
   m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 48, y: 12, z: 20}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 45, y: 12}
 --- !u!92 &9292112
 Behaviour:
   m_ObjectHideFlags: 1
@@ -121,6 +150,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_NormalizedViewPortRect.y
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
