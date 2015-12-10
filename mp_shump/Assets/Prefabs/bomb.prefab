@@ -11,6 +11,8 @@ GameObject:
   - 114: {fileID: 11408466}
   - 212: {fileID: 21215292}
   - 50: {fileID: 5023374}
+  - 58: {fileID: 5806372}
+  - 114: {fileID: 11406534}
   m_Layer: 0
   m_Name: bomb
   m_TagString: Untagged
@@ -38,7 +40,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136470}
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: .0500000007
   m_GravityScale: 0
   m_IsKinematic: 0
@@ -46,6 +48,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &5806372
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136470}
+  m_Enabled: 0
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: .0250000004
+--- !u!114 &11406534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136470}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96dff905f730bee44992279a9ff87645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  weaponLevelIncrease: 0
+  isInvul: 0
+  lifetime: 6
+  deathAnim: {fileID: 0}
+  solidObjects: []
 --- !u!114 &11408466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,8 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c311e1980633f24884d7692a9bb4b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  launchForce: 10000
+  speed: 100
   detonationTimer: 5
   blastRadius: 100
   radiusExpandRate: .100000001
@@ -86,7 +117,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 172f957e599042a4fa24e23fa471fda7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
@@ -95,7 +126,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 136470}

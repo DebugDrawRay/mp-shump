@@ -8,4 +8,5 @@ public static class inputs
     public const string FirePrimary = "A";
     public const string FireSecondary = "B";
     public const string RaiseShields = "RB";
+    public const string FireBomb = "X";
 }

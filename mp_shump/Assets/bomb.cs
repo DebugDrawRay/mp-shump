@@ -4,7 +4,6 @@ using System.Collections;
 public class bomb : projectile
 {
     [Header("Properties")]
-    public float launchForce;
     public float detonationTimer;
     public float blastRadius;
     public float radiusExpandRate;
@@ -12,10 +11,6 @@ public class bomb : projectile
     [Header("Visuals")]
     public GameObject blastAnim;
 
-    void Start()
-    {
-        rigid.AddForce(Vector2.right * launchForce);
-    }
     void Update()
     {
         if(detonationTimer > 0)

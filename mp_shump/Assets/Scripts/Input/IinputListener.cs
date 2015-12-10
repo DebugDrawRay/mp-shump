@@ -7,5 +7,6 @@ public interface IinputListener
     float verAxis();
     bool firePrimary();
     bool fireSecondary();
+    bool fireBomb();
     bool raiseShields();
 }

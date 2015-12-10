@@ -93,6 +93,10 @@ public class standardFlyer : enemy
         {
             return true;
         }
+        public bool fireBomb()
+        {
+            return true;
+        }
     }
 
     void Start()

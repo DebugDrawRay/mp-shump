@@ -5,6 +5,7 @@ public class weaponController : actionController
 {
     public GameObject primaryWeapon;
     public GameObject secondaryWeapon;
+    public GameObject bombWeapon;
 
     public weapon currentPrimary
     {
@@ -64,6 +65,15 @@ public class weaponController : actionController
                 if (input.fireSecondary())
                 {
                     currentSecondary.fireWeapon();
+                }
+            }
+            if (bombWeapon != null)
+            {
+                if (input.fireBomb())
+                {
+                    GameObject bomb = Instantiate(bombWeapon, transform.position, Quaternion.identity) as GameObject;
+                    bomb.transform.SetParent(transform);
+                    bomb.tag = tag;
                 }
             }
         }

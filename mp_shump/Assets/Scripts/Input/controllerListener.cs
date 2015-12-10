@@ -25,6 +25,10 @@ public class controllerListener : IinputListener
     {
         return Input.GetButtonDown(inputs.FireSecondary + player);
     }
+    public bool fireBomb()
+    {
+        return Input.GetButtonDown(inputs.FireBomb + player);
+    }
     public bool raiseShields()
     {
         return Input.GetButton(inputs.RaiseShields + player);
