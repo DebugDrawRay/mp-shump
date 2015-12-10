@@ -13,9 +13,13 @@ public class projectile : MonoBehaviour
     protected delegate void updateFunctions();
     protected updateFunctions extraUpdate;
      
-    void Start()
+    void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+
+    }
+    void Start()
+    {
         origin = transform.parent.position;
         direction = transform.parent.right;
         parentSpeed = GetComponent<Rigidbody2D>().velocity.magnitude;
