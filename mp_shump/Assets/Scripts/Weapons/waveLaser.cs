@@ -13,8 +13,8 @@ public class waveLaser : projectile
         float y = amp * Mathf.Sin(((2 * Mathf.PI) / cycles) * x - horShift);
         Vector2 vel = direction;
         vel.y = y;
-        rigid.velocity = vel * (speed + parentSpeed);
+        rigid.velocity = (vel * speed) + parentVelocity;
 
-        extraUpdate();
+        checkIfVisible();
     }
 }

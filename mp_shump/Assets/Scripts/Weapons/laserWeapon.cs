@@ -129,10 +129,11 @@ public class laserWeapon : MonoBehaviour, weapon
                 dir.x = dir.x / laserOffset.x;
                 Vector2 spawnPos = origin + dir;
 
-                GameObject proj = Instantiate(currentLevel, spawnPos, Quaternion.identity) as GameObject;
+                Instantiate(currentLevel).GetComponent<projectile>().Init(transform.parent, parentVelocity);
+                /*GameObject proj = Instantiate(currentLevel, spawnPos, Quaternion.identity) as GameObject;
                 proj.transform.SetParent(transform.parent);
                 proj.tag = transform.parent.tag;
-                proj.GetComponent<Rigidbody2D>().velocity = parentVelocity;  
+                proj.GetComponent<Rigidbody2D>().velocity = parentVelocity;*/  
 
                 if (muzzleFlash)
                 {

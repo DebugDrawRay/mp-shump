@@ -11,6 +11,10 @@ public class bomb : projectile
     [Header("Visuals")]
     public GameObject blastAnim;
 
+    void Start()
+    {
+        rigid.AddForce(direction * speed);
+    }
     void Update()
     {
         if(detonationTimer > 0)

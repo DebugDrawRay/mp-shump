@@ -8,27 +8,19 @@ public class projectile : MonoBehaviour
     protected int projectileNumber;
     protected Vector2 origin;
     protected Rigidbody2D rigid;
-    protected float parentSpeed;
+    protected Vector2 parentVelocity;
 
-    protected delegate void updateFunctions();
-    protected updateFunctions extraUpdate;
-     
-    void Awake()
+    public void Init(Transform parent, Vector2 parentVelocity)
     {
+        transform.SetParent(parent);
+        this.parentVelocity = parentVelocity;
         rigid = GetComponent<Rigidbody2D>();
-
-    }
-    void Start()
-    {
         origin = transform.parent.position;
         direction = transform.parent.right;
-        parentSpeed = GetComponent<Rigidbody2D>().velocity.magnitude;
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         transform.parent = null;
-        extraUpdate += checkIfVisible;
     }
 
-    void checkIfVisible()
+    protected void checkIfVisible()
     {
         if(!GetComponent<Renderer>().isVisible)
         {

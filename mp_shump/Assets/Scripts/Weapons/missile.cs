@@ -50,7 +50,7 @@ public class missile : projectile
             rigid.velocity = transform.right * speed;
         }
 
-        extraUpdate();
+        checkIfVisible();
     }
 
     GameObject currentTarget()
