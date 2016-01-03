@@ -3,21 +3,28 @@ using System.Collections;
 
 public class projectile : MonoBehaviour
 {
-    public float speed;
-    protected Vector2 direction;
-    protected int projectileNumber;
-    protected Vector2 origin;
-    protected Rigidbody2D rigid;
-    protected Vector2 parentVelocity;
+    public float baseSpeed;
+    protected float projectileSpeed;
 
-    public void Init(Transform parent, Vector2 parentVelocity)
+    private Vector2 lastPosition;
+    protected Rigidbody2D rigid;
+
+    void Awake()
     {
-        transform.SetParent(parent);
-        this.parentVelocity = parentVelocity;
+        projectileSpeed = baseSpeed;
         rigid = GetComponent<Rigidbody2D>();
-        origin = transform.parent.position;
-        direction = transform.parent.right;
-        transform.parent = null;
+    }
+
+    float calculateSpeed()
+    {
+        Vector2 newVel = Vector2.zero;
+        Vector2 currentPosition = transform.root.position;
+        if (lastPosition != currentPosition)
+        {
+            newVel = (lastPosition - currentPosition) / Time.deltaTime;
+            lastPosition = currentPosition;
+        }
+        return newVel.magnitude;
     }
 
     protected void checkIfVisible()
@@ -25,19 +32,6 @@ public class projectile : MonoBehaviour
         if(!GetComponent<Renderer>().isVisible)
         {
             Destroy(gameObject);
-        }
-    }
-
-    bool calculateOffset()
-    {
-        float calc = projectileNumber % 2;
-        if (calc == 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 }

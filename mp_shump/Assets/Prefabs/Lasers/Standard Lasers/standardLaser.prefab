@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 420214}
   - 50: {fileID: 5062756}
-  - 114: {fileID: 11428262}
   - 61: {fileID: 6135066}
   - 212: {fileID: 21238936}
   - 114: {fileID: 11441868}
+  - 114: {fileID: 11409474}
   m_Layer: 10
   m_Name: standardLaser
   m_TagString: laser
@@ -39,9 +39,10 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137904}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -55,13 +56,14 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137904}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: .0500000007, y: .00999999978}
---- !u!114 &11428262
+  m_Size: {x: 0.05, y: 0.01}
+--- !u!114 &11409474
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -89,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836a0fc5f6cdd4a4791375f2815b4fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  baseSpeed: 4
 --- !u!212 &21238936
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -108,14 +110,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0350f9038d0f91146bcc758ba222df8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -147,6 +153,18 @@ Prefab:
       propertyPath: deathAnim
       value: 
       objectReference: {fileID: 191574, guid: deb0079a15d595848a95de6caabe70bd, type: 2}
+    - target: {fileID: 0}
+      propertyPath: baseSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lifetime
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 137904}

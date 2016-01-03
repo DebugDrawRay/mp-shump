@@ -9,48 +9,69 @@ public class missile : projectile
 
     public GameObject enemyObject;
 
+    public Vector2[] launchDirections;
+    public float launchSpeed;
+    public float launchRotation;
+
+    public float launchDelay;
+    private float currentLaunchDelay;
+
     public float rotSpeed;
     public float falloffDistance;
     private bool lostTarget = false;
-    void Awake()
+
+    void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        currentLaunchDelay = launchDelay;
+        launchMissiles();
     }
     void Update()
     {
-        transform.parent = null;
-        timeToFire -= Time.deltaTime;
-        if(timeToFire <= 0)
-        {
-            fire = true;
-        }
-
-        if(fire)
-        {
-            GameObject target = currentTarget();
-            if (target)
-            {
-                float deltay = target.transform.position.y - transform.position.y;
-                float deltax = target.transform.position.x - transform.position.x;
-                float angle = Mathf.Atan2(deltay, deltax) * 180 / Mathf.PI;
-                Quaternion rot = Quaternion.Euler(new Vector3(0, 0, angle));
-                Quaternion newRot = Quaternion.Slerp(transform.rotation, rot, rotSpeed);
-
-                float dist = Vector3.Distance(transform.position, target.transform.position);
-
-                if (dist > falloffDistance && !lostTarget)
-                {
-                    transform.rotation = newRot;
-                }
-                else
-                {
-                    lostTarget = true;
-                }
-            }
-            rigid.velocity = transform.right * speed;
-        }
-
         checkIfVisible();
+        launchDelay -= Time.deltaTime;
+        if(launchDelay <= 0)
+        {
+            fireMissile();
+        }
+    }
+
+    void launchMissiles()
+    {
+        float mod = 1;
+        for (int i = 0; i <= launchDirections.Length - 1; i++)
+        {
+            float yRot = transform.rotation.eulerAngles.y;
+            Quaternion initRot = Quaternion.Euler(0, yRot, launchRotation * mod);
+            transform.rotation = initRot;
+            rigid.AddForce(launchDirections[i] * launchSpeed);
+            mod = -mod;
+        }
+    }
+
+    void fireMissile()
+    {
+        GameObject target = currentTarget();
+
+        if (target)
+        {
+            float deltay = target.transform.position.y - transform.position.y;
+            float deltax = target.transform.position.x - transform.position.x;
+            float angle = Mathf.Atan2(deltay, deltax) * 180 / Mathf.PI;
+            Quaternion rot = Quaternion.Euler(new Vector3(0, 0, angle));
+            Quaternion newRot = Quaternion.Slerp(transform.rotation, rot, rotSpeed);
+
+            float dist = Vector3.Distance(transform.position, target.transform.position);
+
+            if (dist > falloffDistance && !lostTarget)
+            {
+                transform.rotation = newRot;
+            }
+            else
+            {
+                lostTarget = true;
+            }
+        }
+        rigid.velocity = transform.right * projectileSpeed;
     }
 
     GameObject currentTarget()
@@ -58,14 +79,17 @@ public class missile : projectile
         GameObject closestTarget = null;
         float shortestDistance = 500;
         GameObject[] targets = getEnemyTargets();
-        for (int i = 0; i < targets.Length; ++i)
+        if (targets != null)
         {
-            GameObject target = targets[i];
-            float distance = Vector2.Distance(transform.position, target.transform.position);
-            if(distance < shortestDistance && target.GetComponent<Renderer>().isVisible)
+            for (int i = 0; i < targets.Length; ++i)
             {
-                shortestDistance = distance;
-                closestTarget = target;
+                GameObject target = targets[i];
+                float distance = Vector2.Distance(transform.position, target.transform.position);
+                if (distance < shortestDistance && target.GetComponent<Renderer>().isVisible)
+                {
+                    shortestDistance = distance;
+                    closestTarget = target;
+                }
             }
         }
         return closestTarget;
@@ -74,14 +98,23 @@ public class missile : projectile
     GameObject[] getEnemyTargets()
     {
         GameObject[] sceneEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject[] enemies = new GameObject[sceneEnemies.Length + 1];
-        for(int i = 0; i < enemies.Length - 1; i++)
+
+        if (getEnemyPlayer() != null)
         {
-            enemies[i] = sceneEnemies[i];
+            GameObject[] enemies = new GameObject[sceneEnemies.Length + 1];
+            for (int i = 0; i < enemies.Length - 1; i++)
+            {
+                enemies[i] = sceneEnemies[i];
+            }
+            enemies[enemies.Length - 1] = getEnemyPlayer();
+            return enemies;
         }
-        enemies[enemies.Length - 1] = getEnemyPlayer();
-        return enemies;
+        else
+        {
+            return sceneEnemies;
+        }
     }
+
     GameObject getEnemyPlayer()
     {
         if(tag == "Player1")

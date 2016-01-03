@@ -5,7 +5,7 @@ public class standardLaser : projectile
 {
 	void Update ()
     {
-        rigid.velocity = (direction * speed) + parentVelocity;
+        rigid.velocity = (transform.right * projectileSpeed);
         checkIfVisible();
 	}
 }

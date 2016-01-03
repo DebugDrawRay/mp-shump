@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class weaponController : actionController
 {
+    [Header("Weapons")]
     public GameObject primaryWeapon;
     public GameObject secondaryWeapon;
     public GameObject bombWeapon;
@@ -17,57 +17,47 @@ public class weaponController : actionController
         get;
         private set;
     }
+    public weapon currentBomb
+    {
+        get;
+        private set;
+    }
 
-    public int bombs;
     public int weaponLevel;
 
-    private status currentStatus;
     void Start()
     {
         if (primaryWeapon)
         {
             GameObject primary = Instantiate(primaryWeapon, transform.position, Quaternion.identity) as GameObject;
             primary.transform.SetParent(transform);
+            primary.transform.rotation = primary.transform.parent.rotation;
+
             currentPrimary = primary.GetComponent<weapon>();
-            currentPrimary.setupWeapon();
         }
         if (secondaryWeapon)
         {
             GameObject secondary = Instantiate(secondaryWeapon, transform.position, Quaternion.identity) as GameObject;
             secondary.transform.SetParent(transform);
+            secondary.transform.rotation = secondary.transform.parent.rotation;
+
             currentSecondary = secondary.GetComponent<weapon>();
-            currentSecondary.setupWeapon();
         }
 
-        currentStatus = GetComponent<status>();
     }
     void Update()
     {
-        if(currentStatus)
-        {
-            weaponLevel = currentStatus.currentWeaponLevel;
-        }
         if (isActive)
         {
             if (currentPrimary != null)
             {
-                currentPrimary.currentWeaponLevel = weaponLevel;
-                currentPrimary.updateWeapon();
-                if (input.firePrimary())
-                {
-                    currentPrimary.fireWeapon();
-                }
+                currentPrimary.fireWeapon(input.firePrimary());
             }
             if (currentSecondary != null)
             {
-                currentSecondary.currentWeaponLevel = weaponLevel;
-                currentSecondary.updateWeapon();
-                if (input.fireSecondary())
-                {
-                    currentSecondary.fireWeapon();
-                }
+                currentSecondary.fireWeapon(input.fireSecondary());
             }
-            if (bombWeapon != null)
+            if (currentBomb != null)
             {
                 if (input.fireBomb())
                 {

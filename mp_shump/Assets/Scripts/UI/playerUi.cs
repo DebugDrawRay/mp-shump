@@ -57,10 +57,8 @@ public class playerUi : MonoBehaviour
         shieldMeter.fillAmount = currentShields;
 
         currentLaser.sprite = laserSprites[0];
-        laserMeter.fillAmount = playerPrimary.currentResource / playerPrimary.maxResource; 
 
         currentMissile.sprite = missileSprites[0];
-        missileMeter.fillAmount = (playerSecondary.maxResource - playerSecondary.currentResource) / playerSecondary.maxResource;
 
         int currentLives = playerStatus.lives;
         livesCounter.text = currentLives.ToString();

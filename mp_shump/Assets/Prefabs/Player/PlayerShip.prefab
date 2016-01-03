@@ -43,9 +43,10 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192840}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -59,12 +60,13 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192840}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: .219999999, y: .119999997}
+  m_Size: {x: 0.22, y: 0.12}
 --- !u!61 &6198266
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -72,12 +74,13 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192840}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: .219999999, y: .119999997}
+  m_Size: {x: 0.22, y: 0.12}
 --- !u!114 &11404632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,9 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70b1aea1a19ada4784895d51842fdc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryWeapon: {fileID: 183362, guid: 1e64ce6ebc638a14e99fbce84ae4e08b, type: 2}
-  secondaryWeapon: {fileID: 174040, guid: 0d6b6a79a874192418eaa8cd1843800f, type: 2}
-  bombs: 0
+  primaryWeapon: {fileID: 140120, guid: 204f1fc119ee8ed4fabacbfdd417b31f, type: 2}
+  secondaryWeapon: {fileID: 195342, guid: f9757f04dbd366945b8831047493b01e, type: 2}
+  bombWeapon: {fileID: 0}
   weaponLevel: 0
 --- !u!114 &11443924
 MonoBehaviour:
@@ -136,8 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldObject: {fileID: 121110, guid: 6b69165020d83124ca331b351f1e9f44, type: 2}
-  maxLifetime: .150000006
-  regenSpeed: .00249999994
+  maxLifetime: 0.15
+  regenSpeed: 0.0025
 --- !u!114 &11487870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,7 +158,6 @@ MonoBehaviour:
   deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
   currentWeaponLevel: 0
   excludedTags: []
-  penaltyAnim: {fileID: 158126, guid: 0fafd532b9ef19943b987aafe8ab8013, type: 2}
 --- !u!212 &21253330
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -174,14 +176,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ecc6c456c5b7ba0498b2478af7e242a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

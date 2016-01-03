@@ -13,7 +13,7 @@ public class bomb : projectile
 
     void Start()
     {
-        rigid.AddForce(direction * speed);
+        rigid.AddForce(transform.right * projectileSpeed);
     }
     void Update()
     {
