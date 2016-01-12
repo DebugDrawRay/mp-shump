@@ -43,6 +43,14 @@ public class weaponController : actionController
 
             currentSecondary = secondary.GetComponent<weapon>();
         }
+        if (bombWeapon)
+        {
+            GameObject bomb = Instantiate(bombWeapon, transform.position, Quaternion.identity) as GameObject;
+            bomb.transform.SetParent(transform);
+            bomb.transform.rotation = bomb.transform.parent.rotation;
+
+            currentBomb = bomb.GetComponent<weapon>();
+        }
 
     }
     void Update()
@@ -59,12 +67,7 @@ public class weaponController : actionController
             }
             if (currentBomb != null)
             {
-                if (input.fireBomb())
-                {
-                    GameObject bomb = Instantiate(bombWeapon, transform.position, Quaternion.identity) as GameObject;
-                    bomb.transform.SetParent(transform);
-                    bomb.tag = tag;
-                }
+                currentBomb.fireWeapon(input.fireBomb());
             }
         }
     }

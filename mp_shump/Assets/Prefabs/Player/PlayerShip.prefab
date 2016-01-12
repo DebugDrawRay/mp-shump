@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryWeapon: {fileID: 140120, guid: 204f1fc119ee8ed4fabacbfdd417b31f, type: 2}
   secondaryWeapon: {fileID: 195342, guid: f9757f04dbd366945b8831047493b01e, type: 2}
-  bombWeapon: {fileID: 0}
+  bombWeapon: {fileID: 115920, guid: 03f8a98bf49290b4a80784536b459ee9, type: 2}
   weaponLevel: 0
 --- !u!114 &11443924
 MonoBehaviour:
