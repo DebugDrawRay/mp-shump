@@ -101,6 +101,7 @@ public class standardFlyer : enemy
 
     void Start()
     {
+        availableActions = GetComponents<actionController>();
         foreach(actionController action in availableActions)
         {
             action.input = new virtualInput(forceSwitchInterval, verticalForces, loopForceSwitch, forceSwitchSmooth);
