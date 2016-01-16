@@ -4,7 +4,7 @@ using System.Collections;
 public class enemy : MonoBehaviour
 {
     public bool activeState = false;
-    public actionController[] availableActions;
+    protected actionController[] availableActions;
     protected status currentStatus;
 
     void Awake()

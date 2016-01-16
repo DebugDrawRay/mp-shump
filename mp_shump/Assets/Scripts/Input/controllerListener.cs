@@ -15,7 +15,7 @@ public class controllerListener : IinputListener
     }
     public float verAxis()
     {
-        return (Input.GetAxisRaw(inputs.Vertical + player))*-1;
+        return (Input.GetAxisRaw(inputs.Vertical + player));
     }
     public bool firePrimary()
     {

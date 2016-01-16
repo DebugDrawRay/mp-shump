@@ -9,14 +9,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 438666}
   - 114: {fileID: 11424404}
-  - 114: {fileID: 11448820}
   - 212: {fileID: 21291342}
-  - 114: {fileID: 11492936}
   - 50: {fileID: 5001680}
   - 114: {fileID: 11456788}
   - 61: {fileID: 6179478}
   - 114: {fileID: 11434340}
   - 114: {fileID: 11487496}
+  - 114: {fileID: 11471048}
   m_Layer: 0
   m_Name: standardFlyer
   m_TagString: Enemy
@@ -31,7 +30,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3929596, y: 0.0055168215, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,10 +42,9 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127036}
-  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: .0500000007
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -60,13 +58,12 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127036}
   m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.22, y: 0.12}
+  m_Size: {x: .219999999, y: .119999997}
 --- !u!114 &11424404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,14 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8349b0a44fdaafd4baa5e017f02bd224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeState: 0
-  availableActions:
-  - {fileID: 11448820}
-  - {fileID: 11492936}
-  verticalForces: []
-  forceSwitchInterval: 0.75
-  forceSwitchSmooth: 0.05
-  loopForceSwitch: 1
+  activeState: 1
 --- !u!114 &11434340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,19 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 144042, guid: 400db9cecaa360a4b9da27353b13a315, type: 2}
-  dropChance: 0.5
---- !u!114 &11448820
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 127036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28d38db025351a74c80b3d098daca9e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0
+  dropChance: .5
 --- !u!114 &11456788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,6 +109,24 @@ MonoBehaviour:
   excludedTags:
   - Enemy
   - Pickup
+--- !u!114 &11471048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7e913443b723d48b57884cd3a685c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pattern:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  speed: 2
+  timeScale: 0
 --- !u!114 &11487496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,21 +144,6 @@ MonoBehaviour:
   lifetime: 0
   deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
   solidObjects: []
---- !u!114 &11492936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 127036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f70b1aea1a19ada4784895d51842fdc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryWeapon: {fileID: 0}
-  secondaryWeapon: {fileID: 0}
-  bombWeapon: {fileID: 0}
-  weaponLevel: 0
 --- !u!212 &21291342
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -181,18 +162,14 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: de90bca34cb68eb4194eeebbfe9f3ce5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
