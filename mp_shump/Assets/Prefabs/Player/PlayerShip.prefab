@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d38db025351a74c80b3d098daca9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 6
 --- !u!114 &11440796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,7 +229,7 @@ Prefab:
       objectReference: {fileID: 183362, guid: 1e64ce6ebc638a14e99fbce84ae4e08b, type: 2}
     - target: {fileID: 0}
       propertyPath: moveSpeed
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shieldObject
