@@ -13,18 +13,12 @@ public class enemy : MonoBehaviour
         currentStatus = GetComponent<status>();
     }
 
-    void OnTriggerStay2D(Collider2D hit)
+    protected void checkActive()
     {
-        if(hit.tag == "Camera")
+        if(GetComponent<Renderer>().isVisible)
         {
             activeState = true;
-        }
-    }
-    void OnTriggerExit2D(Collider2D hit)
-    {
-        if(hit.tag == "Camera")
-        {
-            activeState = false;
+            Debug.Log("yeah");
         }
     }
 }

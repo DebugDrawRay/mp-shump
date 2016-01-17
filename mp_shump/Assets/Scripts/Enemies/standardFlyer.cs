@@ -9,6 +9,8 @@ public class standardFlyer : enemy
 
     void Update()
     {
+        checkActive();
+
         foreach (actionController action in availableActions)
         {
             action.isActive = activeState;

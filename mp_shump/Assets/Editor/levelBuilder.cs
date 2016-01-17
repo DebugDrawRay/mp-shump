@@ -85,7 +85,21 @@ public class levelBuilder : EditorWindow
             for (int j = 0; j < sceneObj.Length; j++)
             {
                 GameObject prefab = PrefabUtility.GetPrefabParent(sceneObj[j]) as GameObject;
-                levelObject newObj = new levelObject(prefab, sceneObj[j].transform.position);
+                levelObject newObj;
+                if (sceneObj[j].GetComponent<patternEngine>())
+                {
+                    patternEngine properties = sceneObj[j].GetComponent<patternEngine>();
+
+                    AnimationCurve curve = properties.pattern;
+                    float speed = properties.speed;
+                    float timeScale = properties.timeScale;
+
+                    newObj = new levelObject(prefab, sceneObj[j].transform.position, curve, speed, timeScale);
+                }
+                else
+                {
+                    newObj = new levelObject(prefab, sceneObj[j].transform.position, null, 0, 0);
+                }
                 list.Add(newObj);
             }
         }

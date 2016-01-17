@@ -40,9 +40,11 @@ public class levelFactory : MonoBehaviour
                 GameObject left = Instantiate(objs[i].prefab) as GameObject;
                 left.transform.position = new Vector2(pos.x * -1, pos.y);
                 left.transform.rotation = Quaternion.Euler(0, 180, 0);
+                buildMovementProperties(left, objs[i]);
 
                 GameObject right = Instantiate(objs[i].prefab) as GameObject;
                 right.transform.position = pos;
+                buildMovementProperties(right, objs[i]);
 
             }
             return true;
@@ -51,6 +53,17 @@ public class levelFactory : MonoBehaviour
         {
             Debug.LogError("No valid level to build");
             return false;
+        }
+    }
+
+    void buildMovementProperties(GameObject obj, levelObject baseObj)
+    {
+        patternEngine properties = obj.GetComponent<patternEngine>();
+        if(properties)
+        {
+            properties.pattern = baseObj.prefabCurve;
+            properties.speed = baseObj.prefabSpeed;
+            properties.timeScale = baseObj.prefabTimeScale;
         }
     }
 
