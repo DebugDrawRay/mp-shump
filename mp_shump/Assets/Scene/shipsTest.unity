@@ -474,29 +474,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 21253330, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 2435eaf86466a1d45970f5f153fe49d2,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1076083085 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 192840, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
-  m_PrefabInternal: {fileID: 1076083084}
---- !u!114 &1076083086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1076083085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20f36c31e31d0c041a172e3de7f8d360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1392541656
 Prefab:
   m_ObjectHideFlags: 0

@@ -18,7 +18,6 @@ public class enemy : MonoBehaviour
         if(GetComponent<Renderer>().isVisible)
         {
             activeState = true;
-            Debug.Log("yeah");
         }
     }
 }
