@@ -34,7 +34,6 @@ public class movementAnimator : actionController
     void checkLean()
     {
         currentLeanAmount = input.verAxis();
-        Debug.Log(currentLeanAmount);
         if (currentLeanAmount >= 1)
         {
             currentLean = lean.top;

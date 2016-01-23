@@ -38,6 +38,7 @@ public class weapon : MonoBehaviour
 
     void Update()
     {
+
         ammoController();
         currentFireDelay -= Time.deltaTime;
     }
@@ -47,7 +48,9 @@ public class weapon : MonoBehaviour
         if(input && canFire && currentFireDelay <= 0)
         {
             Vector2 fuckingDumbThing = transform.position;
-            Vector2 offset = fuckingDumbThing + originOffset;
+            Vector2 adjOffset = originOffset;
+            adjOffset.x = originOffset.x * transform.right.x;
+            Vector2 offset = fuckingDumbThing + adjOffset;
             GameObject newProj = Instantiate(availableProjectiles[weaponLevel], offset, transform.rotation) as GameObject;
             newProj.tag = transform.parent.tag;
             if(muzzleFlash)

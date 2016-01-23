@@ -44,7 +44,7 @@ MonoBehaviour:
   - {fileID: 144262, guid: be0450defc6969e45ad5690f8bbe599b, type: 2}
   weaponLevel: 0
   muzzleFlash: {fileID: 0}
-  originOffset: {x: 0, y: 0}
+  originOffset: {x: 0.8, y: -0.25}
   fireDelay: 0.25
   maxAmmo: 1000
   passiveAmmoRegen: 1000
@@ -82,11 +82,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: originOffset.x
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: weaponLevel
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: originOffset.y
+      value: -0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

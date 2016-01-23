@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836a0fc5f6cdd4a4791375f2815b4fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 4
+  baseSpeed: 6
 --- !u!212 &21238936
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -155,7 +155,7 @@ Prefab:
       objectReference: {fileID: 191574, guid: deb0079a15d595848a95de6caabe70bd, type: 2}
     - target: {fileID: 0}
       propertyPath: baseSpeed
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: damage

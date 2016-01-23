@@ -22,7 +22,7 @@ public class engine : actionController
 
     void movementHandler(float horAxis, float verAxis)
     {
-        Vector2 right = transform.right  * horAxis * moveSpeed;
+        Vector2 right = transform.root.right  * horAxis * moveSpeed;
         Vector2 up = transform.up * verAxis * moveSpeed;
         Vector2 newVel = right + up;
         rigid.velocity = newVel;
