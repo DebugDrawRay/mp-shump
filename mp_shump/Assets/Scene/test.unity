@@ -255,7 +255,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22485076, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22485076, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -295,38 +295,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22485076, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
       propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22492164, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22492164, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 22432660, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22432660, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
-      propertyPath: m_AnchorMin.y
-      value: .5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22432660, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: .5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22309248, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22309248, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 22309248, guid: 22150e290ad0fd444a9b5b7d07d5c630, type: 2}
-      propertyPath: m_PixelPerfect
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

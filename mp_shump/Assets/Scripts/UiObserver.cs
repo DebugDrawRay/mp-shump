@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class waypoint : MonoBehaviour
+public static class UiObserver
 {
 
 }

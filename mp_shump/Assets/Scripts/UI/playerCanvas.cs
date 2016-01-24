@@ -17,7 +17,7 @@ public class playerCanvas : MonoBehaviour
         currentUi = ui[player.playerNumber - 1];
         currentUi = Instantiate(currentUi);
         currentUi.transform.SetParent(transform);
-        currentUi.GetComponent<playerUi>().player = player.gameObject;
+        currentUi.GetComponent<playerUiController>().player = player.gameObject;
 
         player.GetComponent<status>().StatusChanged += new StatusChangedEvent(flashScreen);
     }
