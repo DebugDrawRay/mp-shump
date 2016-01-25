@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class weaponController : actionController
+public class weaponController : actionController, IUiBroadcast
 {
     [Header("Weapons")]
     public GameObject primaryWeapon;
@@ -25,6 +25,12 @@ public class weaponController : actionController
 
     public int weaponLevel;
 
+    public playerUiController targetUI
+    {
+        get;
+        set;
+    }
+
     void Start()
     {
         if (primaryWeapon)
@@ -34,6 +40,7 @@ public class weaponController : actionController
             primary.transform.rotation = primary.transform.parent.rotation;
 
             currentPrimary = primary.GetComponent<weapon>();
+            targetUI.updatePrimary(currentPrimary.currentIcon);
         }
         if (secondaryWeapon)
         {
@@ -42,6 +49,8 @@ public class weaponController : actionController
             secondary.transform.rotation = secondary.transform.parent.rotation;
 
             currentSecondary = secondary.GetComponent<weapon>();
+            targetUI.updateSecondary(currentSecondary.currentIcon);
+
         }
         if (bombWeapon)
         {
@@ -50,6 +59,8 @@ public class weaponController : actionController
             bomb.transform.rotation = bomb.transform.parent.rotation;
 
             currentBomb = bomb.GetComponent<weapon>();
+            int currentAmmo = Mathf.RoundToInt(currentBomb.currentAmmo);
+            targetUI.updateBombs(currentAmmo);
         }
 
     }
@@ -60,14 +71,20 @@ public class weaponController : actionController
             if (currentPrimary != null)
             {
                 currentPrimary.fireWeapon(input.firePrimary());
+                targetUI.updatePrimary(currentPrimary.currentIcon);
+                targetUI.updatePrimaryMeter(currentPrimary.currentAmmo, currentPrimary.maxAmmo);
             }
             if (currentSecondary != null)
             {
                 currentSecondary.fireWeapon(input.fireSecondary());
+                targetUI.updateSecondary(currentSecondary.currentIcon);
+                targetUI.updateSecondaryMeter(currentSecondary.currentAmmo, currentSecondary.maxAmmo);
             }
             if (currentBomb != null)
             {
                 currentBomb.fireWeapon(input.fireBomb());
+                int currentAmmo = Mathf.RoundToInt(currentBomb.currentAmmo);
+                targetUI.updateBombs(currentAmmo);
             }
         }
     }

@@ -32,7 +32,7 @@ public class gameController : MonoBehaviour
     public GameObject gate;
     private GameObject currentGate;
 
-    private Camera centerCam;
+    public Camera centerCam;
 
     private Quaternion flip = Quaternion.Euler(0, 180, 0);
 
@@ -50,8 +50,6 @@ public class gameController : MonoBehaviour
 
     void Awake()
     {
-        centerCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        centerCam.enabled = false;
         initializeInstance();
         setUpPlayers();
         currentGate = Instantiate(gate, Vector2.zero, Quaternion.identity) as GameObject;
@@ -109,7 +107,6 @@ public class gameController : MonoBehaviour
             case gameState.InGame:
                 if (checkDestination())
                 {
-                    centerCam.enabled = true;
                     playerState(player.state.atCenter);
                     currentState = gameState.AtCenter;
                 }
@@ -118,10 +115,12 @@ public class gameController : MonoBehaviour
                 if (!canvas.startCountdown(canvas.vsClock))
                 {
                     beginVersus();
+                    playerState(player.state.inVersus);
                     currentState = gameState.InVersus;
                 }
                 break;
             case gameState.InVersus:
+                centerCam.enabled = true;
                 if (checkVictor() != 0)
                 {
                     displayVictor(checkVictor());
@@ -185,7 +184,6 @@ public class gameController : MonoBehaviour
     void beginVersus()
     {
         Destroy(currentGate);
-
     }
 
     int checkVictor()

@@ -8,10 +8,15 @@ public class gameCanvas : MonoBehaviour
     public GameObject countdownClock;
     public GameObject vsClock;
     private countdown currentClock;
+
     public Text victor;
     public Text distanceMeter;
+
     public float distanceOffset = 4;
     public Image centerMark;
+
+    private GameObject[] playerUi;
+
     public static gameCanvas instance
     {
         get;

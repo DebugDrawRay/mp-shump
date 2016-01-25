@@ -2,9 +2,7 @@
 using System.Collections;
 using System;
 
-public delegate void StatusChangedEvent();
-
-public class status : MonoBehaviour
+public class status : MonoBehaviour, IUiBroadcast 
 {
     [Header("Health and Lives")]
     public float baseHealth = 10;
@@ -24,14 +22,22 @@ public class status : MonoBehaviour
     [Header("Collisions")]
     public string[] excludedTags;
 
-    //Events
-    public event StatusChangedEvent StatusChanged;
+    //broadcast interface
+    public playerUiController targetUI
+    {
+        get;
+        set;
+    }
 
     void Awake()
     {
         currentHealth = baseHealth;
     }
 
+    void Start()
+    {
+
+    }
     void Update()
     {
         checkDamageState();
@@ -65,7 +71,6 @@ public class status : MonoBehaviour
     }
     void interaction(interactionSource interactable)
     {
-        ChangeStatus();
         currentHealth -= interactable.damage;
         currentWeaponLevel += interactable.weaponLevelIncrease;
 
@@ -74,15 +79,6 @@ public class status : MonoBehaviour
             currentWeaponLevel--;
         }
         interactable.deathEvent();
-    }
-
-    //Testing Events
-    protected void ChangeStatus()
-    {
-        if (StatusChanged != null)
-        {
-            StatusChanged();
-        }
     }
 
     void checkDamageState()
@@ -101,10 +97,16 @@ public class status : MonoBehaviour
                 Instantiate(deathAnim, transform.position, Quaternion.identity);
             }
         }
+        if (targetUI)
+        {
+            targetUI.updateLives(lives);
+        }
+
     }
 
     void respawn()
     {
+        Instantiate(deathAnim, transform.position, Quaternion.identity);
         currentHealth = baseHealth;
         Debug.Log("Respawn");
     }

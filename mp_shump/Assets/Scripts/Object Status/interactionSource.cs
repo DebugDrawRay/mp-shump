@@ -11,6 +11,7 @@ public class interactionSource : MonoBehaviour
 
     [Header("Object Status")]
     public bool isInvul;
+    public bool persistent;
     public float lifetime;
     public GameObject deathAnim;
 
@@ -46,11 +47,14 @@ public class interactionSource : MonoBehaviour
 
     public void deathEvent()
     {
-        if (deathAnim)
+        if (!persistent)
         {
-            Instantiate(deathAnim, transform.position, Quaternion.identity);
+            if (deathAnim)
+            {
+                Instantiate(deathAnim, transform.position, Quaternion.identity);
+            }
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
     }
 
 }

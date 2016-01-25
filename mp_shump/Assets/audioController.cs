@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class UiObserver
+public class audioController : MonoBehaviour
 {
 
 }

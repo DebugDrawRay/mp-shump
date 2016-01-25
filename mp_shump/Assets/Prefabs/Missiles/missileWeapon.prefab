@@ -41,13 +41,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableProjectiles:
   - {fileID: 116254, guid: 743c58f98e15eb241b45b101a72e86e8, type: 2}
+  projectileIcons:
+  - {fileID: 21300000, guid: d8cd8eded28ff9d479785e94568c0d1f, type: 3}
   weaponLevel: 0
   muzzleFlash: {fileID: 0}
   originOffset: {x: 0, y: 0}
   fireDelay: 1
   maxAmmo: 5
+  ammoUse: 1
   passiveAmmoRegen: 0
-  reloadTime: 1
+  reloadTime: 2.5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -56,8 +59,25 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: projectileIcons.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: muzzleFlash
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileIcons.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: d8cd8eded28ff9d479785e94568c0d1f,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: ammoUse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: reloadTime
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -41,13 +41,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableProjectiles:
   - {fileID: 136470, guid: 9014d6ca03b734646a03f6eaed10ef21, type: 2}
+  projectileIcons: []
   weaponLevel: 0
   muzzleFlash: {fileID: 0}
   originOffset: {x: 0, y: 0}
-  fireDelay: 0
+  fireDelay: 2.5
   maxAmmo: 3
+  ammoUse: 1
   passiveAmmoRegen: 0
   reloadTime: 0
+  finiteAmmo: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -58,6 +61,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: reloadTime
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ammoUse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: fireDelay
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: finiteAmmo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

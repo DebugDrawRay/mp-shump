@@ -8,6 +8,7 @@ public class player : MonoBehaviour
         inactive,
         active,
         atCenter,
+        inVersus,
         destroyed,
     }
     public state currentState;
@@ -32,6 +33,7 @@ public class player : MonoBehaviour
 
     [Header("UI Properties")]
     public GameObject playerCanvas;
+    public GameObject[] availableUI = new GameObject[2];
 
     //Component Cashe
     private status currentStatus;
@@ -47,13 +49,13 @@ public class player : MonoBehaviour
     }
     void Start()
     {
+        initializeUi();
         availableActions = GetComponents<actionController>();
         foreach (actionController action in availableActions)
         {
             action.input = new controllerListener(playerNumber);
         }
         setupLocalCamera();
-        initializeUi();
         tag = "Player" + playerNumber.ToString();
     }
 
@@ -64,8 +66,14 @@ public class player : MonoBehaviour
 
     void initializeUi()
     {
-        playerCanvas newUi = Instantiate(playerCanvas).GetComponent<playerCanvas>();
-        newUi.init(this);
+        playerUiController newUI = Instantiate(availableUI[playerNumber - 1]).GetComponent<playerUiController>();
+        IUiBroadcast[] availableBroadcasters = GetComponents<IUiBroadcast>();
+        foreach(IUiBroadcast broadcaster in availableBroadcasters)
+        {
+            broadcaster.targetUI = newUI;
+
+        }
+
     }
 
     void setupLocalCamera()
@@ -101,10 +109,17 @@ public class player : MonoBehaviour
                 runScroll();
                 break;
             case state.atCenter:
+                enableActions(false);
+                Vector3 camPos = localCamera.GetComponent<Camera>().ScreenToWorldPoint(Vector2.zero);
+                Vector3 newPos = transform.localPosition;
+                newPos.z = 10;
+                transform.localPosition = Vector3.Lerp(newPos, camPos, .05f);
+                break;
+            case state.inVersus:
                 enableActions(true);
-                if(currentStatus)
+                if (currentStatus)
                 {
-                    if(currentStatus.destroyed)
+                    if (currentStatus.destroyed)
                     {
                         currentState = state.destroyed;
                     }
@@ -132,6 +147,8 @@ public class player : MonoBehaviour
         enableActions(false);
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
+        Destroy(gameObject);
+
     }
 
 }
