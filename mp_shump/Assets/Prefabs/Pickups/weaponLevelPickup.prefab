@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &138076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 406680}
+  - 108: {fileID: 10865100}
+  m_Layer: 0
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &144042
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,8 +25,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 447550}
   - 212: {fileID: 21229904}
-  - 114: {fileID: 11468598}
   - 61: {fileID: 6145414}
+  - 114: {fileID: 11490664}
   m_Layer: 0
   m_Name: weaponLevelPickup
   m_TagString: Pickup
@@ -18,6 +34,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &406680
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 447550}
+  m_RootOrder: 0
 --- !u!4 &447550
 Transform:
   m_ObjectHideFlags: 1
@@ -25,9 +53,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_Children: []
+  m_LocalPosition: {x: 2.33, y: 0.133, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_Children:
+  - {fileID: 406680}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!61 &6145414
@@ -44,7 +73,40 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.05}
---- !u!114 &11468598
+--- !u!108 &10865100
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138076}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 0.61960787, g: 0, b: 0.22352943, a: 1}
+  m_Intensity: 1
+  m_Range: 0.58
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11490664
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -52,16 +114,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 144042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96dff905f730bee44992279a9ff87645, type: 3}
+  m_Script: {fileID: 11500000, guid: 1241d70b0d76ede41809f93ec1695f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  lives: 0
   weaponLevelIncrease: 1
-  isInvul: 0
-  persistent: 0
-  lifetime: 15
-  deathAnim: {fileID: 0}
-  solidObjects: []
 --- !u!212 &21229904
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -88,8 +145,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 95df9b388a5f3d8478d9adaf8a3234f5, type: 3}
-  m_Color: {r: 0, g: 0.63529414, b: 0.8078432, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 5e298fa18ed58e84eb812c217942b823, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1001 &100100000
@@ -110,19 +167,31 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 95df9b388a5f3d8478d9adaf8a3234f5,
+      objectReference: {fileID: 21300000, guid: 172f957e599042a4fa24e23fa471fda7,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.g
-      value: 0.63529414
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.b
-      value: 0.8078432
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.z
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

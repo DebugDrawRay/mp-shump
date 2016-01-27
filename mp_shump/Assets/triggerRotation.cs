@@ -22,7 +22,7 @@ public class triggerRotation : MonoBehaviour
 
     void Update()
     {
-        if(controller.currentState == triggerState)
+        if(controller && controller.currentState == triggerState)
         {
             localRect.anchorMin = Vector2.Lerp(localRect.anchorMin, anchorMin, rotationSpeed);
             localRect.anchorMax = Vector2.Lerp(localRect.anchorMax, anchorMax, rotationSpeed);

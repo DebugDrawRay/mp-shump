@@ -20,8 +20,14 @@ public class missile : projectile
     public float falloffDistance;
     private bool lostTarget = false;
 
+    public float startSpeed;
+    public float maxSpeed;
+    public float acceleration;
+    private float currentSpeed;
+
     void Start()
     {
+        currentSpeed = startSpeed;
         currentLaunchDelay = launchDelay;
         launchMissiles();
     }
@@ -71,9 +77,17 @@ public class missile : projectile
                 lostTarget = true;
             }
         }
-        rigid.velocity = transform.right * projectileSpeed;
+        rigid.velocity = transform.right * flightSpeed();
     }
 
+    float flightSpeed()
+    {
+        if(currentSpeed <= maxSpeed - .01)
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed, acceleration);
+        }
+        return currentSpeed;
+    }
     GameObject currentTarget()
     {
         GameObject closestTarget = null;

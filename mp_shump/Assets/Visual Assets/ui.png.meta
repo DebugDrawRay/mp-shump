@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e4351b681de39fa488cb6ebb30bfeb43
-timeCreated: 1446328405
+timeCreated: 1453872993
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -30,7 +30,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -55,7 +55,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -71,8 +71,9 @@ TextureImporter:
         width: 7
         height: 98
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: ui_laser_3
       rect:
         serializedVersion: 2
@@ -81,8 +82,9 @@ TextureImporter:
         width: 19
         height: 11
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: ui_laser_1
       rect:
         serializedVersion: 2
@@ -91,8 +93,9 @@ TextureImporter:
         width: 19
         height: 11
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: ui_laser_4
       rect:
         serializedVersion: 2
@@ -101,8 +104,9 @@ TextureImporter:
         width: 19
         height: 17
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: ui_laser_2
       rect:
         serializedVersion: 2
@@ -111,8 +115,9 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: ui_missile_1
       rect:
         serializedVersion: 2
@@ -121,8 +126,9 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: ui_center
       rect:
         serializedVersion: 2
@@ -131,8 +137,13 @@ TextureImporter:
         width: 41
         height: 41
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.5, y: 20.5}
+        - {x: -20.5, y: -20.5}
+        - {x: 20.5, y: -20.5}
+        - {x: 20.5, y: 20.5}
     - name: ui_missile_4
       rect:
         serializedVersion: 2
@@ -141,8 +152,9 @@ TextureImporter:
         width: 19
         height: 13
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: ui_missile_3
       rect:
         serializedVersion: 2
@@ -151,8 +163,9 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: ui_missile_2
       rect:
         serializedVersion: 2
@@ -161,8 +174,9 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: ui_shield
       rect:
         serializedVersion: 2
@@ -171,8 +185,9 @@ TextureImporter:
         width: 98
         height: 7
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: ui_laser
       rect:
         serializedVersion: 2
@@ -181,8 +196,14 @@ TextureImporter:
         width: 39
         height: 39
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: 19.5}
+        - {x: -19.5, y: -19.5}
+        - {x: 19.5, y: -19.5}
+        - {x: 19.5, y: -16.5}
+        - {x: -16.5, y: 19.5}
     - name: ui_missile
       rect:
         serializedVersion: 2
@@ -191,8 +212,15 @@ TextureImporter:
         width: 39
         height: 39
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: 19.5}
+        - {x: -19.5, y: -19.5}
+        - {x: 19.5, y: -19.5}
+        - {x: 19.5, y: -16.5}
+        - {x: -16.5, y: 19.5}
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

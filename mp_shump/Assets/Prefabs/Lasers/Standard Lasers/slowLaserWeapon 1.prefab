@@ -39,11 +39,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4a1c998e553f44c8bc87c862814430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableProjectiles:
-  - {fileID: 137904, guid: 32cc4219f12c2ff4ca587b85e641a82f, type: 2}
-  projectileIcons:
-  - {fileID: 21300002, guid: d8cd8eded28ff9d479785e94568c0d1f, type: 3}
-  weaponLevel: 0
+  projectile: {fileID: 137904, guid: 32cc4219f12c2ff4ca587b85e641a82f, type: 2}
+  projectileIcon: {fileID: 21300002, guid: d8cd8eded28ff9d479785e94568c0d1f, type: 3}
   muzzleFlash: {fileID: 0}
   originOffset: {x: 0.8, y: 0}
   fireDelay: 1.5
@@ -52,6 +49,7 @@ MonoBehaviour:
   passiveAmmoRegen: 0
   reloadTime: 2.5
   finiteAmmo: 0
+  broadcastFireEvent: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -116,6 +114,19 @@ Prefab:
       propertyPath: m_Name
       value: slowLaserWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: broadcastFireEvent
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 137904, guid: 32cc4219f12c2ff4ca587b85e641a82f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: projectileIcon
+      value: 
+      objectReference: {fileID: 21300002, guid: d8cd8eded28ff9d479785e94568c0d1f,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 140120}

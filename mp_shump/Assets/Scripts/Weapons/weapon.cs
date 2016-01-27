@@ -4,16 +4,8 @@ using System.Collections;
 public class weapon : MonoBehaviour
 {
     [Header("Projectiles")]
-    public GameObject[] availableProjectiles;
-    public Sprite[] projectileIcons;
-    public Sprite currentIcon
-    {
-        get;
-        private set;
-    }
-
-    [Range(0,3)]
-    public int weaponLevel;
+    public GameObject projectile;
+    public Sprite projectileIcon;
 
     public GameObject muzzleFlash;
 
@@ -35,22 +27,29 @@ public class weapon : MonoBehaviour
     public bool finiteAmmo;
 
     private float currentReloadTime;
-    private bool canFire = true;
+    public bool canFire
+    {
+        get;
+        private set;
+    }
 
-    //broadcast interface
     public playerUiController targetUI
     {
         get;
         set;
     }
+
+    [Header("Events")]
+    public bool broadcastFireEvent = false;
+
+    public delegate void FireEvent();
+    public static event FireEvent firedWeapon;
+
     void Awake()
     {
+        canFire = true;
         currentAmmo = maxAmmo;
         currentReloadTime = reloadTime;
-        if (projectileIcons.Length >= 1)
-        {
-            currentIcon = projectileIcons[0];
-        }
     }
 
     void Update()
@@ -63,15 +62,20 @@ public class weapon : MonoBehaviour
     {
         if(input && canFire && currentFireDelay <= 0)
         {
+            if (firedWeapon != null && broadcastFireEvent)
+            {
+                firedWeapon();
+            }
             Vector2 fuckingDumbThing = transform.position;
             Vector2 adjOffset = originOffset;
             adjOffset.x = originOffset.x * transform.right.x;
             Vector2 offset = fuckingDumbThing + adjOffset;
-            GameObject newProj = Instantiate(availableProjectiles[weaponLevel], offset, transform.rotation) as GameObject;
+            GameObject newProj = Instantiate(projectile, offset, transform.rotation) as GameObject;
             newProj.tag = transform.parent.tag;
             if(muzzleFlash)
             {
-                Instantiate(muzzleFlash, offset, transform.rotation);
+                GameObject flash = Instantiate(muzzleFlash, offset, transform.rotation) as GameObject;
+                flash.transform.SetParent(transform.parent);
             }
             currentFireDelay = fireDelay;
             currentAmmo -= ammoUse;

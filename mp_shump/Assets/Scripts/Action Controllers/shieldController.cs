@@ -30,7 +30,7 @@ public class shieldController : actionController
         }
         if(currentShield)
         {
-            currentShield.transform.position = transform.position + currentShield.transform.right;
+            currentShield.transform.position = transform.position;
         }
     }
 

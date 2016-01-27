@@ -23,7 +23,7 @@ public class triggerResize : MonoBehaviour
 
     void Update()
     {
-        if(controller.currentState == triggerState)
+        if(controller && controller.currentState == triggerState)
         {
             Vector2 position = Vector2.Lerp(localCamera.rect.position, resizeTo.position, resizeSpeed);
             Vector2 size = Vector2.Lerp(localCamera.rect.size, resizeTo.size, resizeSpeed);

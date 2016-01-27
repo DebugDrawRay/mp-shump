@@ -3,8 +3,8 @@
 public class weaponController : actionController, IUiBroadcast
 {
     [Header("Weapons")]
-    public GameObject primaryWeapon;
-    public GameObject secondaryWeapon;
+    public GameObject[] primaryWeapons;
+    public GameObject[] secondaryWeapons;
     public GameObject bombWeapon;
 
     public weapon currentPrimary
@@ -24,6 +24,7 @@ public class weaponController : actionController, IUiBroadcast
     }
 
     public int weaponLevel;
+    private int currentWeaponLevel;
 
     public playerUiController targetUI
     {
@@ -31,25 +32,49 @@ public class weaponController : actionController, IUiBroadcast
         set;
     }
 
+    void Awake()
+    {
+        currentWeaponLevel = weaponLevel;
+    }
+
     void Start()
     {
-        if (primaryWeapon)
-        {
-            GameObject primary = Instantiate(primaryWeapon, transform.position, Quaternion.identity) as GameObject;
-            primary.transform.SetParent(transform);
-            primary.transform.rotation = primary.transform.parent.rotation;
+        updateCurrentWeapons(0);
+    }
 
-            currentPrimary = primary.GetComponent<weapon>();
-            targetUI.updatePrimary(currentPrimary.currentIcon);
+    public void updateCurrentWeapons(int levelIncrease)
+    {
+        currentWeaponLevel += levelIncrease;
+
+        if (primaryWeapons.Length > 0 && currentWeaponLevel < primaryWeapons.Length)
+        {
+            GameObject primary = Instantiate(primaryWeapons[currentWeaponLevel], transform.position, Quaternion.identity) as GameObject;
+            if (primary)
+            {
+                primary.transform.SetParent(transform);
+                primary.transform.rotation = primary.transform.parent.rotation;
+
+                currentPrimary = primary.GetComponent<weapon>();
+                if (targetUI)
+                {
+                    targetUI.updatePrimary(currentPrimary.projectileIcon);
+                }
+            }
         }
-        if (secondaryWeapon)
+        if (secondaryWeapons.Length > 0 && currentWeaponLevel < primaryWeapons.Length)
         {
-            GameObject secondary = Instantiate(secondaryWeapon, transform.position, Quaternion.identity) as GameObject;
-            secondary.transform.SetParent(transform);
-            secondary.transform.rotation = secondary.transform.parent.rotation;
+            GameObject secondary = Instantiate(secondaryWeapons[currentWeaponLevel], transform.position, Quaternion.identity) as GameObject;
+            if (secondary)
+            {
+                secondary.transform.SetParent(transform);
+                secondary.transform.rotation = secondary.transform.parent.rotation;
 
-            currentSecondary = secondary.GetComponent<weapon>();
-            targetUI.updateSecondary(currentSecondary.currentIcon);
+                currentSecondary = secondary.GetComponent<weapon>();
+                if (targetUI)
+                {
+                    targetUI.updateSecondary(currentSecondary.projectileIcon);
+                }
+            }
 
         }
         if (bombWeapon)
@@ -60,10 +85,14 @@ public class weaponController : actionController, IUiBroadcast
 
             currentBomb = bomb.GetComponent<weapon>();
             int currentAmmo = Mathf.RoundToInt(currentBomb.currentAmmo);
-            targetUI.updateBombs(currentAmmo);
+            if (targetUI)
+            {
+                targetUI.updateBombs(currentAmmo);
+            }
         }
 
     }
+
     void Update()
     {
         if (isActive)
@@ -71,20 +100,33 @@ public class weaponController : actionController, IUiBroadcast
             if (currentPrimary != null)
             {
                 currentPrimary.fireWeapon(input.firePrimary());
-                targetUI.updatePrimary(currentPrimary.currentIcon);
-                targetUI.updatePrimaryMeter(currentPrimary.currentAmmo, currentPrimary.maxAmmo);
+                if (targetUI)
+                {
+                    if (currentPrimary.canFire)
+                    {
+                        targetUI.updatePrimaryMeter(currentPrimary.currentAmmo, currentPrimary.maxAmmo);
+                    }
+                }
             }
             if (currentSecondary != null)
             {
                 currentSecondary.fireWeapon(input.fireSecondary());
-                targetUI.updateSecondary(currentSecondary.currentIcon);
-                targetUI.updateSecondaryMeter(currentSecondary.currentAmmo, currentSecondary.maxAmmo);
+                if (targetUI)
+                {
+                    if (currentPrimary.canFire)
+                    {
+                        targetUI.updateSecondaryMeter(currentSecondary.currentAmmo, currentSecondary.maxAmmo);
+                    }
+                }
             }
             if (currentBomb != null)
             {
                 currentBomb.fireWeapon(input.fireBomb());
-                int currentAmmo = Mathf.RoundToInt(currentBomb.currentAmmo);
-                targetUI.updateBombs(currentAmmo);
+                if (targetUI)
+                {
+                    int currentAmmo = Mathf.RoundToInt(currentBomb.currentAmmo);
+                    targetUI.updateBombs(currentAmmo);
+                }
             }
         }
     }

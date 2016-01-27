@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Pickup
   - Camera
+  - Shield
   layers:
   - Default
   - TransparentFX

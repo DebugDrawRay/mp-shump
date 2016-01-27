@@ -178,6 +178,9 @@ MonoBehaviour:
   launchDelay: 0.2
   rotSpeed: 0.1
   falloffDistance: 1.5
+  startSpeed: 3
+  maxSpeed: 12
+  acceleration: 0.1
 --- !u!212 &21277616
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -339,6 +342,18 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: cc8a665fb25315b40a7040e747b765cf, type: 3}
+    - target: {fileID: 0}
+      propertyPath: startSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: acceleration
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 116254}

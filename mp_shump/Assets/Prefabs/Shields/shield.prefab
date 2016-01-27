@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 443012}
   - 212: {fileID: 21269274}
-  - 61: {fileID: 6169208}
+  - 60: {fileID: 6094510}
   m_Layer: 0
   m_Name: shield
-  m_TagString: Enviroment
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,24 +24,35 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.13871658, y: -4.67747498, z: -4.70540524}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6169208
-BoxCollider2D:
+--- !u!60 &6094510
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121110}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: .0500000007, y: .25}
+  m_Points:
+    m_Paths:
+    - - {x: 0.020458864, y: 0.098852836}
+      - {x: 0.10177734, y: 0.06948043}
+      - {x: 0.14896218, y: 0.00020261109}
+      - {x: 0.14954436, y: -0.09862049}
+      - {x: -0.060740586, y: -0.099861406}
+      - {x: -0.111646056, y: -0.07037373}
+      - {x: -0.15086733, y: -0.009333819}
+      - {x: -0.1495444, y: 0.035498727}
+      - {x: -0.1259471, y: 0.07756585}
+      - {x: -0.0881015, y: 0.10090951}
 --- !u!212 &21269274
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -60,14 +71,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5a3304533e89db84eaba20af7f3d7aa7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ca8340bce93d3d4bb69e348666b6ebe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -78,6 +93,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4ca8340bce93d3d4bb69e348666b6ebe,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Shield
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
