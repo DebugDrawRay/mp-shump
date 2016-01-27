@@ -90,6 +90,15 @@ public class gameController : MonoBehaviour
     void Update()
     {
         runGameStates();
+
+        if(Input.GetButtonDown("Start_1") || Input.GetButtonDown("Start_2"))
+        {
+            Application.LoadLevel("test");
+        }
+        if (Input.GetButtonDown("Back_1") || Input.GetButtonDown("Back_2"))
+        {
+            Application.Quit();
+        }
     }
 
     void runGameStates()
@@ -121,11 +130,6 @@ public class gameController : MonoBehaviour
                 break;
             case gameState.InVersus:
                 centerCam.enabled = true;
-                if (checkVictor() != 0)
-                {
-                    displayVictor(checkVictor());
-                    currentState = gameState.Victory;
-                }
                 break;
             case gameState.Paused:
                 break;
@@ -133,6 +137,12 @@ public class gameController : MonoBehaviour
                 break;
             case gameState.Results:
                 break;
+        }
+
+        if (checkVictor() != 0)
+        {
+            displayVictor(checkVictor());
+            currentState = gameState.Victory;
         }
     }
 

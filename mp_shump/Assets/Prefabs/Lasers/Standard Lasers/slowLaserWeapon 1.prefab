@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 448616}
   - 114: {fileID: 11482214}
   m_Layer: 0
-  m_Name: laserWeapon
+  m_Name: slowLaserWeapon 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,17 +40,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableProjectiles:
-  - {fileID: 137904, guid: 9bea34972724a214c865f6da9fe417c0, type: 2}
-  - {fileID: 144262, guid: be0450defc6969e45ad5690f8bbe599b, type: 2}
+  - {fileID: 137904, guid: 32cc4219f12c2ff4ca587b85e641a82f, type: 2}
   projectileIcons:
   - {fileID: 21300002, guid: d8cd8eded28ff9d479785e94568c0d1f, type: 3}
   weaponLevel: 0
   muzzleFlash: {fileID: 0}
-  originOffset: {x: 0.8, y: -0.25}
-  fireDelay: 0.5
-  maxAmmo: 20
-  ammoUse: 4
-  passiveAmmoRegen: 0.1
+  originOffset: {x: 0.8, y: 0}
+  fireDelay: 1.5
+  maxAmmo: 1
+  ammoUse: 0
+  passiveAmmoRegen: 0
   reloadTime: 2.5
   finiteAmmo: 0
 --- !u!1001 &100100000
@@ -66,23 +65,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: availableProjectiles.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: availableProjectiles.Array.data[0]
       value: 
-      objectReference: {fileID: 137904, guid: 9bea34972724a214c865f6da9fe417c0, type: 2}
+      objectReference: {fileID: 137904, guid: 32cc4219f12c2ff4ca587b85e641a82f, type: 2}
     - target: {fileID: 0}
       propertyPath: fireDelay
-      value: 0.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxAmmo
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: passiveAmmoRegen
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: reloadTime
@@ -98,7 +97,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: originOffset.y
-      value: -0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: projectileIcons.Array.data[0]
@@ -107,7 +106,15 @@ Prefab:
         type: 3}
     - target: {fileID: 0}
       propertyPath: ammoUse
-      value: 4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: availableProjectiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 144262, guid: be0450defc6969e45ad5690f8bbe599b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: slowLaserWeapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

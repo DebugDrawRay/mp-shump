@@ -13,7 +13,18 @@ public class status : MonoBehaviour, IUiBroadcast
     }
     public int lives = 1;
 
-    public bool destroyed;
+    public bool destroyed
+    {
+        get;
+        private set;
+    }
+
+    public bool respawning
+    {
+        get;
+        private set;
+    }
+
     public GameObject deathAnim;
 
     [Header("Weapons")]
@@ -34,10 +45,6 @@ public class status : MonoBehaviour, IUiBroadcast
         currentHealth = baseHealth;
     }
 
-    void Start()
-    {
-
-    }
     void Update()
     {
         checkDamageState();
@@ -97,6 +104,10 @@ public class status : MonoBehaviour, IUiBroadcast
                 Instantiate(deathAnim, transform.position, Quaternion.identity);
             }
         }
+        else
+        {
+            respawning = false;
+        }
         if (targetUI)
         {
             targetUI.updateLives(lives);
@@ -106,6 +117,7 @@ public class status : MonoBehaviour, IUiBroadcast
 
     void respawn()
     {
+        respawning = true;
         Instantiate(deathAnim, transform.position, Quaternion.identity);
         currentHealth = baseHealth;
         Debug.Log("Respawn");

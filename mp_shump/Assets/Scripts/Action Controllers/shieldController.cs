@@ -28,6 +28,10 @@ public class shieldController : actionController
         {
             raiseShields(input.raiseShields());
         }
+        if(currentShield)
+        {
+            currentShield.transform.position = transform.position + currentShield.transform.right;
+        }
     }
 
     void raiseShields(bool raise)
@@ -45,7 +49,6 @@ public class shieldController : actionController
             if (raise && currentLifetime > 0 && !currentShield)
             {
                 currentShield = Instantiate(shieldObject) as GameObject;
-                currentShield.transform.SetParent(transform);
                 currentShield.transform.rotation = transform.rotation;
                 currentShield.transform.position = transform.position + currentShield.transform.right;
             }

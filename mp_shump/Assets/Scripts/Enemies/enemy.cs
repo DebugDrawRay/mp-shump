@@ -4,6 +4,7 @@ using System.Collections;
 public class enemy : MonoBehaviour
 {
     public bool activeState = false;
+    public bool canBeDespawned = false;
     protected actionController[] availableActions;
     protected status currentStatus;
 
@@ -18,6 +19,10 @@ public class enemy : MonoBehaviour
         if(GetComponent<Renderer>().isVisible)
         {
             activeState = true;
+        }
+        if(!GetComponent<Renderer>().isVisible && canBeDespawned)
+        {
+            Destroy(gameObject);
         }
     }
 }

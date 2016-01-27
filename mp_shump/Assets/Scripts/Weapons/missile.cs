@@ -77,7 +77,7 @@ public class missile : projectile
     GameObject currentTarget()
     {
         GameObject closestTarget = null;
-        float shortestDistance = 500;
+        float shortestDistance = 25;
         GameObject[] targets = getEnemyTargets();
         if (targets != null)
         {

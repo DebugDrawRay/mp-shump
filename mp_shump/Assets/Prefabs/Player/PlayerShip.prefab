@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  previousState: 0
   playerNumber: 1
   availableActions: []
   isScrolling: 0
@@ -104,6 +105,7 @@ MonoBehaviour:
   availableUI:
   - {fileID: 182618, guid: 3c8d763668e9d5e4f9e7022743d989cf, type: 2}
   - {fileID: 138944, guid: d32ce259bc92dc1468de83f55ede7d1d, type: 2}
+  invulPeriod: 1
 --- !u!114 &11405248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldObject: {fileID: 121110, guid: 6b69165020d83124ca331b351f1e9f44, type: 2}
-  maxLifetime: 0.15
+  maxLifetime: 0.25
   regenSpeed: 0.0025
 --- !u!114 &11487870
 MonoBehaviour:
@@ -174,8 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 1
-  lives: 3
-  destroyed: 0
+  lives: 7
   deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
   currentWeaponLevel: 0
   excludedTags: []
@@ -266,7 +267,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxLifetime
-      value: .150000006
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: deathAnim
@@ -295,7 +296,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: lives
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: penaltyAnim
@@ -342,6 +343,10 @@ Prefab:
       propertyPath: availableUI.Array.data[1]
       value: 
       objectReference: {fileID: 138944, guid: d32ce259bc92dc1468de83f55ede7d1d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: invulPeriod
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192840}

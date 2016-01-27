@@ -54,7 +54,7 @@ public class gameCanvas : MonoBehaviour
         {
             float dist = player.distanceFromCenter - distanceOffset;
             distanceMeter.text = dist.ToString();
-            if (dist <= 0)
+            if (dist <= 0 || gameController.instance.currentState == gameController.gameState.AtCenter)
             {
                 Destroy(centerMark.gameObject);
                 Destroy(distanceMeter.gameObject);

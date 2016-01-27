@@ -7,6 +7,7 @@ public class enviromentDestructable : MonoBehaviour
     public GameObject[] debris;
     public float explosionForce;
     private status currentStatus;
+    private bool canBeDespawned = false;
 
     void Awake()
     {
@@ -26,7 +27,21 @@ public class enviromentDestructable : MonoBehaviour
         {
             Debug.LogError("No status component attached, intentional?");
         }
+        checkActive();
     }
+
+    void checkActive()
+    {
+        if (GetComponent<Renderer>().isVisible)
+        {
+            canBeDespawned = true;
+        }
+        if (!GetComponent<Renderer>().isVisible && canBeDespawned)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void destroySelf()
     {
         if(debris.Length >= 0)

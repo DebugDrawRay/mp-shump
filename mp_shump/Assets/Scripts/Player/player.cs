@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using DG.Tweening;
 public class player : MonoBehaviour
 {
     public enum state
@@ -9,10 +9,11 @@ public class player : MonoBehaviour
         active,
         atCenter,
         inVersus,
-        destroyed,
+        respawning,
+        destroyed
     }
     public state currentState;
-
+    public state previousState;
     [Header("Player Properties")]
     public int playerNumber;
     public actionController[] availableActions;
@@ -35,6 +36,11 @@ public class player : MonoBehaviour
     public GameObject playerCanvas;
     public GameObject[] availableUI = new GameObject[2];
 
+    [Header("Respawning")]
+    public float invulPeriod;
+    private float currentInvul;
+
+    private bool positionReset = false;
     //Component Cashe
     private status currentStatus;
 
@@ -46,6 +52,7 @@ public class player : MonoBehaviour
         initializeComponents();
         distanceFromCenter = 500;
 
+        currentInvul = invulPeriod;
     }
     void Start()
     {
@@ -110,24 +117,49 @@ public class player : MonoBehaviour
                 break;
             case state.atCenter:
                 enableActions(false);
-                Vector3 camPos = localCamera.GetComponent<Camera>().ScreenToWorldPoint(Vector2.zero);
-                Vector3 newPos = transform.localPosition;
-                newPos.z = 10;
-                transform.localPosition = Vector3.Lerp(newPos, camPos, .05f);
+                recenterPlayer();
                 break;
             case state.inVersus:
                 enableActions(true);
-                if (currentStatus)
+                break;
+            case state.respawning:
+                if(previousState == state.active)
                 {
-                    if (currentStatus.destroyed)
-                    {
-                        currentState = state.destroyed;
-                    }
+                    runScroll();
+                }
+                enableActions(false);
+                toggleCollisions(false);
+                respawnEvent();
+
+                currentInvul -= Time.deltaTime;
+                if(currentInvul <= 0)
+                {
+                    GetComponent<SpriteRenderer>().enabled = true;
+                    toggleCollisions(true);
+                    positionReset = false;
+                    currentState = previousState;
                 }
                 break;
             case state.destroyed:
                 destroyEvent();
                 break;
+        }
+        runUniversalState();
+    }
+
+    void runUniversalState()
+    {
+        if (currentStatus)
+        {
+            if(currentStatus.respawning)
+            {
+                previousState = currentState;
+                currentState = state.respawning;
+            }
+            if (currentStatus.destroyed)
+            {
+                currentState = state.destroyed;
+            }
         }
     }
     void enableActions(bool enable)
@@ -141,6 +173,34 @@ public class player : MonoBehaviour
     {
         Vector2 scrollVelocity = transform.right * scrollSpeed;
         currentCamera.transform.Translate(scrollVelocity * Time.deltaTime);
+    }
+    void recenterPlayer()
+    {
+        Vector3 camPos = localCamera.GetComponent<Camera>().ScreenToWorldPoint(Vector2.zero);
+        Vector3 newPos = transform.localPosition;
+        newPos.z = 10;
+        transform.localPosition = Vector3.Lerp(newPos, camPos, .05f);
+    }
+    void toggleCollisions(bool enabled)
+    {
+        foreach (Collider2D col in GetComponents<Collider2D>())
+        {
+            col.enabled = enabled;
+        }
+    }
+    void respawnEvent()
+    {
+        if(!positionReset)
+        {
+            transform.localPosition = -transform.right * 5;
+            currentInvul = invulPeriod;
+            positionReset = true;
+        }
+
+        GetComponent<SpriteRenderer>().enabled = !GetComponent<SpriteRenderer>().enabled;
+        
+        recenterPlayer();
+        
     }
     void destroyEvent()
     {

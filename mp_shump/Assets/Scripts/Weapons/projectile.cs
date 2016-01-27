@@ -32,6 +32,7 @@ public class projectile : MonoBehaviour
         if(!GetComponent<Renderer>().isVisible)
         {
             Destroy(gameObject);
+            Debug.Log("Boom");
         }
     }
 }
