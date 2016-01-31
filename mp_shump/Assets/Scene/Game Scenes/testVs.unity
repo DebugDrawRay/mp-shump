@@ -215,8 +215,17 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: e59e5b7ea8bdf6f40be77a157e766f23,
         type: 2}
+    - target: {fileID: 11449436, guid: 792f87019a7fd674bbc4d087bd6e2212, type: 2}
+      propertyPath: screenCenterOffset
+      value: 10.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090038, guid: 792f87019a7fd674bbc4d087bd6e2212, type: 2}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8126170, guid: 792f87019a7fd674bbc4d087bd6e2212, type: 2}
+    - {fileID: 11494712, guid: 792f87019a7fd674bbc4d087bd6e2212, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 792f87019a7fd674bbc4d087bd6e2212, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1985383134

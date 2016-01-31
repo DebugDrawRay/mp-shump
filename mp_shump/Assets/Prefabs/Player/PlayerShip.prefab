@@ -105,7 +105,8 @@ MonoBehaviour:
   availableUI:
   - {fileID: 182618, guid: 3c8d763668e9d5e4f9e7022743d989cf, type: 2}
   - {fileID: 138944, guid: d32ce259bc92dc1468de83f55ede7d1d, type: 2}
-  invulPeriod: 1
+  invulPeriod: 3
+  flyInLength: 1
 --- !u!114 &11405248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70b1aea1a19ada4784895d51842fdc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryWeapon: {fileID: 140120, guid: 204f1fc119ee8ed4fabacbfdd417b31f, type: 2}
-  secondaryWeapon: {fileID: 195342, guid: f9757f04dbd366945b8831047493b01e, type: 2}
+  primaryWeapons: []
+  secondaryWeapons: []
   bombWeapon: {fileID: 0}
   weaponLevel: 0
 --- !u!114 &11443924
@@ -346,7 +347,7 @@ Prefab:
       objectReference: {fileID: 138944, guid: d32ce259bc92dc1468de83f55ede7d1d, type: 2}
     - target: {fileID: 0}
       propertyPath: invulPeriod
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: bombWeapon
@@ -355,6 +356,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: weaponUseStop
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: flyInLength
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
