@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using InControl;
 
 public class gameController : MonoBehaviour
 {
     //States
     public enum gameState
     {
+        CheckPlayers,
         Start,
         InGame,
         AtCenter,
@@ -34,6 +36,7 @@ public class gameController : MonoBehaviour
 
     public Camera centerCam;
 
+
     private Quaternion flip = Quaternion.Euler(0, 180, 0);
 
     public player[] players
@@ -48,10 +51,19 @@ public class gameController : MonoBehaviour
         private set;
     }
 
+    //Input
+    public InputDevice[] playerInputs
+    {
+        get;
+        private set;
+    }
+
+    public PlayerActions controllerListener;
     void Awake()
     {
         initializeInstance();
         setUpPlayers();
+        controllerListener = PlayerActions.BindActionsWithController();
         currentGate = Instantiate(gate, Vector2.zero, Quaternion.identity) as GameObject;
     }
     void Start()
@@ -78,12 +90,15 @@ public class gameController : MonoBehaviour
 
         for (int i = 0; i <= players.Length - 1; i++)
         {
+            Vector3 startPosition = new Vector3(-totalFieldLength / 2, 0, 0);
             players[i] = Instantiate(playerObject).GetComponent<player>();
             if (i == 1)
             {
+                startPosition = -startPosition;
                 players[i].transform.rotation = flip;
             }
             players[i].playerNumber = i + 1;
+            players[i].transform.position = startPosition;
         }
     }
 
@@ -91,7 +106,7 @@ public class gameController : MonoBehaviour
     {
         runGameStates();
 
-        if(Input.GetButtonDown("Start_1") || Input.GetButtonDown("Start_2"))
+        if (Input.GetButtonDown("Start_1") || Input.GetButtonDown("Start_2"))
         {
             Application.LoadLevel("test");
         }
@@ -105,8 +120,13 @@ public class gameController : MonoBehaviour
     {
         switch (currentState)
         {
+            case gameState.CheckPlayers:
+                if (inputSetup())
+                {
+                    currentState = gameState.Start;
+                }
+                break;
             case gameState.Start:
-                startPlayers();
                 if (!canvas.startCountdown(canvas.countdownClock))
                 {
                     beginGame();
@@ -139,10 +159,40 @@ public class gameController : MonoBehaviour
                 break;
         }
 
-        if (checkVictor() != 0)
+        if (currentState != gameState.CheckPlayers && checkVictor() != 0)
         {
             displayVictor(checkVictor());
             currentState = gameState.Victory;
+        }
+    }
+
+    bool inputSetup()
+    {
+        if (controllerListener.primary.WasPressed)
+        {
+            if (!players[0].inputSetup)
+            {
+                Debug.LogFormat("Assigned Player 1");
+                PlayerActions newActions = PlayerActions.BindActionsWithController();
+                newActions.Device = InputManager.ActiveDevice;
+                players[0].setupActions(newActions);
+            }
+            else if (!players[1].inputSetup)
+            {
+                Debug.LogFormat("Assigned Player 2");
+                PlayerActions newActions = PlayerActions.BindActionsWithController();
+                newActions.Device = InputManager.ActiveDevice;
+                players[1].setupActions(newActions);
+            }
+        }
+        if (!players[0].inputSetup || !players[1].inputSetup)
+        {
+            return false;
+        }
+        else
+        {
+            controllerListener.Destroy();
+            return true;
         }
     }
 
@@ -151,32 +201,16 @@ public class gameController : MonoBehaviour
         playerState(player.state.active);
     }
 
-    void startPlayers()
-    {
-        Vector3 cameraOrigin = new Vector3(-totalFieldLength / 2, 0, 0);
-
-        for (int i = 0; i <= players.Length - 1; i++)
-        {
-            if (i == 1)
-            {
-                cameraOrigin = -cameraOrigin;
-            }
-            cameraOrigin.z = players[i].currentCamera.transform.position.z;
-            players[i].currentCamera.transform.position = cameraOrigin;
-        }
-    }
-
     bool checkDestination()
     {
         foreach (player player in players)
         {
-            float xpos = Mathf.Abs(player.currentCamera.transform.position.x);
+            float xpos = Mathf.Abs(player.transform.position.x);
             if (xpos <= screenCenterOffset / 2)
             {
-                float side = player.currentCamera.transform.position.x / Mathf.Abs(player.currentCamera.transform.position.x);
                 Vector3 position = player.currentCamera.transform.position;
-                position.x = (screenCenterOffset / 2) * side;
-                player.currentCamera.transform.position = position;
+                position.x = (screenCenterOffset / 2) * Mathf.Sign(position.x);
+                player.transform.position = position;
                 return true;
             }
         }

@@ -26,7 +26,7 @@ public class shieldController : actionController
     {
         if (isActive)
         {
-            raiseShields(input.raiseShields());
+            raiseShields(input.shield.WasPressed);
         }
         if(currentShield)
         {

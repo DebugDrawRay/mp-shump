@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using DG.Tweening;
+using InControl;
+
 public class player : MonoBehaviour
 {
     public enum state
@@ -14,6 +15,7 @@ public class player : MonoBehaviour
     }
     public state currentState;
     public state previousState;
+
     [Header("Player Properties")]
     public int playerNumber;
     public actionController[] availableActions;
@@ -49,6 +51,9 @@ public class player : MonoBehaviour
     //Statics
     public static float distanceFromCenter;
 
+    //Input
+    public bool inputSetup = false;
+
     void Awake()
     {
         initializeComponents();
@@ -60,10 +65,7 @@ public class player : MonoBehaviour
     {
         initializeUi();
         availableActions = GetComponents<actionController>();
-        foreach (actionController action in availableActions)
-        {
-            action.input = new controllerListener(playerNumber);
-        }
+
         setupLocalCamera();
         tag = "Player" + playerNumber.ToString();
     }
@@ -93,6 +95,15 @@ public class player : MonoBehaviour
         }
         currentCamera.transform.position += new Vector3(0, 0, defaultCamFloat);
         transform.SetParent(currentCamera.transform);
+    }
+
+    public void setupActions(PlayerActions input)
+    {
+        foreach (actionController action in availableActions)
+        {
+            action.input = input;
+        }
+        inputSetup = true;
     }
 
     void Update()

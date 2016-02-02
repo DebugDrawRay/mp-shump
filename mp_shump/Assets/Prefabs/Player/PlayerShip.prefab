@@ -107,6 +107,7 @@ MonoBehaviour:
   - {fileID: 138944, guid: d32ce259bc92dc1468de83f55ede7d1d, type: 2}
   invulPeriod: 3
   flyInLength: 1
+  inputSetup: 0
 --- !u!114 &11405248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,8 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70b1aea1a19ada4784895d51842fdc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryWeapons: []
-  secondaryWeapons: []
+  primaryWeapons:
+  - {fileID: 140120, guid: 204f1fc119ee8ed4fabacbfdd417b31f, type: 2}
+  secondaryWeapons:
+  - {fileID: 195342, guid: f9757f04dbd366945b8831047493b01e, type: 2}
   bombWeapon: {fileID: 0}
   weaponLevel: 0
 --- !u!114 &11443924
@@ -220,12 +223,20 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: primaryWeapons.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: movementSprites.Array.size
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: availableActions.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: secondaryWeapons.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: availableActions.Array.data[2]
@@ -361,6 +372,14 @@ Prefab:
       propertyPath: flyInLength
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: primaryWeapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 140120, guid: 204f1fc119ee8ed4fabacbfdd417b31f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: secondaryWeapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 195342, guid: f9757f04dbd366945b8831047493b01e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192840}

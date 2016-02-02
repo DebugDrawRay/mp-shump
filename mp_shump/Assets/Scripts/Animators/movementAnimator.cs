@@ -33,7 +33,6 @@ public class movementAnimator : actionController
 
     void checkLean()
     {
-        currentLeanAmount = input.verAxis();
         if (currentLeanAmount >= 1)
         {
             currentLean = lean.top;

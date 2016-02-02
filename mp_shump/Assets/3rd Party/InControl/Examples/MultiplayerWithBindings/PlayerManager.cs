@@ -28,7 +28,6 @@ namespace MultiplayerWithBindingsExample
 		PlayerActions keyboardListener;
 		PlayerActions joystickListener;
 
-
 		void OnEnable()
 		{
 			InputManager.OnDeviceDetached += OnDeviceDetached;
@@ -36,14 +35,12 @@ namespace MultiplayerWithBindingsExample
 			joystickListener = PlayerActions.CreateWithJoystickBindings();
 		}
 
-
 		void OnDisable()
 		{
 			InputManager.OnDeviceDetached -= OnDeviceDetached;
 			joystickListener.Destroy();
 			keyboardListener.Destroy();
 		}
-
 
 		void Update()
 		{
@@ -65,7 +62,6 @@ namespace MultiplayerWithBindingsExample
 				}
 			}
 		}
-
 
 		bool JoinButtonWasPressedOnListener( PlayerActions actions )
 		{

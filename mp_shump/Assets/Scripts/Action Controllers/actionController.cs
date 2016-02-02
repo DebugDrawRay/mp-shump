@@ -8,8 +8,8 @@ public class actionController : MonoBehaviour
         get;
         set;
     }
-
-    public IinputListener input
+    
+    public PlayerActions input
     {
         get;
         set;

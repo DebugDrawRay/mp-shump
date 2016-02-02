@@ -22,7 +22,7 @@ public class engine : actionController
         rigid = GetComponent<Rigidbody2D>();
         if (isActive)
         {
-            movementHandler(input.horAxis(), input.verAxis());
+            movementHandler(input.move.X, input.move.Y);
         }
         else
         {

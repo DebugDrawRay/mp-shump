@@ -44,8 +44,6 @@ namespace MultiplayerBasicExample
 
 		List<Player> players = new List<Player>( maxPlayers );
 
-
-
 		void Start()
 		{
 			InputManager.OnDeviceDetached += OnDeviceDetached;

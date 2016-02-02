@@ -99,29 +99,28 @@ public class weaponController : actionController, IUiBroadcast
         {
             if (currentPrimary != null)
             {
-                currentPrimary.fireWeapon(input.firePrimary());
                 if (targetUI)
                 {
                     if (currentPrimary.canFire)
                     {
+                        currentPrimary.fireWeapon(input.primary.WasPressed);
                         targetUI.updatePrimaryMeter(currentPrimary.currentAmmo, currentPrimary.maxAmmo);
                     }
                 }
             }
             if (currentSecondary != null)
             {
-                currentSecondary.fireWeapon(input.fireSecondary());
                 if (targetUI)
                 {
                     if (currentPrimary.canFire)
                     {
+                        currentPrimary.fireWeapon(input.secondary.WasPressed);
                         targetUI.updateSecondaryMeter(currentSecondary.currentAmmo, currentSecondary.maxAmmo);
                     }
                 }
             }
             if (currentBomb != null)
             {
-                currentBomb.fireWeapon(input.fireBomb());
                 if (targetUI)
                 {
                     int currentAmmo = Mathf.RoundToInt(currentBomb.currentAmmo);

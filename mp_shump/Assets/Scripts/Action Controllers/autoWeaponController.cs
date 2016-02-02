@@ -63,11 +63,7 @@ public class autoWeaponController : actionController
             }
             if (currentSecondary != null)
             {
-                currentSecondary.fireWeapon(input.fireSecondary());
-            }
-            if (currentBomb != null)
-            {
-                currentBomb.fireWeapon(input.fireBomb());
+                currentSecondary.fireWeapon(getSecondaryInput());
             }
         }
     }
@@ -76,4 +72,10 @@ public class autoWeaponController : actionController
     {
         return true;
     }
+
+    bool getSecondaryInput()
+    {
+        return true;
+    }
+
 }
