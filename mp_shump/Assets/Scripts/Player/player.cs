@@ -38,7 +38,9 @@ public class player : MonoBehaviour
 
     [Header("Respawning")]
     public float invulPeriod;
+    public float flyInLength;
     private float currentInvul;
+    private float currentFlyIn;
 
     private bool positionReset = false;
     //Component Cashe
@@ -78,9 +80,7 @@ public class player : MonoBehaviour
         foreach(IUiBroadcast broadcaster in availableBroadcasters)
         {
             broadcaster.targetUI = newUI;
-
         }
-
     }
 
     void setupLocalCamera()
@@ -127,18 +127,7 @@ public class player : MonoBehaviour
                 {
                     runScroll();
                 }
-                enableActions(false);
-                toggleCollisions(false);
                 respawnEvent();
-
-                currentInvul -= Time.deltaTime;
-                if(currentInvul <= 0)
-                {
-                    GetComponent<SpriteRenderer>().enabled = true;
-                    toggleCollisions(true);
-                    positionReset = false;
-                    currentState = previousState;
-                }
                 break;
             case state.destroyed:
                 destroyEvent();
@@ -153,6 +142,8 @@ public class player : MonoBehaviour
         {
             if(currentStatus.respawning)
             {
+                enableActions(false);
+                toggleCollisions(false);
                 previousState = currentState;
                 currentState = state.respawning;
             }
@@ -193,13 +184,31 @@ public class player : MonoBehaviour
         if(!positionReset)
         {
             transform.localPosition = -transform.right * 5;
+            currentFlyIn = flyInLength;
             currentInvul = invulPeriod;
             positionReset = true;
         }
 
         GetComponent<SpriteRenderer>().enabled = !GetComponent<SpriteRenderer>().enabled;
-        
-        recenterPlayer();
+
+        currentInvul -= Time.deltaTime;
+        currentFlyIn -= Time.deltaTime;
+
+        if(currentFlyIn > 0)
+        {
+            recenterPlayer();
+        }
+        if (currentFlyIn <= 0)
+        {
+            enableActions(true);
+        }
+        if (currentInvul <= 0)
+        {
+            toggleCollisions(true);
+            GetComponent<SpriteRenderer>().enabled = true;
+            positionReset = false;
+            currentState = previousState;
+        }
         
     }
     void destroyEvent()
