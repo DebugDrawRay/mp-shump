@@ -14,6 +14,8 @@ public class PlayerActions : PlayerActionSet
     public PlayerAction secondary;
     public PlayerAction shield;
 
+    public PlayerAction pause;
+    public PlayerAction quit;
     public PlayerActions()
     {
         up = CreatePlayerAction("Move Up");
@@ -21,11 +23,15 @@ public class PlayerActions : PlayerActionSet
         left = CreatePlayerAction("Move Left");
         right = CreatePlayerAction("Move Right");
 
+        move = CreateTwoAxisPlayerAction(left, right, down, up);
+
         primary = CreatePlayerAction("Fire Primary");
         secondary = CreatePlayerAction("Fire Secondary");
         shield = CreatePlayerAction("Activate Shield");
 
-        move = CreateTwoAxisPlayerAction(left, right, down, up);
+        pause = CreatePlayerAction("Pause");
+        quit = CreatePlayerAction("Quit");
+
     }
 
     public static PlayerActions BindActionsWithController()
@@ -40,6 +46,28 @@ public class PlayerActions : PlayerActionSet
         actions.primary.AddDefaultBinding(InputControlType.Action1);
         actions.secondary.AddDefaultBinding(InputControlType.Action2);
         actions.shield.AddDefaultBinding(InputControlType.LeftBumper);
+
+        actions.pause.AddDefaultBinding(InputControlType.Start);
+        actions.quit.AddDefaultBinding(InputControlType.Back);
+
+        return actions;
+    }
+
+    public static PlayerActions BindActionsWithKeyboard()
+    {
+        PlayerActions actions = new PlayerActions();
+
+        actions.up.AddDefaultBinding(Key.W);
+        actions.down.AddDefaultBinding(Key.S);
+        actions.left.AddDefaultBinding(Key.A);
+        actions.right.AddDefaultBinding(Key.D);
+
+        actions.primary.AddDefaultBinding(Key.Space);
+        actions.secondary.AddDefaultBinding(Key.RightShift);
+        actions.shield.AddDefaultBinding(Key.Slash);
+
+        actions.pause.AddDefaultBinding(Key.Escape);
+        actions.quit.AddDefaultBinding(Key.F1);
 
         return actions;
     }

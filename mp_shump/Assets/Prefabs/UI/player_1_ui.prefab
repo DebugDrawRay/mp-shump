@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23074f60d9bec0e41883912cc2c05921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerState: 2
+  triggerState: 3
   anchorMin: {x: 0, y: 0.5}
   anchorMax: {x: 0, y: 0.5}
   position: {x: 40, y: 0}
@@ -705,7 +705,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: triggerState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: position.x

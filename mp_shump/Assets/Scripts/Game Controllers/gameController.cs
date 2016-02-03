@@ -58,12 +58,14 @@ public class gameController : MonoBehaviour
         private set;
     }
 
-    public PlayerActions controllerListener;
+    private PlayerActions controllerListener;
+    private PlayerActions keyboardListener;
     void Awake()
     {
         initializeInstance();
         setUpPlayers();
         controllerListener = PlayerActions.BindActionsWithController();
+        keyboardListener = PlayerActions.BindActionsWithKeyboard();
         currentGate = Instantiate(gate, Vector2.zero, Quaternion.identity) as GameObject;
     }
     void Start()
@@ -105,15 +107,6 @@ public class gameController : MonoBehaviour
     void Update()
     {
         runGameStates();
-
-        if (Input.GetButtonDown("Start_1") || Input.GetButtonDown("Start_2"))
-        {
-            Application.LoadLevel("test");
-        }
-        if (Input.GetButtonDown("Back_1") || Input.GetButtonDown("Back_2"))
-        {
-            Application.Quit();
-        }
     }
 
     void runGameStates()
@@ -185,6 +178,23 @@ public class gameController : MonoBehaviour
                 players[1].setupActions(newActions);
             }
         }
+        else if(keyboardListener.primary.WasPressed)
+        {
+            if (!players[0].inputSetup)
+            {
+                Debug.LogFormat("Assigned Player 1");
+                PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
+                newActions.Device = InputManager.ActiveDevice;
+                players[0].setupActions(newActions);
+            }
+            else if (!players[1].inputSetup)
+            {
+                Debug.LogFormat("Assigned Player 2");
+                PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
+                newActions.Device = InputManager.ActiveDevice;
+                players[1].setupActions(newActions);
+            }
+        }
         if (!players[0].inputSetup || !players[1].inputSetup)
         {
             return false;
@@ -192,6 +202,7 @@ public class gameController : MonoBehaviour
         else
         {
             controllerListener.Destroy();
+            keyboardListener.Destroy();
             return true;
         }
     }
