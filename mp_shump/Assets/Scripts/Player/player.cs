@@ -35,7 +35,7 @@ public class player : MonoBehaviour
     public float defaultCamFloat;
 
     [Header("UI Properties")]
-    public GameObject playerCanvas;
+    public playerUiController localUi;
     public GameObject[] availableUI = new GameObject[2];
 
     [Header("Respawning")]
@@ -54,12 +54,15 @@ public class player : MonoBehaviour
     //Input
     public bool inputSetup = false;
 
+    private PlayerActions keyboardListener;
+
     void Awake()
     {
         initializeComponents();
         distanceFromCenter = 500;
 
         currentInvul = invulPeriod;
+        keyboardListener = PlayerActions.BindActionsWithKeyboard();
     }
     void Start()
     {
@@ -77,11 +80,12 @@ public class player : MonoBehaviour
 
     void initializeUi()
     {
-        playerUiController newUI = Instantiate(availableUI[playerNumber - 1]).GetComponent<playerUiController>();
+        //playerUiController newUI = Instantiate(availableUI[playerNumber - 1]).GetComponent<playerUiController>();
+        
         IUiBroadcast[] availableBroadcasters = GetComponents<IUiBroadcast>();
         foreach(IUiBroadcast broadcaster in availableBroadcasters)
         {
-            broadcaster.targetUI = newUI;
+            broadcaster.targetUI = localUi;
         }
     }
 
@@ -104,11 +108,24 @@ public class player : MonoBehaviour
             action.input = input;
         }
         inputSetup = true;
+        keyboardListener.Destroy();
     }
 
     void Update()
     {
-        runStates();
+        if (!inputSetup)
+        {
+            if (keyboardListener.primary.WasPressed)
+            {
+                PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
+                newActions.Device = InputManager.ActiveDevice;
+                setupActions(newActions);
+            }
+        }
+        else
+        {
+            runStates();
+        }
         distanceFromCenter = Mathf.RoundToInt(Mathf.Abs(transform.position.x) - 4);
     }
 

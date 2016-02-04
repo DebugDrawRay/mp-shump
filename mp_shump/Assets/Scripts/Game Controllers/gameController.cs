@@ -52,14 +52,12 @@ public class gameController : MonoBehaviour
     }
 
     //Input
-    public InputDevice[] playerInputs
-    {
-        get;
-        private set;
-    }
-
     private PlayerActions controllerListener;
     private PlayerActions keyboardListener;
+
+    [Header("Debug")]
+    public bool enableInputForTesting;
+
     void Awake()
     {
         initializeInstance();

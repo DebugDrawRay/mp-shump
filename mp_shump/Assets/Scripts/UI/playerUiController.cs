@@ -22,11 +22,17 @@ public class playerUiController : MonoBehaviour
     }
     public void updateLives(int lives)
     {
-        livesText.text = lives.ToString();
+        if (livesText)
+        {
+            livesText.text = lives.ToString();
+        }
     }
     public void updateBombs(int bombs)
     {
-        bombsText.text = bombs.ToString();
+        if (bombsText)
+        {
+            bombsText.text = bombs.ToString();
+        }
     }
     public void updatePrimary(Sprite primary)
     {
@@ -44,10 +50,16 @@ public class playerUiController : MonoBehaviour
     }
     public void updatePrimaryMeter(float current, float max)
     {
-        primaryWeaponMeter.fillAmount = 1 - (current / max);
+        if (primaryWeaponMeter)
+        {
+            primaryWeaponMeter.fillAmount = 1 - (current / max);
+        }
     }
     public void updateSecondaryMeter(float current, float max)
     {
-        secondaryWeaponMeter.fillAmount = 1 - (current / max);
+        if (secondaryWeaponMeter)
+        {
+            secondaryWeaponMeter.fillAmount = 1 - (current / max);
+        }
     }
 }

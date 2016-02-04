@@ -72,6 +72,7 @@ public class weaponController : actionController, IUiBroadcast
                 currentSecondary = secondary.GetComponent<weapon>();
                 if (targetUI)
                 {
+                    Debug.Log("Updating");
                     targetUI.updateSecondary(currentSecondary.projectileIcon);
                 }
             }
