@@ -35,7 +35,7 @@ public class player : MonoBehaviour
     public float defaultCamFloat;
 
     [Header("UI Properties")]
-    public playerUiController localUi;
+    public LocalUiController localUi;
     public GameObject[] availableUI = new GameObject[2];
 
     [Header("Respawning")]
@@ -82,10 +82,10 @@ public class player : MonoBehaviour
     {
         //playerUiController newUI = Instantiate(availableUI[playerNumber - 1]).GetComponent<playerUiController>();
         
-        IUiBroadcast[] availableBroadcasters = GetComponents<IUiBroadcast>();
-        foreach(IUiBroadcast broadcaster in availableBroadcasters)
+        IStatBroadcast[] availableBroadcasters = GetComponents<IStatBroadcast>();
+        foreach(IStatBroadcast broadcaster in availableBroadcasters)
         {
-            broadcaster.targetUI = localUi;
+            broadcaster.targetLocalUi = localUi;
         }
     }
 

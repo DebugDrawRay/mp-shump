@@ -13,7 +13,7 @@ public class itemPickup : MonoBehaviour
     {
         status hasStatus = hit.GetComponent<status>();
         weaponController hasWeapons = hit.GetComponent<weaponController>();
-
+        Animator hasAnim = hit.GetComponent<Animator>();
         if (hasStatus)
         {
             hasStatus.lives += lives;
@@ -23,6 +23,14 @@ public class itemPickup : MonoBehaviour
         if(hasWeapons)
         {
             hasWeapons.updateCurrentWeapons(weaponLevelIncrease);
+
+            GetComponent<AudioSource>().enabled = true;
+            
+            if(hasAnim)
+            {
+                hasAnim.SetTrigger("pickup");
+            }
+
             Destroy(gameObject);
         }
     }

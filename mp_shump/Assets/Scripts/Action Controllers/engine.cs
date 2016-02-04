@@ -12,8 +12,11 @@ public class engine : actionController
 
     private Rigidbody2D rigid;
 
+    private Animator anim;
+
     void Start()
     {
+        anim = GetComponent<Animator>();
         weapon.firedWeapon += stopMovement;
     }
 
@@ -28,8 +31,17 @@ public class engine : actionController
         {
             movementHandler(0, 0);
         }
+        
+        if(anim && input != null)
+        {
+            animateMovement();
+        }
     }
 
+    void animateMovement()
+    {
+        anim.SetFloat("movementDirection", input.move.Y);
+    }
     void stopMovement()
     {
         currentUseStop = weaponUseStop;

@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IUiBroadcast
+public interface IStatBroadcast
 {
-    playerUiController targetUI
+    LocalUiController targetLocalUi
     {
         get;
         set;
     }
+
 }

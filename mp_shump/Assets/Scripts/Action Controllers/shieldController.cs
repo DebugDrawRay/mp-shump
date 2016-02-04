@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class shieldController : actionController 
+public class shieldController : actionController , IStatBroadcast
 {
     public GameObject shieldObject;
     private GameObject currentShield;
@@ -16,6 +16,13 @@ public class shieldController : actionController
     public float regenSpeed;
 
     private bool depleted;
+
+    //Stat Broadcast
+    public LocalUiController targetLocalUi
+    {
+        get;
+        set;
+    }
 
     void Awake()
     {
@@ -32,6 +39,7 @@ public class shieldController : actionController
         {
             currentShield.transform.position = transform.position;
         }
+        targetLocalUi.updateShieldMeter(currentLifetime, maxLifetime);
     }
 
     void raiseShields(bool raise)

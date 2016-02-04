@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class weaponController : actionController, IUiBroadcast
+public class weaponController : actionController, IStatBroadcast
 {
     [Header("Weapons")]
     public GameObject[] primaryWeapons;
@@ -26,7 +26,8 @@ public class weaponController : actionController, IUiBroadcast
     public int weaponLevel;
     private int currentWeaponLevel;
 
-    public playerUiController targetUI
+    //Stat Broadcast
+    public LocalUiController targetLocalUi
     {
         get;
         set;
@@ -55,10 +56,10 @@ public class weaponController : actionController, IUiBroadcast
                 primary.transform.rotation = primary.transform.parent.rotation;
 
                 currentPrimary = primary.GetComponent<weapon>();
-                if (targetUI)
+                /*if (targetLocalUi)
                 {
-                    targetUI.updatePrimary(currentPrimary.projectileIcon);
-                }
+                    targetLocalUi.updatePrimary(currentPrimary.projectileIcon);
+                }*/
             }
         }
         if (secondaryWeapons.Length > 0 && currentWeaponLevel < primaryWeapons.Length)
@@ -70,11 +71,11 @@ public class weaponController : actionController, IUiBroadcast
                 secondary.transform.rotation = secondary.transform.parent.rotation;
 
                 currentSecondary = secondary.GetComponent<weapon>();
-                if (targetUI)
+                /*if (targetLocalUi)
                 {
                     Debug.Log("Updating");
-                    targetUI.updateSecondary(currentSecondary.projectileIcon);
-                }
+                    targetLocalUi.updateSecondary(currentSecondary.projectileIcon);
+                }*/
             }
 
         }
@@ -86,10 +87,6 @@ public class weaponController : actionController, IUiBroadcast
 
             currentBomb = bomb.GetComponent<weapon>();
             int currentAmmo = Mathf.RoundToInt(currentBomb.currentAmmo);
-            if (targetUI)
-            {
-                targetUI.updateBombs(currentAmmo);
-            }
         }
 
     }
@@ -100,32 +97,26 @@ public class weaponController : actionController, IUiBroadcast
         {
             if (currentPrimary != null)
             {
-                if (targetUI)
+                if (currentPrimary.canFire)
                 {
-                    if (currentPrimary.canFire)
-                    {
-                        currentPrimary.fireWeapon(input.primary.WasPressed);
-                        targetUI.updatePrimaryMeter(currentPrimary.currentAmmo, currentPrimary.maxAmmo);
-                    }
+                    currentPrimary.fireWeapon(input.primary.WasPressed);
+                    targetLocalUi.updatePrimaryMeter(currentPrimary.currentAmmo, currentPrimary.maxAmmo);
                 }
+
             }
             if (currentSecondary != null)
             {
-                if (targetUI)
+                if (currentSecondary.canFire)
                 {
-                    if (currentPrimary.canFire)
-                    {
-                        currentPrimary.fireWeapon(input.secondary.WasPressed);
-                        targetUI.updateSecondaryMeter(currentSecondary.currentAmmo, currentSecondary.maxAmmo);
-                    }
+                    currentSecondary.fireWeapon(input.secondary.WasPressed);
+                    targetLocalUi.updateSecondaryMeter(currentSecondary.currentAmmo, currentSecondary.maxAmmo);
                 }
             }
             if (currentBomb != null)
             {
-                if (targetUI)
+                if (targetLocalUi)
                 {
                     int currentAmmo = Mathf.RoundToInt(currentBomb.currentAmmo);
-                    targetUI.updateBombs(currentAmmo);
                 }
             }
         }

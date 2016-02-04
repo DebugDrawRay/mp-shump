@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class status : MonoBehaviour, IUiBroadcast 
+public class status : MonoBehaviour 
 {
     [Header("Health and Lives")]
     public float baseHealth = 10;
