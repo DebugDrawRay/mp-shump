@@ -8,6 +8,8 @@ public class LocalUiController : MonoBehaviour
     public Image secondaryWeaponMeter;
     public Image shieldMeter;
 
+    public PreFlightCheckController checkController;
+
     public void updatePrimaryMeter(float current, float max)
     {
         if (primaryWeaponMeter)

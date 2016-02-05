@@ -52,9 +52,19 @@ public class player : MonoBehaviour
     public static float distanceFromCenter;
 
     //Input
+    public bool debugInput;
+
     public bool inputSetup = false;
 
+    private bool primaryChecked;
+    private bool secondaryChecked;
+    private bool moveChecked;
+    private bool shieldChecked;
+
+    public PlayerActions localInput;
+
     private PlayerActions keyboardListener;
+    private PlayerActions controllerListener;
 
     void Awake()
     {
@@ -63,6 +73,7 @@ public class player : MonoBehaviour
 
         currentInvul = invulPeriod;
         keyboardListener = PlayerActions.BindActionsWithKeyboard();
+        controllerListener = PlayerActions.BindActionsWithController();
     }
     void Start()
     {
@@ -107,24 +118,73 @@ public class player : MonoBehaviour
         {
             action.input = input;
         }
-        inputSetup = true;
-        keyboardListener.Destroy();
+        localInput = input;
+    }
+
+    void checkInput()
+    {
+        if(localUi.checkController)
+        {
+            if (localInput.primary.WasPressed)
+            {
+                localUi.checkController.activateButton(true, false, false, false);
+                primaryChecked = true;
+            }
+            if (localInput.secondary.WasPressed)
+            {
+                localUi.checkController.activateButton(false, true, false, false);
+                secondaryChecked = true;
+            }
+            if (localInput.move.WasPressed)
+            {
+                localUi.checkController.activateButton(true, false, true, false);
+                moveChecked = true;
+            }
+            if (localInput.shield.WasPressed)
+            {
+                localUi.checkController.activateButton(true, false, false, true);
+                shieldChecked = true;
+            }
+
+            if(primaryChecked && secondaryChecked && moveChecked && shieldChecked)
+            {
+                inputSetup = true;
+            }
+        }
+        else
+        {
+            inputSetup = true;
+        }
     }
 
     void Update()
     {
-        if (!inputSetup)
+
+        if (inputSetup)
+        {
+            runStates();
+        }
+        else
+        {
+            checkInput();
+        }
+
+        if (debugInput)
         {
             if (keyboardListener.primary.WasPressed)
             {
                 PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
                 newActions.Device = InputManager.ActiveDevice;
                 setupActions(newActions);
+                keyboardListener.Destroy();
             }
-        }
-        else
-        {
-            runStates();
+            else if (controllerListener.primary.WasPressed)
+            {
+                PlayerActions newActions = PlayerActions.BindActionsWithController();
+                newActions.Device = InputManager.ActiveDevice;
+                setupActions(newActions);
+                controllerListener.Destroy();
+            }
         }
         distanceFromCenter = Mathf.RoundToInt(Mathf.Abs(transform.position.x) - 4);
     }

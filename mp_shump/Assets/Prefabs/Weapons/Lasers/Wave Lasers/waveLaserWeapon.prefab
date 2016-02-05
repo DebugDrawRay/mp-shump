@@ -1,14 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &154472
+--- !u!1 &136478
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 401444}
-  - 114: {fileID: 11468192}
+  - 4: {fileID: 401072}
+  - 114: {fileID: 11408508}
   m_Layer: 0
   m_Name: waveLaserWeapon
   m_TagString: Untagged
@@ -16,41 +16,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &401444
+--- !u!4 &401072
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154472}
+  m_GameObject: {fileID: 136478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 411.281219, y: -56.9409943, z: 0}
+  m_LocalPosition: {x: -0.49604654, y: 0.9492767, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11468192
+--- !u!114 &11408508
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154472}
+  m_GameObject: {fileID: 136478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e118965c2a381843bd1ed49b31934d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c4a1c998e553f44c8bc87c862814430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileLevels:
-  - {fileID: 144262, guid: be0450defc6969e45ad5690f8bbe599b, type: 2}
+  projectile: {fileID: 144262, guid: be0450defc6969e45ad5690f8bbe599b, type: 2}
+  projectileIcon: {fileID: 21300002, guid: d8cd8eded28ff9d479785e94568c0d1f, type: 3}
   muzzleFlash: {fileID: 191574, guid: deb0079a15d595848a95de6caabe70bd, type: 2}
-  laserOffset: {x: 1.75, y: -.200000003}
-  fireDelayLevels:
-  - .25
-  laserHeatIncrease: 100
-  laserHeatCooldown: 1
-  laserCooldownBonus: 2
-  laserHeatTresh: 1000
-  laserRecoveryFactor: 3
-  currentLaserHeat: 0
+  originOffset: {x: 0.8, y: -0.25}
+  fireDelay: 0.25
+  maxAmmo: 30
+  ammoUse: 4
+  passiveAmmoRegen: 0.1
+  reloadTime: 2.5
+  finiteAmmo: 0
+  broadcastFireEvent: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -59,74 +58,47 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
-      propertyPath: levelOne.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: projectiles.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: fireDelayLevels.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: projectileLevels.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: muzzleFlash
-      value: 
-      objectReference: {fileID: 191574, guid: deb0079a15d595848a95de6caabe70bd, type: 2}
-    - target: {fileID: 0}
-      propertyPath: currentLaserHeat
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: levelOne.Array.data[0]
+      propertyPath: projectile
       value: 
       objectReference: {fileID: 144262, guid: be0450defc6969e45ad5690f8bbe599b, type: 2}
     - target: {fileID: 0}
-      propertyPath: levelOne.Array.data[1]
+      propertyPath: projectileIcon
       value: 
-      objectReference: {fileID: 144262, guid: be0450defc6969e45ad5690f8bbe599b, type: 2}
+      objectReference: {fileID: 21300002, guid: d8cd8eded28ff9d479785e94568c0d1f,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: originOffset.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: originOffset.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fireDelay
-      value: .5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: laserOffset.x
-      value: 1.75
+      propertyPath: maxAmmo
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: laserOffset.y
-      value: -.200000003
+      propertyPath: ammoUse
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: laserHeatIncrease
-      value: 100
+      propertyPath: passiveAmmoRegen
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: laserCooldownBonus
-      value: 2
+      propertyPath: reloadTime
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: laserHeatCooldown
+      propertyPath: broadcastFireEvent
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: laserRecoveryFactor
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: projectileLevels.Array.data[0]
-      value: 
-      objectReference: {fileID: 144262, guid: be0450defc6969e45ad5690f8bbe599b, type: 2}
-    - target: {fileID: 0}
-      propertyPath: fireDelayLevels.Array.data[0]
-      value: .25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 154472}
+  m_RootGameObject: {fileID: 136478}
   m_IsPrefabParent: 1

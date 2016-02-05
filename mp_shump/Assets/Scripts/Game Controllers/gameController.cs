@@ -35,8 +35,7 @@ public class gameController : MonoBehaviour
     private GameObject currentGate;
 
     public Camera centerCam;
-
-
+    
     private Quaternion flip = Quaternion.Euler(0, 180, 0);
 
     public player[] players
@@ -54,6 +53,7 @@ public class gameController : MonoBehaviour
     //Input
     private PlayerActions controllerListener;
     private PlayerActions keyboardListener;
+    private InputDevice lastActiveDevice;
 
     [Header("Debug")]
     public bool enableInputForTesting;
@@ -161,17 +161,19 @@ public class gameController : MonoBehaviour
     {
         if (controllerListener.primary.WasPressed)
         {
-            if (!players[0].inputSetup)
+            if (!players[0].inputSetup && InputManager.ActiveDevice != lastActiveDevice)
             {
                 Debug.LogFormat("Assigned Player 1");
                 PlayerActions newActions = PlayerActions.BindActionsWithController();
+                lastActiveDevice = InputManager.ActiveDevice;
                 newActions.Device = InputManager.ActiveDevice;
                 players[0].setupActions(newActions);
             }
-            else if (!players[1].inputSetup)
+            else if (!players[1].inputSetup && InputManager.ActiveDevice != lastActiveDevice)
             {
                 Debug.LogFormat("Assigned Player 2");
                 PlayerActions newActions = PlayerActions.BindActionsWithController();
+                lastActiveDevice = InputManager.ActiveDevice;
                 newActions.Device = InputManager.ActiveDevice;
                 players[1].setupActions(newActions);
             }

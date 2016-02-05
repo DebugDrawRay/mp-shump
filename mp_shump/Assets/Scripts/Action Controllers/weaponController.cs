@@ -62,7 +62,7 @@ public class weaponController : actionController, IStatBroadcast
                 }*/
             }
         }
-        if (secondaryWeapons.Length > 0 && currentWeaponLevel < primaryWeapons.Length)
+        if (secondaryWeapons.Length > 0 && currentWeaponLevel < secondaryWeapons.Length)
         {
             GameObject secondary = Instantiate(secondaryWeapons[currentWeaponLevel], transform.position, Quaternion.identity) as GameObject;
             if (secondary)
