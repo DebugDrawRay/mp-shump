@@ -8,6 +8,7 @@ public class gameController : MonoBehaviour
     //States
     public enum gameState
     {
+        EnterGame,
         CheckPlayers,
         Start,
         InGame,
@@ -51,21 +52,22 @@ public class gameController : MonoBehaviour
     }
 
     //Input
+    private List<InputDevice> activeDevices;
+
     private PlayerActions controllerListener;
     private PlayerActions keyboardListener;
     private InputDevice lastActiveDevice;
 
-    [Header("Debug")]
-    public bool enableInputForTesting;
-
     void Awake()
     {
+        activeDevices = new List<InputDevice>();
         initializeInstance();
         setUpPlayers();
         controllerListener = PlayerActions.BindActionsWithController();
         keyboardListener = PlayerActions.BindActionsWithKeyboard();
         currentGate = Instantiate(gate, Vector2.zero, Quaternion.identity) as GameObject;
     }
+
     void Start()
     {
         canvas = gameCanvas.instance;
@@ -111,6 +113,8 @@ public class gameController : MonoBehaviour
     {
         switch (currentState)
         {
+            case gameState.EnterGame:
+                break;
             case gameState.CheckPlayers:
                 if (inputSetup())
                 {
@@ -161,49 +165,52 @@ public class gameController : MonoBehaviour
     {
         if (controllerListener.primary.WasPressed)
         {
-            if (!players[0].inputSetup && InputManager.ActiveDevice != lastActiveDevice)
+            if (players[0].localInput == null)
             {
                 Debug.LogFormat("Assigned Player 1");
                 PlayerActions newActions = PlayerActions.BindActionsWithController();
-                lastActiveDevice = InputManager.ActiveDevice;
+                activeDevices.Add(InputManager.ActiveDevice);
                 newActions.Device = InputManager.ActiveDevice;
                 players[0].setupActions(newActions);
             }
-            else if (!players[1].inputSetup && InputManager.ActiveDevice != lastActiveDevice)
+            else if (players[1].localInput == null)
             {
                 Debug.LogFormat("Assigned Player 2");
                 PlayerActions newActions = PlayerActions.BindActionsWithController();
-                lastActiveDevice = InputManager.ActiveDevice;
+                activeDevices.Add(InputManager.ActiveDevice);
                 newActions.Device = InputManager.ActiveDevice;
                 players[1].setupActions(newActions);
             }
         }
         else if(keyboardListener.primary.WasPressed)
         {
-            if (!players[0].inputSetup)
+            if (players[0].localInput == null)
             {
                 Debug.LogFormat("Assigned Player 1");
                 PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
+                activeDevices.Add(InputManager.ActiveDevice);
+
                 newActions.Device = InputManager.ActiveDevice;
                 players[0].setupActions(newActions);
             }
-            else if (!players[1].inputSetup)
+            else if (players[1].localInput == null)
             {
                 Debug.LogFormat("Assigned Player 2");
                 PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
+                activeDevices.Add(InputManager.ActiveDevice);
                 newActions.Device = InputManager.ActiveDevice;
                 players[1].setupActions(newActions);
             }
         }
-        if (!players[0].inputSetup || !players[1].inputSetup)
-        {
-            return false;
-        }
-        else
+        if (players[0].playerReady && players[1].playerReady)
         {
             controllerListener.Destroy();
             keyboardListener.Destroy();
             return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

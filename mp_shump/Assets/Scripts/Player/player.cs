@@ -54,7 +54,7 @@ public class player : MonoBehaviour
     //Input
     public bool debugInput;
 
-    public bool inputSetup = false;
+    public bool playerReady;
 
     private bool primaryChecked;
     private bool secondaryChecked;
@@ -91,8 +91,6 @@ public class player : MonoBehaviour
 
     void initializeUi()
     {
-        //playerUiController newUI = Instantiate(availableUI[playerNumber - 1]).GetComponent<playerUiController>();
-        
         IStatBroadcast[] availableBroadcasters = GetComponents<IStatBroadcast>();
         foreach(IStatBroadcast broadcaster in availableBroadcasters)
         {
@@ -119,9 +117,12 @@ public class player : MonoBehaviour
             action.input = input;
         }
         localInput = input;
+
+        keyboardListener.Destroy();
+        controllerListener.Destroy();
     }
 
-    void checkInput()
+    bool checkInput()
     {
         if(localUi.checkController)
         {
@@ -148,25 +149,25 @@ public class player : MonoBehaviour
 
             if(primaryChecked && secondaryChecked && moveChecked && shieldChecked)
             {
-                inputSetup = true;
+                return true;
             }
+            return false;
         }
         else
         {
-            inputSetup = true;
+            return true;
         }
     }
 
     void Update()
     {
-
-        if (inputSetup)
+        if (localInput != null)
         {
-            runStates();
-        }
-        else
-        {
-            checkInput();
+            if (checkInput())
+            {
+                playerReady = true;
+                runStates();
+            }
         }
 
         if (debugInput)
@@ -176,14 +177,12 @@ public class player : MonoBehaviour
                 PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
                 newActions.Device = InputManager.ActiveDevice;
                 setupActions(newActions);
-                keyboardListener.Destroy();
             }
             else if (controllerListener.primary.WasPressed)
             {
                 PlayerActions newActions = PlayerActions.BindActionsWithController();
                 newActions.Device = InputManager.ActiveDevice;
                 setupActions(newActions);
-                controllerListener.Destroy();
             }
         }
         distanceFromCenter = Mathf.RoundToInt(Mathf.Abs(transform.position.x) - 4);

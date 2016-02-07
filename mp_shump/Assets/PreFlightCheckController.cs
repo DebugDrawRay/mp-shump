@@ -35,10 +35,7 @@ public class PreFlightCheckController : MonoBehaviour
             moveCheck.color == activeColor &&
             shieldCheck.color == activeColor)
         {
-            Destroy(primaryCheck.gameObject);
-            Destroy(secondaryCheck.gameObject);
-            Destroy(moveCheck.gameObject);
-            Destroy(shieldCheck.gameObject);
+            Destroy(gameObject);
         }
 
     }

@@ -26,15 +26,15 @@ public class engine : actionController
         if (isActive)
         {
             movementHandler(input.move.X, input.move.Y);
+
+            if (anim && input != null)
+            {
+                animateMovement();
+            }
         }
         else
         {
             movementHandler(0, 0);
-        }
-        
-        if(anim && input != null)
-        {
-            animateMovement();
         }
     }
 

@@ -307,6 +307,7 @@ MonoBehaviour:
   - {fileID: 138944, guid: d32ce259bc92dc1468de83f55ede7d1d, type: 2}
   invulPeriod: 3
   flyInLength: 1
+  debugInput: 0
   inputSetup: 0
 --- !u!114 &11405248
 MonoBehaviour:
@@ -1031,6 +1032,10 @@ Prefab:
       propertyPath: secondaryWeapons.Array.data[0]
       value: 
       objectReference: {fileID: 195342, guid: f9757f04dbd366945b8831047493b01e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: debugInput
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192840}
