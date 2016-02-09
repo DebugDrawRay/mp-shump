@@ -6,10 +6,19 @@ using UnityEngine.EventSystems;
 
 public class LoadoutContainer : MonoBehaviour
 {
-    public Image icon;
+    public enum types
+    {
+        Ship,
+        Primary,
+        Secondary
+    }
+    public types containerType;
 
-    public Sprite[] playerLoadoutObjects;
-    private int currentObject;
+    public GameObject[] playerLoadoutObjects;
+    private int currentIndex;
+    public GameObject currentLoadoutObject;
+
+    public Image icon;
 
     private Image render;
 
@@ -62,24 +71,26 @@ public class LoadoutContainer : MonoBehaviour
 
     public void SelectNext()
     {
-        currentObject++;
-        if(currentObject >= playerLoadoutObjects.Length)
+        currentIndex++;
+        if(currentIndex >= playerLoadoutObjects.Length)
         {
-            currentObject = 0;
+            currentIndex = 0;
         }
 
-        icon.sprite = playerLoadoutObjects[currentObject];
+        icon.sprite = playerLoadoutObjects[currentIndex].GetComponent<Icon>().icon;
+        currentLoadoutObject = playerLoadoutObjects[currentIndex];
     }
 
     public void SelectPrevious()
     {
-        currentObject--;
-        if (currentObject < 0)
+        currentIndex--;
+        if (currentIndex < 0)
         {
-            currentObject = playerLoadoutObjects.Length - 1;
+            currentIndex = playerLoadoutObjects.Length - 1;
         }
 
-        icon.sprite = playerLoadoutObjects[currentObject];
+        icon.sprite = playerLoadoutObjects[currentIndex].GetComponent<Icon>().icon;
+        currentLoadoutObject = playerLoadoutObjects[currentIndex];
     }
 
 }

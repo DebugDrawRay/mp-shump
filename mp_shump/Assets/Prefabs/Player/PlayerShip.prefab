@@ -173,6 +173,7 @@ GameObject:
   - 50: {fileID: 5073956}
   - 114: {fileID: 11421366}
   - 95: {fileID: 9503414}
+  - 114: {fileID: 11490148}
   m_Layer: 8
   m_Name: PlayerShip
   m_TagString: Player1
@@ -308,7 +309,7 @@ MonoBehaviour:
   invulPeriod: 3
   flyInLength: 1
   debugInput: 0
-  inputSetup: 0
+  playerReady: 0
 --- !u!114 &11405248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -589,6 +590,18 @@ MonoBehaviour:
   deathAnim: {fileID: 169442, guid: db1368d81752b5e4cbc4074cbedaae39, type: 2}
   currentWeaponLevel: 0
   excludedTags: []
+--- !u!114 &11490148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112711aa5f358b844a8b6ffdf0c04423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 2435eaf86466a1d45970f5f153fe49d2, type: 3}
 --- !u!114 &11490610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1036,6 +1049,11 @@ Prefab:
       propertyPath: debugInput
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 2435eaf86466a1d45970f5f153fe49d2,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192840}

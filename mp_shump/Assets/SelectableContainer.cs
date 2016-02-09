@@ -12,9 +12,6 @@ public class SelectableContainer : MonoBehaviour
     private bool selectorInputAssigned;
 
     private bool directionHeld;
-    void Awake()
-    {
-    }
 
     void Update()
     {

@@ -188,11 +188,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e0fbd875756044d8d7fb73fabec1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 11461114}
+  containerType: 0
   playerLoadoutObjects:
-  - {fileID: 21300000, guid: 43f048511d974f649bf55f36c39eac1e, type: 3}
-  - {fileID: 21300000, guid: 3cb2346dfd575754d9b0fb7725034a54, type: 3}
-  - {fileID: 21300000, guid: c2b9ccce13570f546b4c35decd516477, type: 3}
+  - {fileID: 136478, guid: 627f07977d3af424893732b95a738ed7, type: 2}
+  - {fileID: 192840, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
+  - {fileID: 195342, guid: f9757f04dbd366945b8831047493b01e, type: 2}
+  icon: {fileID: 11461114}
   selectedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!222 &22200334
 CanvasRenderer:
@@ -235,7 +236,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22436130
