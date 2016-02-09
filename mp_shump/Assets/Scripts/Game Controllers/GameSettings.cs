@@ -17,7 +17,7 @@ public class GameSettings : MonoBehaviour
 
     public levelAsset selectedLevel;
 
-    public GameSettings instance
+    public static GameSettings instance
     {
         get;
         private set;
