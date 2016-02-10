@@ -13,6 +13,7 @@ public class PlayerActions : PlayerActionSet
     public PlayerAction primary;
     public PlayerAction secondary;
     public PlayerAction shield;
+    public PlayerAction item;
 
     public PlayerAction pause;
     public PlayerAction quit;
@@ -28,6 +29,7 @@ public class PlayerActions : PlayerActionSet
         primary = CreatePlayerAction("Fire Primary");
         secondary = CreatePlayerAction("Fire Secondary");
         shield = CreatePlayerAction("Activate Shield");
+        item = CreatePlayerAction("Use Item");
 
         pause = CreatePlayerAction("Pause");
         quit = CreatePlayerAction("Quit");
@@ -46,6 +48,7 @@ public class PlayerActions : PlayerActionSet
         actions.primary.AddDefaultBinding(InputControlType.Action1);
         actions.secondary.AddDefaultBinding(InputControlType.Action2);
         actions.shield.AddDefaultBinding(InputControlType.LeftBumper);
+        actions.item.AddDefaultBinding(InputControlType.RightBumper);
 
         actions.pause.AddDefaultBinding(InputControlType.Start);
         actions.pause.AddDefaultBinding(InputControlType.Menu);
@@ -68,6 +71,7 @@ public class PlayerActions : PlayerActionSet
         actions.primary.AddDefaultBinding(Key.Space);
         actions.secondary.AddDefaultBinding(Key.RightShift);
         actions.shield.AddDefaultBinding(Key.Slash);
+        actions.item.AddDefaultBinding(Key.Period);
 
         actions.pause.AddDefaultBinding(Key.Escape);
         actions.quit.AddDefaultBinding(Key.F1);

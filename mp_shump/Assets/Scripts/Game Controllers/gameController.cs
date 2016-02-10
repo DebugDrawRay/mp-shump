@@ -48,20 +48,11 @@ public class gameController : MonoBehaviour
         private set;
     }
 
-    //Input
-    private List<InputDevice> activeDevices;
-
-    private PlayerActions controllerListener;
-    private PlayerActions keyboardListener;
-    private InputDevice lastActiveDevice;
 
     void Awake()
     {
-        activeDevices = new List<InputDevice>();
         initializeInstance();
         
-        controllerListener = PlayerActions.BindActionsWithController();
-        keyboardListener = PlayerActions.BindActionsWithKeyboard();
         currentGate = Instantiate(gate, Vector2.zero, Quaternion.identity) as GameObject;
     }
 
@@ -89,35 +80,28 @@ public class gameController : MonoBehaviour
         Vector3 startPosition = new Vector3(-totalFieldLength / 2, 0, 0);
 
         players[0] = Instantiate(settings.playerOne).GetComponent<player>();
+
         players[0].GetComponent<weaponController>().primaryWeapons[0] = settings.playerOnePrimary;
         players[0].GetComponent<weaponController>().secondaryWeapons[0] = settings.playerOneSecondary;
-        players[0].localInput = settings.playerOneInput;
+
+        players[0].setupActions(settings.playerOneInput);
 
         players[0].transform.position = startPosition;
-        players[0].playerNumber = 0;
+
+        players[0].playerNumber = 1;
+
 
         players[1] = Instantiate(settings.playerTwo).GetComponent<player>();
+        
         players[1].GetComponent<weaponController>().primaryWeapons[0] = settings.playerTwoPrimary;
         players[1].GetComponent<weaponController>().secondaryWeapons[0] = settings.playerTwoSecondary;
-        players[1].localInput = settings.playerTwoInput;
+
+        players[1].setupActions(settings.playerTwoInput);
+
         players[1].transform.position = -startPosition;
         players[1].transform.rotation = flip;
-        players[1].playerNumber = 1;
 
-        /*players = new player[2];
-
-        for (int i = 0; i <= players.Length - 1; i++)
-        {
-            Vector3 startPosition = new Vector3(-totalFieldLength / 2, 0, 0);
-            players[i] = Instantiate(playerObject).GetComponent<player>();
-            if (i == 1)
-            {
-                startPosition = -startPosition;
-                players[i].transform.rotation = flip;
-            }
-            players[i].playerNumber = i + 1;
-            players[i].transform.position = startPosition;
-        }*/
+        players[1].playerNumber = 2;
     }
 
     void Update()
@@ -132,11 +116,11 @@ public class gameController : MonoBehaviour
             case gameState.EnterGame:
                 if(LoadSettings())
                 {
-                    currentState = gameState.Start;
+                    currentState = gameState.CheckPlayers;
                 }
                 break;
             case gameState.CheckPlayers:
-                if (inputSetup())
+                if (players[0].playerReady && players[1].playerReady)
                 {
                     currentState = gameState.Start;
                 }
@@ -186,58 +170,6 @@ public class gameController : MonoBehaviour
         setUpPlayers(GameSettings.instance);
         factory.buildLevel(GameSettings.instance.selectedLevel);
         return true;
-    }
-    bool inputSetup()
-    {
-        if (controllerListener.primary.WasPressed)
-        {
-            if (players[0].localInput == null)
-            {
-                Debug.LogFormat("Assigned Player 1");
-                PlayerActions newActions = PlayerActions.BindActionsWithController();
-                activeDevices.Add(InputManager.ActiveDevice);
-                newActions.Device = InputManager.ActiveDevice;
-                players[0].setupActions(newActions);
-            }
-            else if (players[1].localInput == null)
-            {
-                Debug.LogFormat("Assigned Player 2");
-                PlayerActions newActions = PlayerActions.BindActionsWithController();
-                activeDevices.Add(InputManager.ActiveDevice);
-                newActions.Device = InputManager.ActiveDevice;
-                players[1].setupActions(newActions);
-            }
-        }
-        else if(keyboardListener.primary.WasPressed)
-        {
-            if (players[0].localInput == null)
-            {
-                Debug.LogFormat("Assigned Player 1");
-                PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
-                activeDevices.Add(InputManager.ActiveDevice);
-
-                newActions.Device = InputManager.ActiveDevice;
-                players[0].setupActions(newActions);
-            }
-            else if (players[1].localInput == null)
-            {
-                Debug.LogFormat("Assigned Player 2");
-                PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
-                activeDevices.Add(InputManager.ActiveDevice);
-                newActions.Device = InputManager.ActiveDevice;
-                players[1].setupActions(newActions);
-            }
-        }
-        if (players[0].playerReady && players[1].playerReady)
-        {
-            controllerListener.Destroy();
-            keyboardListener.Destroy();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     void beginGame()

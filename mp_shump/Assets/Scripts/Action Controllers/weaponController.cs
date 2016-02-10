@@ -56,10 +56,7 @@ public class weaponController : actionController, IStatBroadcast
                 primary.transform.rotation = primary.transform.parent.rotation;
 
                 currentPrimary = primary.GetComponent<weapon>();
-                /*if (targetLocalUi)
-                {
-                    targetLocalUi.updatePrimary(currentPrimary.projectileIcon);
-                }*/
+
             }
         }
         if (secondaryWeapons.Length > 0 && currentWeaponLevel < secondaryWeapons.Length)
@@ -71,11 +68,6 @@ public class weaponController : actionController, IStatBroadcast
                 secondary.transform.rotation = secondary.transform.parent.rotation;
 
                 currentSecondary = secondary.GetComponent<weapon>();
-                /*if (targetLocalUi)
-                {
-                    Debug.Log("Updating");
-                    targetLocalUi.updateSecondary(currentSecondary.projectileIcon);
-                }*/
             }
 
         }
@@ -93,6 +85,7 @@ public class weaponController : actionController, IStatBroadcast
 
     void Update()
     {
+        Debug.Log(input);
         if (isActive)
         {
             if (currentPrimary != null)

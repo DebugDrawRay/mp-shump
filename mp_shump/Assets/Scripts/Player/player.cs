@@ -70,7 +70,7 @@ public class player : MonoBehaviour
     {
         initializeComponents();
         distanceFromCenter = 500;
-
+        availableActions = GetComponents<actionController>();
         currentInvul = invulPeriod;
         keyboardListener = PlayerActions.BindActionsWithKeyboard();
         controllerListener = PlayerActions.BindActionsWithController();
@@ -78,7 +78,6 @@ public class player : MonoBehaviour
     void Start()
     {
         initializeUi();
-        availableActions = GetComponents<actionController>();
 
         setupLocalCamera();
         tag = "Player" + playerNumber.ToString();
@@ -304,7 +303,6 @@ public class player : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         Destroy(gameObject);
-
     }
 
 }

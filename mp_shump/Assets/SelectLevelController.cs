@@ -17,4 +17,9 @@ public class SelectLevelController : MonoBehaviour
             SceneManager.LoadScene(nextScene);
         }
     }
+
+    void Update()
+    {
+        Debug.Log(GameSettings.instance.playerOneInput.move.Y);
+    }
 }

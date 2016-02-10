@@ -33,6 +33,10 @@ public class LoadoutContainer : MonoBehaviour
     {
         render = GetComponent<Image>();
         baseColor = render.color;
+
+        icon.sprite = playerLoadoutObjects[currentIndex].GetComponent<Icon>().icon;
+        currentLoadoutObject = playerLoadoutObjects[currentIndex];
+
     }
 
     void Update()

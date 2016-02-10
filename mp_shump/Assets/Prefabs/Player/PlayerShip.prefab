@@ -171,9 +171,9 @@ GameObject:
   - 114: {fileID: 11443924}
   - 61: {fileID: 6198266}
   - 50: {fileID: 5073956}
-  - 114: {fileID: 11421366}
   - 95: {fileID: 9503414}
   - 114: {fileID: 11490148}
+  - 114: {fileID: 11463290}
   m_Layer: 8
   m_Name: PlayerShip
   m_TagString: Player1
@@ -308,7 +308,7 @@ MonoBehaviour:
   - {fileID: 138944, guid: d32ce259bc92dc1468de83f55ede7d1d, type: 2}
   invulPeriod: 3
   flyInLength: 1
-  debugInput: 0
+  debugInput: 1
   playerReady: 0
 --- !u!114 &11405248
 MonoBehaviour:
@@ -377,23 +377,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11421366
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20f36c31e31d0c041a172e3de7f8d360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSprites:
-  - {fileID: 21300000, guid: 43f048511d974f649bf55f36c39eac1e, type: 3}
-  - {fileID: 21300000, guid: 84613c920d3764c4fbd47528d7b0461f, type: 3}
-  - {fileID: 21300000, guid: 2435eaf86466a1d45970f5f153fe49d2, type: 3}
-  - {fileID: 21300000, guid: 20b455f2b97781248887feeda0797c62, type: 3}
-  - {fileID: 21300000, guid: 3285dc8eb45572e4bb69f86750caa133, type: 3}
 --- !u!114 &11433952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -462,6 +445,18 @@ MonoBehaviour:
   shieldObject: {fileID: 121110, guid: 6b69165020d83124ca331b351f1e9f44, type: 2}
   maxLifetime: 0.25
   regenSpeed: 0.0025
+--- !u!114 &11463290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41530e751333dec44871f05468d1f399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heldItem: {fileID: 138068, guid: f10cb27095324634ea24fe70362181c9, type: 2}
 --- !u!114 &11471116
 MonoBehaviour:
   m_ObjectHideFlags: 1
