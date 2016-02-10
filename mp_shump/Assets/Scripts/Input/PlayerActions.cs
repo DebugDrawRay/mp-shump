@@ -48,7 +48,10 @@ public class PlayerActions : PlayerActionSet
         actions.shield.AddDefaultBinding(InputControlType.LeftBumper);
 
         actions.pause.AddDefaultBinding(InputControlType.Start);
+        actions.pause.AddDefaultBinding(InputControlType.Menu);
+
         actions.quit.AddDefaultBinding(InputControlType.Back);
+        actions.quit.AddDefaultBinding(InputControlType.View);
 
         return actions;
     }

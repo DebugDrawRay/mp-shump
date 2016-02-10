@@ -93,4 +93,8 @@ public class LoadoutContainer : MonoBehaviour
         currentLoadoutObject = playerLoadoutObjects[currentIndex];
     }
 
+    public GameObject GetSelectedObject()
+    {
+        return currentLoadoutObject;
+    }
 }

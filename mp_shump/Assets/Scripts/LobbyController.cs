@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using InControl;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LobbyController : MonoBehaviour
 {
@@ -18,41 +17,16 @@ public class LobbyController : MonoBehaviour
 
     private GameSettings settings;
 
-    private PlayerStateControl playerOne;
-    private PlayerStateControl playerTwo;
+    public SelectableContainer playerOneLoadout;
+    public SelectableContainer playerTwoLoadout;
 
     public SelectableContainer[] lobbyUi = new SelectableContainer[2];
 
-    public class PlayerStateControl
-    {
-        public enum state
-        {
-            SelectLoadout,
-            EnterGame
-        }
-        public state currentState;
+    public bool playerOneReady;
+    public bool playerTwoReady;
 
-        public SelectableContainer targetUI;
-
-        public PlayerStateControl(SelectableContainer targetLobbyUI, PlayerActions playerInput)
-        {
-            targetUI = targetLobbyUI;
-            targetUI.input = playerInput;
-        }
-
-        public void runStates()
-        {
-            switch (currentState)
-            {
-                case state.SelectLoadout:
-                    break;
-                case state.EnterGame:
-                    break;
-            }
-        }
-    }
-    
-
+    public string nextScene;
+     
     void Awake()
     {
         settings = GameSettings.instance;
@@ -63,14 +37,6 @@ public class LobbyController : MonoBehaviour
     void Update()
     {
         runStates();
-        if(playerOne != null)
-        {
-            playerOne.runStates();
-        }
-        if(playerTwo != null)
-        {
-            playerTwo.runStates();
-        }
     }
 
     void runStates()
@@ -84,8 +50,23 @@ public class LobbyController : MonoBehaviour
                 }
                 break;
             case state.SelectLoadout:
+                if(settings.playerOneInput.pause.WasPressed)
+                {
+                    playerOneReady = true;
+                }
+                if(settings.playerTwoInput.pause.WasPressed)
+                {
+                    playerTwoReady = true;
+                }
+
+                if(playerOneReady && playerTwoReady)
+                {
+                    currentState = state.EnterGame;
+                }
                 break;
             case state.EnterGame:
+                SetLoadout();
+                SceneManager.LoadScene(nextScene);
                 break;
         }
     }
@@ -100,8 +81,7 @@ public class LobbyController : MonoBehaviour
                 PlayerActions newActions = PlayerActions.BindActionsWithController();
                 newActions.Device = InputManager.ActiveDevice;
                 settings.playerOneInput = newActions;
-                playerOne = new PlayerStateControl(lobbyUi[0], newActions);
-
+                playerOneLoadout.input = newActions;
             }
             else if (settings.playerTwoInput == null)
             {
@@ -109,7 +89,7 @@ public class LobbyController : MonoBehaviour
                 PlayerActions newActions = PlayerActions.BindActionsWithController();
                 newActions.Device = InputManager.ActiveDevice;
                 settings.playerTwoInput = newActions;
-                playerOne = new PlayerStateControl(lobbyUi[1], newActions);
+                playerTwoLoadout.input = newActions;
 
             }
         }
@@ -121,7 +101,7 @@ public class LobbyController : MonoBehaviour
                 PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
                 newActions.Device = InputManager.ActiveDevice;
                 settings.playerOneInput = newActions;
-                playerOne = new PlayerStateControl(lobbyUi[0], newActions);
+                playerOneLoadout.input = newActions;
 
             }
             else if (settings.playerTwoInput == null)
@@ -130,7 +110,7 @@ public class LobbyController : MonoBehaviour
                 PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
                 newActions.Device = InputManager.ActiveDevice;
                 settings.playerTwoInput = newActions;
-                playerOne = new PlayerStateControl(lobbyUi[1], newActions);
+                playerTwoLoadout.input = newActions;
 
             }
         }
@@ -138,12 +118,22 @@ public class LobbyController : MonoBehaviour
         {
             controllerListener.Destroy();
             keyboardListener.Destroy();
-
             return true;
         }
         else
         {
             return false;
         }
+    }
+
+    void SetLoadout()
+    {
+        settings.playerOne = playerOneLoadout.shipContainer.currentLoadoutObject;
+        settings.playerOnePrimary = playerOneLoadout.primaryContainer.currentLoadoutObject;
+        settings.playerOneSecondary = playerOneLoadout.secondaryContainer.currentLoadoutObject;
+
+        settings.playerTwo = playerTwoLoadout.shipContainer.currentLoadoutObject;
+        settings.playerTwoPrimary = playerTwoLoadout.primaryContainer.currentLoadoutObject;
+        settings.playerTwoSecondary = playerTwoLoadout.secondaryContainer.currentLoadoutObject;
     }
 }

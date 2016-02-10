@@ -9,11 +9,11 @@ public class GameSettings : MonoBehaviour
     public PlayerActions playerOneInput;
     public PlayerActions playerTwoInput;
 
-    public weapon[] playerOnePrimaries = new weapon[3];
-    public weapon[] playerTwoPrimaries = new weapon[3];
+    public GameObject playerOnePrimary;
+    public GameObject playerTwoPrimary;
 
-    public weapon playerOneSecondary;
-    public weapon playerTwoSecondary;
+    public GameObject playerOneSecondary;
+    public GameObject playerTwoSecondary;
 
     public levelAsset selectedLevel;
 
