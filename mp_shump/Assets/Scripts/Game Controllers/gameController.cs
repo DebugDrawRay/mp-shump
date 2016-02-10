@@ -25,9 +25,6 @@ public class gameController : MonoBehaviour
     private gameCanvas canvas;
     private levelFactory factory;
 
-    [Header("Player Container")]
-    public GameObject playerObject;
-
     [Header("Play Field Properties")]
     public float totalFieldLength = 500;
     public float screenCenterOffset = 8.9f;
@@ -62,7 +59,7 @@ public class gameController : MonoBehaviour
     {
         activeDevices = new List<InputDevice>();
         initializeInstance();
-        setUpPlayers();
+        
         controllerListener = PlayerActions.BindActionsWithController();
         keyboardListener = PlayerActions.BindActionsWithKeyboard();
         currentGate = Instantiate(gate, Vector2.zero, Quaternion.identity) as GameObject;
@@ -72,7 +69,6 @@ public class gameController : MonoBehaviour
     {
         canvas = gameCanvas.instance;
         factory = levelFactory.instance;
-        factory.buildLevel();
     }
 
     void initializeInstance()
@@ -86,9 +82,29 @@ public class gameController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void setUpPlayers()
+    void setUpPlayers(GameSettings settings)
     {
         players = new player[2];
+
+        Vector3 startPosition = new Vector3(-totalFieldLength / 2, 0, 0);
+
+        players[0] = Instantiate(settings.playerOne).GetComponent<player>();
+        players[0].GetComponent<weaponController>().primaryWeapons[0] = settings.playerOnePrimary;
+        players[0].GetComponent<weaponController>().secondaryWeapons[0] = settings.playerOneSecondary;
+        players[0].localInput = settings.playerOneInput;
+
+        players[0].transform.position = startPosition;
+        players[0].playerNumber = 0;
+
+        players[1] = Instantiate(settings.playerTwo).GetComponent<player>();
+        players[1].GetComponent<weaponController>().primaryWeapons[0] = settings.playerTwoPrimary;
+        players[1].GetComponent<weaponController>().secondaryWeapons[0] = settings.playerTwoSecondary;
+        players[1].localInput = settings.playerTwoInput;
+        players[1].transform.position = -startPosition;
+        players[1].transform.rotation = flip;
+        players[1].playerNumber = 1;
+
+        /*players = new player[2];
 
         for (int i = 0; i <= players.Length - 1; i++)
         {
@@ -101,7 +117,7 @@ public class gameController : MonoBehaviour
             }
             players[i].playerNumber = i + 1;
             players[i].transform.position = startPosition;
-        }
+        }*/
     }
 
     void Update()
@@ -114,6 +130,10 @@ public class gameController : MonoBehaviour
         switch (currentState)
         {
             case gameState.EnterGame:
+                if(LoadSettings())
+                {
+                    currentState = gameState.Start;
+                }
                 break;
             case gameState.CheckPlayers:
                 if (inputSetup())
@@ -161,6 +181,12 @@ public class gameController : MonoBehaviour
         }
     }
 
+    bool LoadSettings()
+    {
+        setUpPlayers(GameSettings.instance);
+        factory.buildLevel(GameSettings.instance.selectedLevel);
+        return true;
+    }
     bool inputSetup()
     {
         if (controllerListener.primary.WasPressed)

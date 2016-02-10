@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class levelFactory : MonoBehaviour
 {
-    public levelAsset levelToBuild;
     public bool createLevel = true;
 
     public static levelFactory instance
@@ -28,7 +27,7 @@ public class levelFactory : MonoBehaviour
         instance = this;
     }
 
-    public bool buildLevel()
+    public bool buildLevel(levelAsset levelToBuild)
     {
         if (levelToBuild && createLevel)
         {
