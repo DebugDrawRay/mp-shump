@@ -390,6 +390,10 @@ Prefab:
       propertyPath: currentState
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11463290, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
+      propertyPath: assignedTarget
+      value: 
+      objectReference: {fileID: 1878724020}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
   m_IsPrefabParent: 0
@@ -640,6 +644,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 400db9cecaa360a4b9da27353b13a315, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1878724020 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11404632, guid: 247e519a4d56241419cd6fdcedc629b8,
+    type: 2}
+  m_PrefabInternal: {fileID: 595960866}
+  m_Script: {fileID: 11500000, guid: 47dd79a35d411ff43901246132fc2c44, type: 3}
 --- !u!1001 &1983540828
 Prefab:
   m_ObjectHideFlags: 0

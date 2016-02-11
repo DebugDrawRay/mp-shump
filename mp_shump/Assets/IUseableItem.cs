@@ -3,5 +3,5 @@ using System.Collections;
 
 public interface IUseableItem
 {
-    void useItem();
+    void useItem(player target);
 }

@@ -3,9 +3,9 @@ using System.Collections;
 
 public class ItemController : actionController
 {
-    [SerializeField]
     public GameObject heldItem;
 
+    public player assignedTarget;
     void Update()
     {
         if (input.item.WasPressed)
@@ -16,9 +16,14 @@ public class ItemController : actionController
 
     void UseHeldItem(IUseableItem item)
     {
-        if(item != null)
+        player target = GetComponent<player>().enemy;
+        if(assignedTarget)
         {
-            item.useItem();
+            target = assignedTarget;
+        }
+        if(item != null && target)
+        {
+            item.useItem(target);
         }
     }
 }

@@ -73,6 +73,7 @@ public class gameController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+
     void setUpPlayers(GameSettings settings)
     {
         players = new player[2];
@@ -80,28 +81,22 @@ public class gameController : MonoBehaviour
         Vector3 startPosition = new Vector3(-totalFieldLength / 2, 0, 0);
 
         players[0] = Instantiate(settings.playerOne).GetComponent<player>();
-
         players[0].GetComponent<weaponController>().primaryWeapons[0] = settings.playerOnePrimary;
         players[0].GetComponent<weaponController>().secondaryWeapons[0] = settings.playerOneSecondary;
-
         players[0].setupActions(settings.playerOneInput);
-
         players[0].transform.position = startPosition;
-
         players[0].playerNumber = 1;
 
-
         players[1] = Instantiate(settings.playerTwo).GetComponent<player>();
-        
         players[1].GetComponent<weaponController>().primaryWeapons[0] = settings.playerTwoPrimary;
         players[1].GetComponent<weaponController>().secondaryWeapons[0] = settings.playerTwoSecondary;
-
         players[1].setupActions(settings.playerTwoInput);
-
         players[1].transform.position = -startPosition;
         players[1].transform.rotation = flip;
-
         players[1].playerNumber = 2;
+
+        players[0].enemy = players[1];
+        players[1].enemy = players[0];
     }
 
     void Update()

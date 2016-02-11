@@ -45,6 +45,10 @@ public class player : MonoBehaviour
     private float currentFlyIn;
 
     private bool positionReset = false;
+
+    //Enemy references
+    public player enemy;
+
     //Component Cashe
     private status currentStatus;
 
@@ -295,8 +299,8 @@ public class player : MonoBehaviour
             positionReset = false;
             currentState = previousState;
         }
-        
     }
+
     void destroyEvent()
     {
         enableActions(false);
