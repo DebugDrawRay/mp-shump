@@ -85,7 +85,6 @@ public class weaponController : actionController, IStatBroadcast
 
     void Update()
     {
-        Debug.Log(input);
         if (isActive)
         {
             if (currentPrimary != null)

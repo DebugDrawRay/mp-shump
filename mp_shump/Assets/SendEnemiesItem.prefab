@@ -39,8 +39,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131e89393281255449bb40f38a6001a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesToSend: {fileID: 127036, guid: 7f05b1997ec40534ab729e80ca80ab08, type: 2}
-  spawnOffset: {x: -4, y: 0}
+  enemiesToSend: {fileID: 137238, guid: 4124233a54f68524d9172fa1d0afdc9d, type: 2}
+  spawnOffset: {x: 20, y: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -51,10 +51,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: enemiesToSend
       value: 
-      objectReference: {fileID: 127036, guid: 7f05b1997ec40534ab729e80ca80ab08, type: 2}
+      objectReference: {fileID: 137238, guid: 4124233a54f68524d9172fa1d0afdc9d, type: 2}
     - target: {fileID: 0}
       propertyPath: spawnOffset.x
-      value: -4
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

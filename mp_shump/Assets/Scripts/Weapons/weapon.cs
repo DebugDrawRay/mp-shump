@@ -97,7 +97,6 @@ public class weapon : MonoBehaviour
         if(!canFire && !finiteAmmo)
         {
             currentReloadTime -= Time.deltaTime;
-            Debug.Log(currentReloadTime);
             if(currentReloadTime <= 0)
             {
                 canFire = true;

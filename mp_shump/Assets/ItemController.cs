@@ -8,22 +8,23 @@ public class ItemController : actionController
     public player assignedTarget;
     void Update()
     {
-        if (input.item.WasPressed)
-        {
-            UseHeldItem(heldItem.GetComponent<IUseableItem>());
-        }
+        UseHeldItem(input.item.WasPressed, heldItem.GetComponent<IUseableItem>());
     }
 
-    void UseHeldItem(IUseableItem item)
+    void UseHeldItem(bool use, IUseableItem item)
     {
-        player target = GetComponent<player>().enemy;
-        if(assignedTarget)
+        if (use)
         {
-            target = assignedTarget;
-        }
-        if(item != null && target)
-        {
-            item.useItem(target);
+            player target = GetComponent<player>().enemy;
+            if (assignedTarget)
+            {
+                target = assignedTarget;
+            }
+            if (item != null && target)
+            {
+                item.useItem(target);
+                heldItem = null;
+            }
         }
     }
 }
