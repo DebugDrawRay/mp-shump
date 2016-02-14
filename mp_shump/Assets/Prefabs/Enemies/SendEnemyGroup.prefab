@@ -372,9 +372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5a308de94eb964ea7ad3798ca7df42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 168680, guid: c69c33eee0eaab941b0ec74bc8bc026b, type: 2}
-  dropChance: 0.1
+  items: []
+  dropChance: 0
 --- !u!114 &11446876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -450,9 +449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5a308de94eb964ea7ad3798ca7df42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 168680, guid: c69c33eee0eaab941b0ec74bc8bc026b, type: 2}
-  dropChance: 0.1
+  items: []
+  dropChance: 0
 --- !u!114 &11473648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -482,9 +480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5a308de94eb964ea7ad3798ca7df42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 168680, guid: c69c33eee0eaab941b0ec74bc8bc026b, type: 2}
-  dropChance: 0.1
+  items: []
+  dropChance: 0
 --- !u!114 &11482342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -668,7 +665,27 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: items.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[1]
+      value: 
+      objectReference: {fileID: 144042, guid: 400db9cecaa360a4b9da27353b13a315, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[2]
+      value: 
+      objectReference: {fileID: 186018, guid: 525f9c5d90d6a144d8d7ef90feee8e9b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: dropChance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 168680, guid: c69c33eee0eaab941b0ec74bc8bc026b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 137238}

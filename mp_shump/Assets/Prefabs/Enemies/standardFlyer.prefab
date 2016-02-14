@@ -108,7 +108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 168680, guid: c69c33eee0eaab941b0ec74bc8bc026b, type: 2}
-  dropChance: 0.1
+  - {fileID: 186018, guid: 525f9c5d90d6a144d8d7ef90feee8e9b, type: 2}
+  - {fileID: 144042, guid: 400db9cecaa360a4b9da27353b13a315, type: 2}
+  dropChance: 0.2
 --- !u!114 &11456788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,7 +225,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: items.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: excludedTags.Array.size
@@ -299,7 +301,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: dropChance
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: activeState
@@ -308,7 +310,23 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: primaryWeapon
       value: 
-      objectReference: {fileID: 140120, guid: 204f1fc119ee8ed4fabacbfdd417b31f, type: 2}
+      objectReference: {fileID: 144042, guid: 400db9cecaa360a4b9da27353b13a315, type: 2}
+    - target: {fileID: 0}
+      propertyPath: secondaryWeapon
+      value: 
+      objectReference: {fileID: 186018, guid: 525f9c5d90d6a144d8d7ef90feee8e9b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: bombWeapon
+      value: 
+      objectReference: {fileID: 168680, guid: c69c33eee0eaab941b0ec74bc8bc026b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[1]
+      value: 
+      objectReference: {fileID: 186018, guid: 525f9c5d90d6a144d8d7ef90feee8e9b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[2]
+      value: 
+      objectReference: {fileID: 144042, guid: 400db9cecaa360a4b9da27353b13a315, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 127036}

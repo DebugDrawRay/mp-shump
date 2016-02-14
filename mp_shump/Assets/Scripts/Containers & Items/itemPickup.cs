@@ -9,29 +9,56 @@ public class itemPickup : MonoBehaviour
     [Header("Weapon")]
     public int weaponLevelIncrease;
 
+    [Header("Items")]
+    public GameObject useableItem;
+
     void OnTriggerEnter2D(Collider2D hit)
     {
-        status hasStatus = hit.GetComponent<status>();
-        weaponController hasWeapons = hit.GetComponent<weaponController>();
-        Animator hasAnim = hit.GetComponent<Animator>();
-        if (hasStatus)
-        {
-            hasStatus.lives += lives;
-            Destroy(gameObject);
-        }
-        
-        if(hasWeapons)
-        {
-            hasWeapons.updateCurrentWeapons(weaponLevelIncrease);
+        player isPlayer = hit.GetComponent<player>();
 
-            GetComponent<AudioSource>().enabled = true;
-            
-            if(hasAnim)
+        if (isPlayer)
+        {
+            status hasStatus = hit.GetComponent<status>();
+            weaponController hasWeapons = hit.GetComponent<weaponController>();
+            ItemController hasItems = hit.GetComponent<ItemController>();
+
+            Animator hasAnim = hit.GetComponent<Animator>();
+            if (hasStatus)
             {
-                hasAnim.SetTrigger("pickup");
+                if (hasAnim)
+                {
+                    hasAnim.SetTrigger("pickup");
+                }
+
+                hasStatus.lives += lives;
             }
 
-            Destroy(gameObject);
+            if (hasWeapons)
+            {
+                hasWeapons.updateCurrentWeapons(weaponLevelIncrease);
+
+                GetComponent<AudioSource>().enabled = true;
+
+                if (hasAnim)
+                {
+                    hasAnim.SetTrigger("pickup");
+                }
+            }
+
+            if (hasItems)
+            {
+                hasItems.AddHeldItem(useableItem);
+
+                if (hasAnim)
+                {
+                    hasAnim.SetTrigger("pickup");
+                }
+            }
+
+            if (hasItems || hasWeapons || hasStatus)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

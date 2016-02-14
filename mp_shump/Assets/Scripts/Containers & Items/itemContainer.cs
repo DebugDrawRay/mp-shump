@@ -28,10 +28,7 @@ public class itemContainer : MonoBehaviour
     {
         if(trigger && willDrop())
         {
-            for(int i = 0; i < items.Length; i++)
-            {
-                Instantiate(items[i], transform.position, Quaternion.identity);
-            }
+            Instantiate(items[itemToDrop()], transform.position, Quaternion.identity);
             items = new GameObject[0];
         }
     }
@@ -47,5 +44,10 @@ public class itemContainer : MonoBehaviour
         {
             return false;
         }
+    }
+
+    int itemToDrop()
+    {
+        return Random.Range(0, items.Length);
     }
 }

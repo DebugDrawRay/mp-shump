@@ -308,6 +308,7 @@ MonoBehaviour:
   - {fileID: 138944, guid: d32ce259bc92dc1468de83f55ede7d1d, type: 2}
   invulPeriod: 3
   flyInLength: 1
+  enemy: {fileID: 0}
   debugInput: 1
   playerReady: 0
 --- !u!114 &11405248
@@ -456,7 +457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41530e751333dec44871f05468d1f399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heldItem: {fileID: 138068, guid: f10cb27095324634ea24fe70362181c9, type: 2}
+  heldItem: {fileID: 0}
+  assignedTarget: {fileID: 0}
 --- !u!114 &11471116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1049,6 +1051,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 2435eaf86466a1d45970f5f153fe49d2,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: heldItem
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192840}

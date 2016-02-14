@@ -6,16 +6,23 @@ public class ItemController : actionController
     public GameObject heldItem;
 
     public player assignedTarget;
+
     void Update()
     {
-        UseHeldItem(input.item.WasPressed, heldItem.GetComponent<IUseableItem>());
+        if (isActive)
+        {
+            UseHeldItem(input.item.WasPressed);
+        }
     }
 
-    void UseHeldItem(bool use, IUseableItem item)
+    void UseHeldItem(bool use)
     {
-        if (use)
+        if (use && heldItem)
         {
+            IUseableItem item = heldItem.GetComponent<IUseableItem>();
+
             player target = GetComponent<player>().enemy;
+
             if (assignedTarget)
             {
                 target = assignedTarget;
@@ -26,5 +33,10 @@ public class ItemController : actionController
                 heldItem = null;
             }
         }
+    }
+
+    public void AddHeldItem(GameObject item)
+    {
+        heldItem = item;
     }
 }
