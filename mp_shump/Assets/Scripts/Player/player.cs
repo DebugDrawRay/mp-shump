@@ -36,7 +36,7 @@ public class player : MonoBehaviour
 
     [Header("UI Properties")]
     public LocalUiController localUi;
-    public GameObject[] availableUI = new GameObject[2];
+    public PlayerInformationController infoUi;
 
     [Header("Respawning")]
     public float invulPeriod;
@@ -81,7 +81,8 @@ public class player : MonoBehaviour
     }
     void Start()
     {
-        initializeUi();
+        initializeLocalUi();
+        initializeInfoUi();
 
         setupLocalCamera();
         tag = "Player" + playerNumber.ToString();
@@ -92,13 +93,23 @@ public class player : MonoBehaviour
         currentStatus = GetComponent<status>();
     }
 
-    void initializeUi()
+    void initializeLocalUi()
     {
-        IStatBroadcast[] availableBroadcasters = GetComponents<IStatBroadcast>();
-        foreach(IStatBroadcast broadcaster in availableBroadcasters)
+        IStatBroadcast[] statBroadcasters = GetComponents<IStatBroadcast>();
+        foreach (IStatBroadcast broadcaster in statBroadcasters)
         {
             broadcaster.targetLocalUi = localUi;
         }
+    }
+
+    void initializeInfoUi()
+    {
+        IInformationBroadcast[] infoBroadcasters = GetComponents<IInformationBroadcast>();
+        foreach(IInformationBroadcast broadcaster in infoBroadcasters)
+        {
+            broadcaster.targetInformationUi = infoUi;
+        }
+
     }
 
     void setupLocalCamera()

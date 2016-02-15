@@ -128,10 +128,6 @@ Prefab:
       propertyPath: centerCam
       value: 
       objectReference: {fileID: 518760478}
-    - target: {fileID: 11449436, guid: 792f87019a7fd674bbc4d087bd6e2212, type: 2}
-      propertyPath: currentState
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 792f87019a7fd674bbc4d087bd6e2212, type: 2}
   m_IsPrefabParent: 0

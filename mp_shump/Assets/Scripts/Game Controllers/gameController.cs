@@ -48,6 +48,18 @@ public class gameController : MonoBehaviour
         private set;
     }
 
+    [Header("Player Information Ui")]
+    public GameObject playerInfoUi;
+
+    public Vector2 playerOneUiPos;
+    public Vector2 playerOneUiAnchorMin;
+    public Vector2 playerOneUiAnchorMax;
+
+
+    public Vector2 playerTwoUiPos;
+    public Vector2 playerTwoUiAnchorMin;
+    public Vector2 playerTwoUiAnchorMax;
+
 
     void Awake()
     {
@@ -97,6 +109,36 @@ public class gameController : MonoBehaviour
 
         players[0].enemy = players[1];
         players[1].enemy = players[0];
+
+        players[0].infoUi = CreateInfoUi(1);
+        players[1].infoUi = CreateInfoUi(2);
+
+    }
+
+    PlayerInformationController CreateInfoUi(int playerNumber)
+    {
+        PlayerInformationController newUi = Instantiate(playerInfoUi).GetComponent<PlayerInformationController>();
+        newUi.transform.SetParent(canvas.transform);
+        RectTransform rect = newUi.GetComponent<RectTransform>();
+
+        if (playerNumber == 1)
+        {
+            rect.anchoredPosition = playerOneUiPos;
+
+            rect.anchorMin = playerOneUiAnchorMin;
+            rect.anchorMax = playerOneUiAnchorMax;
+        }
+        else if (playerNumber == 2)
+        {
+            rect.rotation = Quaternion.Euler(0, 180, 0);
+
+            rect.anchoredPosition = playerTwoUiPos;
+
+            rect.anchorMin = playerTwoUiAnchorMin;
+            rect.anchorMax = playerTwoUiAnchorMax;
+        }
+
+        return newUi;
     }
 
     void Update()

@@ -49,12 +49,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  playerObject: {fileID: 192840, guid: 247e519a4d56241419cd6fdcedc629b8, type: 2}
   totalFieldLength: 500
   screenCenterOffset: 10.3
   gate: {fileID: 128138, guid: 48976ca1b385fe04986f464b0d9813ef, type: 2}
   centerCam: {fileID: 0}
-  controlSetup: 0
+  playerInfoUi: {fileID: 108388, guid: 856c0ec400dfe8a48b8bb09b0c7f089e, type: 2}
+  playerOneUiPos: {x: 85, y: -85}
+  playerOneUiAnchorMin: {x: 0, y: 1}
+  playerOneUiAnchorMax: {x: 0, y: 1}
+  playerTwoUiPos: {x: -85, y: -85}
+  playerTwoUiAnchorMin: {x: 1, y: 0.5}
+  playerTwoUiAnchorMax: {x: 1, y: 0.5}
 --- !u!114 &11467986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,7 +71,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25cf0538d5b31a41a6a0b141a2946df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToBuild: {fileID: 11400000, guid: d2be39dbd20135844990e536fbc639f7, type: 2}
   createLevel: 1
 --- !u!1001 &100100000
 Prefab:
