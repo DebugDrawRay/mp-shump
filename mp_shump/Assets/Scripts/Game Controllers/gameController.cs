@@ -95,14 +95,12 @@ public class gameController : MonoBehaviour
         players[0] = Instantiate(settings.playerOne).GetComponent<player>();
         players[0].GetComponent<weaponController>().primaryWeapons[0] = settings.playerOnePrimary;
         players[0].GetComponent<weaponController>().secondaryWeapons[0] = settings.playerOneSecondary;
-        players[0].setupActions(settings.playerOneInput);
         players[0].transform.position = startPosition;
         players[0].playerNumber = 1;
 
         players[1] = Instantiate(settings.playerTwo).GetComponent<player>();
         players[1].GetComponent<weaponController>().primaryWeapons[0] = settings.playerTwoPrimary;
         players[1].GetComponent<weaponController>().secondaryWeapons[0] = settings.playerTwoSecondary;
-        players[1].setupActions(settings.playerTwoInput);
         players[1].transform.position = -startPosition;
         players[1].transform.rotation = flip;
         players[1].playerNumber = 2;
@@ -110,35 +108,8 @@ public class gameController : MonoBehaviour
         players[0].enemy = players[1];
         players[1].enemy = players[0];
 
-        players[0].infoUi = CreateInfoUi(1);
-        players[1].infoUi = CreateInfoUi(2);
-
-    }
-
-    PlayerInformationController CreateInfoUi(int playerNumber)
-    {
-        PlayerInformationController newUi = Instantiate(playerInfoUi).GetComponent<PlayerInformationController>();
-        newUi.transform.SetParent(canvas.transform);
-        RectTransform rect = newUi.GetComponent<RectTransform>();
-
-        if (playerNumber == 1)
-        {
-            rect.anchoredPosition = playerOneUiPos;
-
-            rect.anchorMin = playerOneUiAnchorMin;
-            rect.anchorMax = playerOneUiAnchorMax;
-        }
-        else if (playerNumber == 2)
-        {
-            rect.rotation = Quaternion.Euler(0, 180, 0);
-
-            rect.anchoredPosition = playerTwoUiPos;
-
-            rect.anchorMin = playerTwoUiAnchorMin;
-            rect.anchorMax = playerTwoUiAnchorMax;
-        }
-
-        return newUi;
+        players[0].setupActions(settings.playerOneInput);
+        players[1].setupActions(settings.playerTwoInput);
     }
 
     void Update()

@@ -36,7 +36,7 @@ public class player : MonoBehaviour
 
     [Header("UI Properties")]
     public LocalUiController localUi;
-    public PlayerInformationController infoUi;
+    public GameObject infoUi;
 
     [Header("Respawning")]
     public float invulPeriod;
@@ -78,11 +78,12 @@ public class player : MonoBehaviour
         currentInvul = invulPeriod;
         keyboardListener = PlayerActions.BindActionsWithKeyboard();
         controllerListener = PlayerActions.BindActionsWithController();
+        initializeInfoUi();
     }
+
     void Start()
     {
         initializeLocalUi();
-        initializeInfoUi();
 
         setupLocalCamera();
         tag = "Player" + playerNumber.ToString();
@@ -104,10 +105,32 @@ public class player : MonoBehaviour
 
     void initializeInfoUi()
     {
+        GameObject newUi = Instantiate(infoUi);
+        newUi.transform.SetParent(gameCanvas.instance.transform);
+        RectTransform rect = newUi.GetComponent<RectTransform>();
+
+        rect.rotation = transform.rotation;
+
+        if (rect.rotation.eulerAngles.y == 0)
+        {
+            rect.anchoredPosition = new Vector2(85,-85);
+
+            rect.anchorMin = new Vector2(0,1);
+            rect.anchorMax = new Vector2(0,1);
+        }
+        else if (rect.rotation.eulerAngles.y == 180)
+        {
+
+            rect.anchoredPosition = new Vector2(-85, -85);
+
+            rect.anchorMin = new Vector2(1, 0.5f);
+            rect.anchorMax = new Vector2(1, 0.5f);
+        }
+
         IInformationBroadcast[] infoBroadcasters = GetComponents<IInformationBroadcast>();
         foreach(IInformationBroadcast broadcaster in infoBroadcasters)
         {
-            broadcaster.targetInformationUi = infoUi;
+            broadcaster.targetInformationUi = newUi.GetComponent<PlayerInformationController>();
         }
 
     }

@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ItemController : actionController
+public class ItemController : actionController, IInformationBroadcast
 {
+    public PlayerInformationController targetInformationUi
+    {
+        get;
+        set;
+    }
     public GameObject heldItem;
 
     public player assignedTarget;
@@ -30,6 +35,7 @@ public class ItemController : actionController
             if (item != null && target)
             {
                 item.useItem(target);
+                heldItem.GetComponent<Icon>().icon = null;
                 heldItem = null;
             }
         }
@@ -38,5 +44,6 @@ public class ItemController : actionController
     public void AddHeldItem(GameObject item)
     {
         heldItem = item;
+        //targetInformationUi.SetItemIcon(item.GetComponent<Icon>().icon);
     }
 }

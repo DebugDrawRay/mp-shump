@@ -2,6 +2,12 @@
 
 public class weaponController : actionController, IStatBroadcast
 {
+    public PlayerInformationController targetInformationUi
+    {
+        get;
+        set;
+    }
+
     [Header("Weapons")]
     public GameObject[] primaryWeapons;
     public GameObject[] secondaryWeapons;
@@ -57,6 +63,8 @@ public class weaponController : actionController, IStatBroadcast
 
                 currentPrimary = primary.GetComponent<weapon>();
 
+                //targetInformationUi.SetPrimaryIcon(currentPrimary.GetComponent<Icon>().icon);
+
             }
         }
         if (secondaryWeapons.Length > 0 && currentWeaponLevel < secondaryWeapons.Length)
@@ -68,6 +76,8 @@ public class weaponController : actionController, IStatBroadcast
                 secondary.transform.rotation = secondary.transform.parent.rotation;
 
                 currentSecondary = secondary.GetComponent<weapon>();
+                //targetInformationUi.SetSecondaryIcon(currentSecondary.GetComponent<Icon>().icon);
+
             }
 
         }

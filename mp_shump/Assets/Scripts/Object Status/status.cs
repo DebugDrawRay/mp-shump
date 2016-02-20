@@ -2,8 +2,13 @@
 using System.Collections;
 using System;
 
-public class status : MonoBehaviour 
+public class status : MonoBehaviour, IInformationBroadcast 
 {
+    public PlayerInformationController targetInformationUi
+    {
+        get;
+        set;
+    }
     [Header("Health and Lives")]
     public float baseHealth = 10;
     public float currentHealth
@@ -33,16 +38,16 @@ public class status : MonoBehaviour
     [Header("Collisions")]
     public string[] excludedTags;
 
-    //broadcast interface
-    public playerUiController targetUI
-    {
-        get;
-        set;
-    }
+    private bool setLives;
 
     void Awake()
     {
         currentHealth = baseHealth;
+    }
+
+    void Start()
+    {
+        //targetInformationUi.ChangeCurrentLives(lives);
     }
 
     void Update()
@@ -94,6 +99,7 @@ public class status : MonoBehaviour
         {
             if(lives > 0)
             {
+                targetInformationUi.ChangeCurrentLives(-1);
                 lives--;
                 respawn();
             }
@@ -107,10 +113,6 @@ public class status : MonoBehaviour
         else
         {
             respawning = false;
-        }
-        if (targetUI)
-        {
-            targetUI.updateLives(lives);
         }
 
     }
