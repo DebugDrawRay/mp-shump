@@ -51,15 +51,15 @@ public class gameController : MonoBehaviour
     [Header("Player Information Ui")]
     public GameObject playerInfoUi;
 
+    public GameObject playerOneUi;
     public Vector2 playerOneUiPos;
     public Vector2 playerOneUiAnchorMin;
     public Vector2 playerOneUiAnchorMax;
 
-
+    public GameObject playerTwoUi;
     public Vector2 playerTwoUiPos;
     public Vector2 playerTwoUiAnchorMin;
     public Vector2 playerTwoUiAnchorMax;
-
 
     void Awake()
     {
@@ -72,6 +72,31 @@ public class gameController : MonoBehaviour
     {
         canvas = gameCanvas.instance;
         factory = levelFactory.instance;
+
+        InitializeUi();
+    }
+
+    void InitializeUi()
+    {
+        GameObject playerOneUi = Instantiate(playerInfoUi, transform.position, Quaternion.identity) as GameObject;
+        GameObject playerTwoUi = Instantiate(playerInfoUi, transform.position, Quaternion.identity) as GameObject;
+
+        playerOneUi.transform.SetParent(gameCanvas.instance.transform);
+        playerTwoUi.transform.SetParent(gameCanvas.instance.transform);
+        RectTransform rectOne = playerOneUi.GetComponent<RectTransform>();
+        RectTransform rectTwo = playerTwoUi.GetComponent<RectTransform>();
+
+        rectOne.rotation = Quaternion.Euler(0, 0, 0);
+        rectTwo.rotation = Quaternion.Euler(0, 180, 0);
+
+        rectOne.anchoredPosition = playerOneUiPos;
+        rectOne.anchorMin = playerOneUiAnchorMin;
+        rectOne.anchorMax = playerOneUiAnchorMax;
+
+        rectTwo.anchoredPosition = playerTwoUiPos;
+        rectTwo.anchorMin = playerOneUiAnchorMin;
+        rectTwo.anchorMax = playerOneUiAnchorMax;
+
     }
 
     void initializeInstance()

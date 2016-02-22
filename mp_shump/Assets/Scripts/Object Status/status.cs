@@ -47,7 +47,7 @@ public class status : MonoBehaviour, IInformationBroadcast
 
     void Start()
     {
-        //targetInformationUi.ChangeCurrentLives(lives);
+
     }
 
     void Update()
@@ -99,7 +99,6 @@ public class status : MonoBehaviour, IInformationBroadcast
         {
             if(lives > 0)
             {
-                targetInformationUi.ChangeCurrentLives(-1);
                 lives--;
                 respawn();
             }
