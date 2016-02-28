@@ -52,6 +52,10 @@ public class status : MonoBehaviour, IInformationBroadcast
 
     void Update()
     {
+        if(targetInformationUi != null)
+        {
+            targetInformationUi.ChangeCurrentLives(lives);
+        }
         checkDamageState();
     }
     void OnTriggerEnter2D(Collider2D hit)

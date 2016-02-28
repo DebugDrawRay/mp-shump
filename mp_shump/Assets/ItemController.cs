@@ -37,6 +37,10 @@ public class ItemController : actionController, IInformationBroadcast
                 item.useItem(target);
                 heldItem.GetComponent<Icon>().icon = null;
                 heldItem = null;
+                if (targetInformationUi != null)
+                {
+                    targetInformationUi.SetItemIcon(null);
+                }
             }
         }
     }
@@ -44,6 +48,9 @@ public class ItemController : actionController, IInformationBroadcast
     public void AddHeldItem(GameObject item)
     {
         heldItem = item;
-        //targetInformationUi.SetItemIcon(item.GetComponent<Icon>().icon);
+        if (targetInformationUi != null)
+        {
+            targetInformationUi.SetItemIcon(item.GetComponent<Icon>().icon);
+        }
     }
 }

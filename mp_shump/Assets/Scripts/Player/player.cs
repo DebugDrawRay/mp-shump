@@ -16,6 +16,8 @@ public class player : MonoBehaviour
     public state currentState;
     public state previousState;
 
+    public bool isInitialized;
+
     [Header("Player Properties")]
     public int playerNumber;
     public actionController[] availableActions;
@@ -36,7 +38,7 @@ public class player : MonoBehaviour
 
     [Header("UI Properties")]
     public LocalUiController localUi;
-    public GameObject infoUi;
+    public PlayerInformationController infoUi;
 
     [Header("Respawning")]
     public float invulPeriod;
@@ -64,6 +66,7 @@ public class player : MonoBehaviour
     private bool secondaryChecked;
     private bool moveChecked;
     private bool shieldChecked;
+    private bool itemChecked;
 
     public PlayerActions localInput;
 
@@ -73,21 +76,24 @@ public class player : MonoBehaviour
     void Awake()
     {
         initializeComponents();
+    }
+
+    public void Init(PlayerActions input)
+    {
         distanceFromCenter = 500;
         availableActions = GetComponents<actionController>();
         currentInvul = invulPeriod;
         keyboardListener = PlayerActions.BindActionsWithKeyboard();
         controllerListener = PlayerActions.BindActionsWithController();
-    }
-
-    void Start()
-    {
         initializeLocalUi();
-
+        initializeInfoUi();
         setupLocalCamera();
         tag = "Player" + playerNumber.ToString();
-    }
+        setupActions(input);
 
+
+        isInitialized = true;
+    }
     void initializeComponents()
     {
         currentStatus = GetComponent<status>();
@@ -102,15 +108,15 @@ public class player : MonoBehaviour
         }
     }
 
-    /*void initializeInfoUi()
+    void initializeInfoUi()
     {
         IInformationBroadcast[] infoBroadcasters = GetComponents<IInformationBroadcast>();
         foreach(IInformationBroadcast broadcaster in infoBroadcasters)
         {
-            broadcaster.targetInformationUi = newUi.GetComponent<PlayerInformationController>();
+            broadcaster.targetInformationUi = infoUi;
         }
 
-    }*/
+    }
 
     void setupLocalCamera()
     {
@@ -124,7 +130,7 @@ public class player : MonoBehaviour
         transform.SetParent(currentCamera.transform);
     }
 
-    public void setupActions(PlayerActions input)
+    void setupActions(PlayerActions input)
     {
         foreach (actionController action in availableActions)
         {
@@ -142,26 +148,31 @@ public class player : MonoBehaviour
         {
             if (localInput.primary.WasPressed)
             {
-                localUi.checkController.activateButton(true, false, false, false);
+                localUi.checkController.activateButton(true, false, false, false, false);
                 primaryChecked = true;
             }
             if (localInput.secondary.WasPressed)
             {
-                localUi.checkController.activateButton(false, true, false, false);
+                localUi.checkController.activateButton(false, true, false, false, false);
                 secondaryChecked = true;
             }
             if (localInput.move.WasPressed)
             {
-                localUi.checkController.activateButton(true, false, true, false);
+                localUi.checkController.activateButton(false, false, true, false, false);
                 moveChecked = true;
             }
             if (localInput.shield.WasPressed)
             {
-                localUi.checkController.activateButton(true, false, false, true);
+                localUi.checkController.activateButton(false, false, false, true, false);
                 shieldChecked = true;
             }
+            if (localInput.item.WasPressed)
+            {
+                localUi.checkController.activateButton(false, false, false, false, true);
+                itemChecked = true;
+            }
 
-            if(primaryChecked && secondaryChecked && moveChecked && shieldChecked)
+            if (primaryChecked && secondaryChecked && moveChecked && shieldChecked && itemChecked)
             {
                 return true;
             }
@@ -175,31 +186,35 @@ public class player : MonoBehaviour
 
     void Update()
     {
-        if (localInput != null)
+        
+        if (isInitialized)
         {
-            if (checkInput())
+            if (localInput != null)
             {
-                playerReady = true;
-                runStates();
+                if (checkInput())
+                {
+                    playerReady = true;
+                    runStates();
+                }
             }
-        }
 
-        if (debugInput)
-        {
-            if (keyboardListener.primary.WasPressed)
+            if (debugInput)
             {
-                PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
-                newActions.Device = InputManager.ActiveDevice;
-                setupActions(newActions);
+                if (keyboardListener.primary.WasPressed)
+                {
+                    PlayerActions newActions = PlayerActions.BindActionsWithKeyboard();
+                    newActions.Device = InputManager.ActiveDevice;
+                    setupActions(newActions);
+                }
+                else if (controllerListener.primary.WasPressed)
+                {
+                    PlayerActions newActions = PlayerActions.BindActionsWithController();
+                    newActions.Device = InputManager.ActiveDevice;
+                    setupActions(newActions);
+                }
             }
-            else if (controllerListener.primary.WasPressed)
-            {
-                PlayerActions newActions = PlayerActions.BindActionsWithController();
-                newActions.Device = InputManager.ActiveDevice;
-                setupActions(newActions);
-            }
+            distanceFromCenter = Mathf.RoundToInt(Mathf.Abs(transform.position.x) - 4);
         }
-        distanceFromCenter = Mathf.RoundToInt(Mathf.Abs(transform.position.x) - 4);
     }
 
     /// <summary>

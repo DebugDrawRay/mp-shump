@@ -34,12 +34,13 @@ public class shieldController : actionController , IStatBroadcast
         if (isActive)
         {
             raiseShields(input.shield.WasPressed);
+            targetLocalUi.updateShieldMeter(currentLifetime, maxLifetime);
         }
         if(currentShield)
         {
             currentShield.transform.position = transform.position;
         }
-        targetLocalUi.updateShieldMeter(currentLifetime, maxLifetime);
+
     }
 
     void raiseShields(bool raise)

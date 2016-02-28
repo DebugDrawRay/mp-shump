@@ -78,8 +78,8 @@ public class gameController : MonoBehaviour
 
     void InitializeUi()
     {
-        GameObject playerOneUi = Instantiate(playerInfoUi, transform.position, Quaternion.identity) as GameObject;
-        GameObject playerTwoUi = Instantiate(playerInfoUi, transform.position, Quaternion.identity) as GameObject;
+        playerOneUi = Instantiate(playerInfoUi, transform.position, Quaternion.identity) as GameObject;
+        playerTwoUi = Instantiate(playerInfoUi, transform.position, Quaternion.identity) as GameObject;
 
         playerOneUi.transform.SetParent(gameCanvas.instance.transform);
         playerTwoUi.transform.SetParent(gameCanvas.instance.transform);
@@ -94,9 +94,8 @@ public class gameController : MonoBehaviour
         rectOne.anchorMax = playerOneUiAnchorMax;
 
         rectTwo.anchoredPosition = playerTwoUiPos;
-        rectTwo.anchorMin = playerOneUiAnchorMin;
-        rectTwo.anchorMax = playerOneUiAnchorMax;
-
+        rectTwo.anchorMin = playerTwoUiAnchorMin;
+        rectTwo.anchorMax = playerTwoUiAnchorMax;
     }
 
     void initializeInstance()
@@ -133,8 +132,12 @@ public class gameController : MonoBehaviour
         players[0].enemy = players[1];
         players[1].enemy = players[0];
 
-        players[0].setupActions(settings.playerOneInput);
-        players[1].setupActions(settings.playerTwoInput);
+        players[0].infoUi = playerOneUi.GetComponent<PlayerInformationController>();
+        players[1].infoUi = playerTwoUi.GetComponent<PlayerInformationController>();
+
+        players[0].Init(settings.playerOneInput);
+        players[1].Init(settings.playerTwoInput);
+
     }
 
     void Update()

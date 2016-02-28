@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class weaponController : actionController, IStatBroadcast
+public class weaponController : actionController, IStatBroadcast, IInformationBroadcast
 {
     public PlayerInformationController targetInformationUi
     {
@@ -69,6 +69,11 @@ public class weaponController : actionController, IStatBroadcast
 
     void Update()
     {
+        if (targetInformationUi != null)
+        {
+            targetInformationUi.SetPrimaryIcon(currentPrimary.GetComponent<Icon>().icon);
+            targetInformationUi.SetSecondaryIcon(currentSecondary.GetComponent<Icon>().icon);
+        }
         if (isActive)
         {
             if (currentPrimary != null)

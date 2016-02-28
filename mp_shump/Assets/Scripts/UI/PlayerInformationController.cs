@@ -10,26 +10,44 @@ public class PlayerInformationController : MonoBehaviour
 
     public Image[] livesIcons;
 
+    public Sprite emptySprite;
+
     private int currentLives;
 
     public void SetItemIcon(Sprite icon)
     {
-        itemIcon.sprite = icon;
+        itemIcon.sprite = VerifiedIcon(icon);
+        Debug.Log("Items Set");
     }
 
     public void SetPrimaryIcon(Sprite icon)
     {
-        primaryIcon.sprite = icon;
+        primaryIcon.sprite = VerifiedIcon(icon);
+
+        Debug.Log("Primary Set");
     }
 
     public void SetSecondaryIcon(Sprite icon)
     {
-        secondaryIcon.sprite = icon;
+        secondaryIcon.sprite = VerifiedIcon(icon);
+
+        Debug.Log("Secondary Set");
     }
 
+    Sprite VerifiedIcon(Sprite icon)
+    {
+        if(icon == null)
+        {
+            return emptySprite;
+        }
+        else
+        {
+            return icon;
+        }
+    }
     public void ChangeCurrentLives(int amount)
     {
-        currentLives += amount;
+        currentLives = amount;
 
         for(int i = 0; i < livesIcons.Length - currentLives; i++)
         {
@@ -40,5 +58,6 @@ public class PlayerInformationController : MonoBehaviour
         {
             livesIcons[i].enabled = false;
         }
+        Debug.Log("Current Lives Set");
     }
 }
